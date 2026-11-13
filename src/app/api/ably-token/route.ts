@@ -6,7 +6,8 @@ import * as Ably from "ably";
  * test mode (BroadcastChannel), handy for local development.
  */
 export async function GET(request: Request) {
-  const key = process.env.ABLY_API_KEY;
+  // Forgive copy-paste slips: surrounding spaces, line breaks or quotes.
+  const key = process.env.ABLY_API_KEY?.trim().replace(/^["']|["']$/g, "").trim();
   if (!key) return Response.json({ error: "ABLY_API_KEY is not configured" }, { status: 503 });
 
   const clientId = new URL(request.url).searchParams.get("clientId") ?? "";
@@ -23,7 +24,14 @@ export async function GET(request: Request) {
     });
     return Response.json(tokenRequest, { headers: { "Cache-Control": "no-store" } });
   } catch {
-    // Usually a malformed ABLY_API_KEY. Don't echo details: they could include the key.
-    return Response.json({ error: "ABLY_API_KEY looks invalid" }, { status: 500 });
+    // Usually a malformed ABLY_API_KEY. Report only its shape, never the key itself.
+    const hint = /^[\w-]+\.[\w-]+:\S+$/.test(key)
+      ? "format looks right, but Ably rejected it"
+      : !key.includes(":")
+        ? "missing the ':' part. Copy the whole key (appId.keyId:secret)"
+        : /\s/.test(key)
+          ? "contains spaces or line breaks"
+          : "expected format appId.keyId:secret";
+    return Response.json({ error: `ABLY_API_KEY looks invalid: ${hint}` }, { status: 500 });
   }
 }
