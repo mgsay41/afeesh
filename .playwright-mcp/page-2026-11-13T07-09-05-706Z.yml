@@ -1,0 +1,14 @@
+- generic [active] [ref=e1]:
+  - alert [ref=e6]
+  - banner [ref=e35]:
+    - link "أفيش — الرئيسية" [ref=e36] [cursor=pointer]:
+      - /url: /
+      - text: أفيش
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e39]: 🎬
+        - text: لاعب تجربة
+      - generic [ref=e40]: بيتصل…
+  - main [ref=e42]:
+    - paragraph [ref=e43]: 📡
+    - heading "بندوّر على المضيف…" [level=1] [ref=e44]

@@ -1,6 +1,7 @@
 "use client";
 
-import type * as AblyTypes from "ably";
+// Device-side package: new Ably accounts (MAU pricing) reject the classic `ably` package (error 40168).
+import type * as AblyTypes from "@ably/pubsub-device";
 
 export type ConnectionStatus = "connecting" | "online" | "offline";
 export type Mode = "ably" | "local";
@@ -42,8 +43,8 @@ function localTransport(room: string, clientId: string): Transport {
   };
 }
 
-function ablyTransport(Ably: typeof import("ably"), room: string, clientId: string): Transport {
-  const client = new Ably.Realtime({
+function ablyTransport(Ably: typeof import("@ably/pubsub-device"), room: string, clientId: string): Transport {
+  const client = Ably.createClient({
     clientId,
     echoMessages: true,
     authCallback: async (_params, cb) => {
@@ -71,7 +72,11 @@ function ablyTransport(Ably: typeof import("ably"), room: string, clientId: stri
       const map = (s: string): ConnectionStatus =>
         s === "connected" ? "online" : s === "connecting" || s === "initialized" || s === "disconnected" ? "connecting" : "offline";
       cb(map(client.connection.state));
-      const l = (change: AblyTypes.ConnectionStateChange) => cb(map(change.current));
+      const l = (change: AblyTypes.ConnectionStateChange) => {
+        // A 4xx from Ably (bad key, rejected SDK, auth) won't fix itself by retrying: show it.
+        const code = change.reason?.statusCode ?? 0;
+        cb(code >= 400 && code < 500 ? "offline" : map(change.current));
+      };
       client.connection.on(l);
       return () => client.connection.off(l);
     },
@@ -97,5 +102,5 @@ export async function connect(room: string, clientId: string): Promise<Transport
     const body = (await probe.json().catch(() => ({}))) as { error?: string };
     throw new RealtimeSetupError(body.error ?? `token ${probe.status}`);
   }
-  return ablyTransport(await import("ably"), room, clientId);
+  return ablyTransport(await import("@ably/pubsub-device"), room, clientId);
 }

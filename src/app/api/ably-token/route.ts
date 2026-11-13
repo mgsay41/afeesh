@@ -1,4 +1,5 @@
-import * as Ably from "ably";
+// Server-side package: new Ably accounts (MAU pricing) reject the classic `ably` package (error 40168).
+import { createHttpClient } from "@ably/pubsub-server";
 
 /**
  * Issues a short-lived Ably token request so the API key never reaches the browser.
@@ -16,7 +17,7 @@ export async function GET(request: Request) {
   }
 
   try {
-    const rest = new Ably.Rest({ key });
+    const rest = createHttpClient({ key });
     const tokenRequest = await rest.auth.createTokenRequest({
       clientId,
       capability: { "afeesh:*": ["publish", "subscribe"] },
