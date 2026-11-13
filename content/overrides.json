@@ -2,8 +2,33 @@
   "_help": "Hand edits applied by `npm run content`. drop: IMDb IDs to remove. aliases: extra accepted Arabic spellings per IMDb ID. photos: force a photo URL for an actor (key = Arabic name).",
   "drop": {
     "_notes": "Palestinian film (The Idol) and a little-known indie cast (All My Life) — flagged in the spreadsheet",
-    "titles": ["The Idol", "All My Life"]
+    "titles": [
+      "The Idol",
+      "All My Life"
+    ]
   },
   "aliases": {},
-  "photos": {}
+  "photos": {
+    "دلال عبد العزيز": "https://image.tmdb.org/t/p/w185/oIW8HsQaRbb1j81Fi4FghJryuTj.jpg",
+    "ياسمين عبد العزيز": "https://image.tmdb.org/t/p/w185/6WevW0u4fa47n5NSSps18leaPep.jpg",
+    "حجاج عبد العظيم": "https://image.tmdb.org/t/p/w185/7jCaw613wGCWGvTSJp0YDeSwVmI.jpg",
+    "عمرو عبد الجليل": "https://image.tmdb.org/t/p/w185/5H6iU6KXLvfLPzjPIm3DMkOGtf0.jpg",
+    "ماجد عبد العظيم": "https://image.tmdb.org/t/p/w185/mZIuOmHYt2gGB5CqCzErT9RB5gw.jpg",
+    "فادية عبد الغني": "https://image.tmdb.org/t/p/w185/l0RhNa9Ah9G6oY5awShufrso64r.jpg",
+    "محمد إبراهيم": null,
+    "محمود عبد الغفار": "https://media0106.elcinema.com/uploads/_315x420_356b9c0134f43fb89129c6c6142af2b5a94a8a80e0de503344ce64b998ff2276.jpg",
+    "يوسف إسماعيل": "https://media0106.elcinema.com/uploads/_315x420_3ad1501c39b5840890c08693c9c9c5f255c29396ad8780195ef8f9e66ab57b52.jpg",
+    "عمرو ممدوح": "https://media0106.elcinema.com/uploads/_315x420_8a509f4df61737f13350e1e7322baa6ab644236f44d56d32b985895a2e104e0e.jpg",
+    "سلمى ياقوت": "https://media0106.elcinema.com/uploads/_315x420_62feb391cd054506303b9857a5283ea5dd66f33a94c1ec1acb5ab4da63140cf3.jpg",
+    "صلاح الحنفي": "https://media0106.elcinema.com/uploads/_315x420_7a4d00a0be5d4bf1887687980a662c97622721ab2bbcbc1f596d693847a93e3b.jpg",
+    "نور عثمان": "https://media0106.elcinema.com/uploads/_315x420_ad4a194be70a5d2d8a472584288b03b09386d28b3527326a77399cf48e8f5f50.jpg",
+    "محيي الدين عبد الحميد": "https://media0106.elcinema.com/uploads/_315x420_bfd8592f9800c880e2658492aa4debd8a0995c9e28ea259338c374adfe8be7c7.jpg",
+    "فوزية عبد العليم": "https://media0106.elcinema.com/uploads/_315x420_b6b856f1cae6afce740d3e4fb3a3e79d787e6e760df50c42a7d0220dd4a6719f.jpg",
+    "إيهاب أيوب": "https://media0106.elcinema.com/uploads/_315x420_bd863e291380d4ba4452d9069ff48f43e94030401f26a1f084725a7f969ce160.jpg",
+    "دعاء عريقات": "https://media0106.elcinema.com/uploads/_315x420_a3763d8ebb50146f0887530b088221fc74d9c34ff22fa51601b12d275e14df34.jpg",
+    "ريهام أيمن": "https://media0106.elcinema.com/uploads/_315x420_30b93a27d566bd0af9f769670fe67f66079d692295a27e42c697af0a15c6dc69.jpg",
+    "أحمد صبري غباشي": "https://media0106.elcinema.com/uploads/_315x420_e54882164bf398a9245c4385e5966556540c30a64d3c1c74a8cc128fe1715783.jpg",
+    "شادي عبد الرحمن": "https://media0106.elcinema.com/uploads/_315x420_b081adef3c500d045baa93236b4b6e357ac7051bdb8305b0456d2e8c4d1fdf4e.jpg",
+    "أسامة أسعد": "https://media0106.elcinema.com/uploads/_315x420_c2a9275dacaba5d9eb44a50abfdc5930412b3a6dbf381314014628cbb3d7a41f.jpg"
+  }
 }

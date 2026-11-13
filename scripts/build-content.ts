@@ -29,7 +29,7 @@ type Cell = { v?: unknown; l?: { Target?: string } };
 const overrides = JSON.parse(fs.readFileSync(OVERRIDES, "utf8")) as {
   drop: { titles: string[] };
   aliases: Record<string, string[]>;
-  photos: Record<string, string>;
+  photos: Record<string, string | null>;
 };
 const sourceCache: Record<string, string | null> = fs.existsSync(SOURCES_CACHE)
   ? JSON.parse(fs.readFileSync(SOURCES_CACHE, "utf8"))
@@ -91,23 +91,46 @@ async function wikidataPhoto(nameEn: string): Promise<string | null> {
     : null;
 }
 
-async function tmdbPhoto(nameEn: string): Promise<string | null> {
-  if (!TMDB_KEY || !nameEn) return null;
+type TmdbPerson = {
+  profile_path?: string | null;
+  known_for_department?: string;
+  known_for?: { original_language?: string; origin_country?: string[] }[];
+};
+
+async function tmdbSearch(query: string): Promise<TmdbPerson[]> {
   const j = await fetch(
-    `https://api.themoviedb.org/3/search/person?api_key=${TMDB_KEY}&query=${encodeURIComponent(nameEn)}`,
+    `https://api.themoviedb.org/3/search/person?api_key=${TMDB_KEY}&query=${encodeURIComponent(query)}`,
   ).then((r) => r.json());
-  const p = (j.results ?? []).find((x: { profile_path?: string }) => x.profile_path);
-  return p ? `https://image.tmdb.org/t/p/w185${p.profile_path}` : null;
+  return (j.results ?? []).filter((x: TmdbPerson) => x.profile_path);
+}
+
+/** Prefer people known for Arabic-language work, so a namesake abroad isn't picked. */
+const isArabicWork = (p: TmdbPerson) =>
+  (p.known_for ?? []).some((k) => k.original_language === "ar" || k.origin_country?.includes("EG"));
+
+async function tmdbPhoto(nameEn: string, nameAr: string): Promise<string | null> {
+  if (!TMDB_KEY) return null;
+  let pick: TmdbPerson | undefined;
+  if (nameEn) {
+    const en = await tmdbSearch(nameEn);
+    pick = en.find(isArabicWork) ?? (en.length === 1 && en[0].known_for_department === "Acting" ? en[0] : undefined);
+  }
+  if (!pick) {
+    const ar = await tmdbSearch(nameAr);
+    pick = ar.find(isArabicWork);
+  }
+  return pick ? `https://image.tmdb.org/t/p/w185${pick.profile_path}` : null;
 }
 
 async function resolvePhotoSource(nameAr: string): Promise<string | null> {
-  if (overrides.photos[nameAr]) return overrides.photos[nameAr];
+  // An override of null forces the initials card (e.g. a wrong photo link in the sheet).
+  if (nameAr in overrides.photos) return overrides.photos[nameAr];
   if (nameAr in sourceCache && (sourceCache[nameAr] || !TMDB_KEY)) return sourceCache[nameAr];
   const a = actors.get(nameAr);
   let src: string | null = null;
   if (a?.sheetPhoto && isLicensedSource(a.sheetPhoto)) src = a.sheetPhoto;
   if (!src) src = await wikidataPhoto(a?.nameEn ?? "").catch(() => null);
-  if (!src) src = await tmdbPhoto(a?.nameEn ?? "").catch(() => null);
+  if (!src) src = await tmdbPhoto(a?.nameEn ?? "", nameAr).catch(() => null);
   sourceCache[nameAr] = src;
   return src;
 }

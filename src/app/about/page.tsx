@@ -38,6 +38,10 @@ export default function AboutPage() {
             و{" "}
             <a className="underline hover:text-ink" href="https://commons.wikimedia.org/" target="_blank" rel="noreferrer">
               Wikimedia Commons
+            </a>{" "}
+            و{" "}
+            <a className="underline hover:text-ink" href="https://elcinema.com/" target="_blank" rel="noreferrer">
+              السينما.كوم
             </a>
             .
           </p>

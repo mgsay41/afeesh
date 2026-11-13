@@ -42,11 +42,12 @@ npm run content
 This writes `src/data/titles.json` and downloads actor photos to `public/actors/` (resized WebP).
 
 - **Photos:** IMDb/Amazon images are skipped because they aren't licensed for reuse. Sources used are TMDB and Wikimedia links from the sheet, then Wikidata (Wikimedia Commons). Actors without a photo get a colored initials card.
+- **elCinema photos:** 14 minor actors not on TMDB use photos from elcinema.com, set in `overrides.json`. Each was matched by finding the title in the actor's elCinema filmography. These images are copyrighted by their owners, unlike the TMDB/Wikimedia ones.
 - **More photos:** get a free TMDB API key (<https://www.themoviedb.org/settings/api>) and run `TMDB_API_KEY=... npm run content`.
 - **Hand edits:** `content/overrides.json`:
   - `drop.titles`: English titles to remove.
   - `aliases`: extra accepted Arabic spellings per IMDb ID, e.g. `"tt1234567": ["اللمبي ٨ جيجا"]`.
-  - `photos`: force a photo URL for an actor (key = Arabic name).
+  - `photos`: force a photo URL for an actor (key = Arabic name), or `null` to show the initials card instead of a wrong photo.
 
 ## Scoring
 
