@@ -5,7 +5,8 @@ import type * as AblyTypes from "ably";
 export type ConnectionStatus = "connecting" | "online" | "offline";
 export type Mode = "ably" | "local";
 
-type Handler = (name: string, data: unknown) => void;
+/** `sender` is the publisher's clientId. On Ably it's enforced by the server-issued token. */
+type Handler = (name: string, data: unknown, sender: string) => void;
 
 export interface Transport {
   mode: Mode;
@@ -18,25 +19,20 @@ export interface Transport {
 const channelName = (room: string) => `afeesh:${room}`;
 
 /** Same-browser transport (tabs/windows of one browser). Used when no Ably key is configured. */
-function localTransport(room: string): Transport {
+function localTransport(room: string, clientId: string): Transport {
   const bc = new BroadcastChannel(channelName(room));
   const handlers = new Set<Handler>();
-  const self = new Set<Handler>();
-  bc.onmessage = (e) => handlers.forEach((h) => h(e.data.name, e.data.data));
+  bc.onmessage = (e) => handlers.forEach((h) => h(e.data.name, e.data.data, e.data.sender));
   return {
     mode: "local",
     async publish(name, data) {
-      bc.postMessage({ name, data });
+      bc.postMessage({ name, data, sender: clientId });
       // BroadcastChannel doesn't echo to the sender; Ably does. Mirror Ably's behavior.
-      self.forEach((h) => h(name, data));
+      handlers.forEach((h) => h(name, data, clientId));
     },
     subscribe(h) {
       handlers.add(h);
-      self.add(h);
-      return () => {
-        handlers.delete(h);
-        self.delete(h);
-      };
+      return () => handlers.delete(h);
     },
     onStatus(cb) {
       cb("online");
@@ -46,14 +42,13 @@ function localTransport(room: string): Transport {
   };
 }
 
-async function ablyTransport(room: string, clientId: string): Promise<Transport> {
-  const Ably = await import("ably");
+function ablyTransport(Ably: typeof import("ably"), room: string, clientId: string): Transport {
   const client = new Ably.Realtime({
     clientId,
     echoMessages: true,
     authCallback: async (_params, cb) => {
       try {
-        const res = await fetch(`/api/ably-token?clientId=${encodeURIComponent(clientId)}`);
+        const res = await fetch(`/api/ably-token?clientId=${encodeURIComponent(clientId)}`, { cache: "no-store" });
         if (!res.ok) throw new Error(`token ${res.status}`);
         cb(null, await res.json());
       } catch (e) {
@@ -68,13 +63,13 @@ async function ablyTransport(room: string, clientId: string): Promise<Transport>
       await channel.publish(name, data);
     },
     subscribe(h) {
-      const listener = (m: AblyTypes.InboundMessage) => h(m.name ?? "", m.data);
+      const listener = (m: AblyTypes.InboundMessage) => h(m.name ?? "", m.data, m.clientId ?? "");
       void channel.subscribe(listener);
       return () => channel.unsubscribe(listener);
     },
     onStatus(cb) {
       const map = (s: string): ConnectionStatus =>
-        s === "connected" ? "online" : s === "connecting" || s === "initialized" ? "connecting" : "offline";
+        s === "connected" ? "online" : s === "connecting" || s === "initialized" || s === "disconnected" ? "connecting" : "offline";
       cb(map(client.connection.state));
       const l = (change: AblyTypes.ConnectionStateChange) => cb(map(change.current));
       client.connection.on(l);
@@ -84,13 +79,23 @@ async function ablyTransport(room: string, clientId: string): Promise<Transport>
   };
 }
 
-/** Uses Ably when the server has a key, otherwise same-browser test mode. */
+export class RealtimeSetupError extends Error {}
+
+/**
+ * Uses Ably when the server has a key, otherwise same-browser test mode.
+ * Throws RealtimeSetupError when the server has a key but can't issue tokens (e.g. a wrong key).
+ */
 export async function connect(room: string, clientId: string): Promise<Transport> {
+  let probe: Response;
   try {
-    const probe = await fetch(`/api/ably-token?clientId=${encodeURIComponent(clientId)}`, { cache: "no-store" });
-    if (probe.status === 503) return localTransport(room);
+    probe = await fetch(`/api/ably-token?clientId=${encodeURIComponent(clientId)}`, { cache: "no-store" });
   } catch {
-    return localTransport(room);
+    return localTransport(room, clientId);
   }
-  return ablyTransport(room, clientId);
+  if (probe.status === 503) return localTransport(room, clientId);
+  if (!probe.ok) {
+    const body = (await probe.json().catch(() => ({}))) as { error?: string };
+    throw new RealtimeSetupError(body.error ?? `token ${probe.status}`);
+  }
+  return ablyTransport(await import("ably"), room, clientId);
 }

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { connect, type ConnectionStatus, type Mode, type Transport } from "@/lib/realtime";
+import { connect, RealtimeSetupError, type ConnectionStatus, type Mode, type Transport } from "@/lib/realtime";
 import * as E from "./engine";
 import { addUsedTitles, getUsedTitles, loadHostGame, saveHostGame } from "./room";
 import { TITLE_MAP, TITLES } from "./titles";
@@ -15,6 +15,7 @@ export function useHostGame(room: string) {
   const [state, setState] = useState<GameState | null | undefined>(undefined);
   const [status, setStatus] = useState<ConnectionStatus>("connecting");
   const [mode, setMode] = useState<Mode | null>(null);
+  const [setupError, setSetupError] = useState<string | null>(null);
   const stateRef = useRef<GameState | null>(null);
   const transportRef = useRef<Transport | null>(null);
 
@@ -49,24 +50,27 @@ export function useHostGame(room: string) {
     if (!hostId) return;
     let cancelled = false;
     let cleanup: (() => void)[] = [];
-    void connect(room, hostId).then((t) => {
+    connect(room, hostId).then((t) => {
       if (cancelled) return t.close();
       transportRef.current = t;
       setMode(t.mode);
       cleanup.push(t.onStatus(setStatus));
       cleanup.push(
-        t.subscribe((name, data) => {
+        t.subscribe((name, data, sender) => {
           if (name !== "toHost") return;
           const msg = data as ToHost;
           const s = stateRef.current;
-          if (!s) return;
+          // The host's own guesses are judged locally; nobody else may act as the host.
+          if (!s || sender === s.hostId) return;
           const now = Date.now();
           if (msg.type === "join") {
+            // A player may only join as themselves.
+            if (msg.player.id !== sender) return;
             commit(E.joinPlayer(s, msg.player, now));
             broadcast();
           } else if (msg.type === "hello") {
             broadcast();
-          } else if (msg.type === "guess" && msg.playerId !== s.hostId) {
+          } else if (msg.type === "guess" && msg.playerId === sender) {
             const { state: next, result } = E.submitGuess(s, TITLE_MAP, msg, now);
             commit(next);
             send({ type: "result", result });
@@ -74,6 +78,10 @@ export function useHostGame(room: string) {
         }),
       );
       broadcast();
+    }, (e: unknown) => {
+      if (cancelled) return;
+      setStatus("offline");
+      setSetupError(e instanceof RealtimeSetupError ? e.message : String(e));
     });
     return () => {
       cancelled = true;
@@ -114,6 +122,7 @@ export function useHostGame(room: string) {
     state,
     status,
     mode,
+    setupError,
     start: () =>
       act((s) => {
         const ids = E.pickTitles(TITLES, s.settings, getUsedTitles());

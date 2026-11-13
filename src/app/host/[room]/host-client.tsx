@@ -47,6 +47,11 @@ export function HostClient({ room }: { room: string }) {
           وضع تجريبي: مفيش مفتاح Ably، فاللعب شغال بين تابات المتصفح ده بس. ضيف ABLY_API_KEY عشان تلعب من موبايلات تانية.
         </p>
       )}
+      {game.setupError && (
+        <p className="mx-auto mt-3 max-w-6xl px-4 text-center text-sm font-bold text-danger">
+          مش قادرين نتصل بـ Ably: مفتاح ABLY_API_KEY على السيرفر شكله غلط. اللاعبين مش هيقدروا يدخلوا.
+        </p>
+      )}
       {state.phase === "lobby" && <Lobby game={game} state={state} />}
       {state.phase === "round" && <HostRound game={game} state={state} />}
       {state.phase === "final" && <Final game={game} state={state} />}

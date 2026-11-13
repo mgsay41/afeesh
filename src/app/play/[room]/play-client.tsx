@@ -8,6 +8,7 @@ import { GuessBox } from "@/components/game/guess-box";
 import { AnswerReveal, AutoTimer, ClueBoard, HintChips, RoundHeader } from "@/components/game/round-view";
 import { Podium, Scoreboard } from "@/components/game/scoreboard";
 import { fireConfetti, n, newGuessId } from "@/lib/format";
+import { loadHostGame } from "@/lib/game/room";
 import type { PublicState } from "@/lib/game/types";
 import { usePlayerGame } from "@/lib/game/use-player-game";
 import { recordCorrect, recordGame, useProfile, type Profile } from "@/lib/profile";
@@ -16,7 +17,18 @@ export function PlayClient({ room }: { room: string }) {
   const [profile, update] = useProfile();
   const [joined, setJoined] = useState(false);
 
-  if (!profile) return <div className="min-h-dvh" />;
+  // This browser is hosting this room with the same profile: give the player tab its own
+  // profile, otherwise "joining" would just overwrite the host.
+  const isHostProfile = !!profile && loadHostGame(room)?.hostId === profile.id;
+  useEffect(() => {
+    if (!isHostProfile) return;
+    const url = new URL(location.href);
+    const slot = Number(url.searchParams.get("slot") ?? 1);
+    url.searchParams.set("slot", String(slot + 1));
+    location.replace(url);
+  }, [isHostProfile]);
+
+  if (!profile || isHostProfile) return <div className="min-h-dvh" />;
   if (!joined) {
     return (
       <main className="mx-auto flex min-h-dvh w-full max-w-md flex-col justify-center gap-6 px-4 py-8">
@@ -74,12 +86,28 @@ function Game({ room, profile, update }: { room: string; profile: Profile; updat
         </span>
         <ConnectionBadge status={status} mode={mode} />
       </TopBar>
-      {!state ? (
+      {!state && (game.setupError || status === "offline") ? (
+        <Center emoji="🔌" title="مش قادرين نتصل">
+          <p className="text-muted">
+            {game.setupError
+              ? "مفتاح Ably على السيرفر فيه مشكلة. صاحب اللعبة لازم يراجع ABLY_API_KEY."
+              : "النت فاصل أو الاتصال اتقطع. جرّب تاني."}
+          </p>
+          <button className="btn btn-ghost w-full" onClick={() => location.reload()}>
+            حاول تاني 🔄
+          </button>
+        </Center>
+      ) : !state ? (
         <Center emoji="📡" title="بندوّر على المضيف…">
+          {mode === "local" && (
+            <p className="panel p-4 text-sm text-orange">
+              اللعبة في الوضع التجريبي (مفيش مفتاح Ably)، فبتشتغل بس بين تابات نفس المتصفح. من موبايل أو متصفح تاني
+              مش هتوصل للمضيف. ضيف ABLY_API_KEY عشان تلعبوا من أجهزة مختلفة.
+            </p>
+          )}
           {waitedLong && (
             <p className="text-muted">
               اتأكد إن الكود صح <b dir="ltr">{room}</b> وإن صفحة المضيف مفتوحة.
-              {mode === "local" && " (وضع تجريبي: لازم تكون على نفس المتصفح)"}
             </p>
           )}
         </Center>

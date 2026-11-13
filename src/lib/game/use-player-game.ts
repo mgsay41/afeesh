@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import { connect, type ConnectionStatus, type Mode, type Transport } from "@/lib/realtime";
+import { connect, RealtimeSetupError, type ConnectionStatus, type Mode, type Transport } from "@/lib/realtime";
 import type { GuessResult, PublicState, ToHost, ToPlayers } from "./types";
 
 interface Me {
@@ -18,6 +18,7 @@ export function usePlayerGame(room: string, me: Me | null) {
   const [mode, setMode] = useState<Mode | null>(null);
   const [kicked, setKicked] = useState(false);
   const [lastResult, setLastResult] = useState<GuessResult | null>(null);
+  const [setupError, setSetupError] = useState<string | null>(null);
   const transportRef = useRef<Transport | null>(null);
   const versionRef = useRef(0);
   const lastJoinRef = useRef(0);
@@ -36,7 +37,8 @@ export function usePlayerGame(room: string, me: Me | null) {
     let cancelled = false;
     let cleanup: (() => void)[] = [];
     let helloTimer: ReturnType<typeof setInterval> | undefined;
-    void connect(room, id).then((t) => {
+    let hostId: string | null = null;
+    connect(room, id).then((t) => {
       if (cancelled) return t.close();
       transportRef.current = t;
       setMode(t.mode);
@@ -48,9 +50,12 @@ export function usePlayerGame(room: string, me: Me | null) {
         }),
       );
       cleanup.push(
-        t.subscribe((name, data) => {
+        t.subscribe((name, data, sender) => {
           if (name !== "toPlayers") return;
           const msg = data as ToPlayers;
+          // Only the host may update players. The first state names the host; stick to it.
+          if (msg.type === "state" && !hostId && sender === msg.state.hostId) hostId = sender;
+          if (!hostId || sender !== hostId) return;
           if (msg.type === "state") {
             // Accept newer versions; a much lower version means the host restarted the game.
             if (msg.state.version >= versionRef.current || msg.state.version < versionRef.current - 1000) {
@@ -77,6 +82,10 @@ export function usePlayerGame(room: string, me: Me | null) {
       helloTimer = setInterval(() => {
         if (versionRef.current === 0) toHost({ type: "join", player: meRef.current! });
       }, 2500);
+    }, (e: unknown) => {
+      if (cancelled) return;
+      setStatus("offline");
+      setSetupError(e instanceof RealtimeSetupError ? e.message : String(e));
     });
     return () => {
       cancelled = true;
@@ -96,5 +105,5 @@ export function usePlayerGame(room: string, me: Me | null) {
     [id, toHost],
   );
 
-  return { state, receivedAt, status, mode, kicked, lastResult, guess, hostSeen: state !== null };
+  return { state, receivedAt, status, mode, setupError, kicked, lastResult, guess, hostSeen: state !== null };
 }

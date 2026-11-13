@@ -14,11 +14,16 @@ export async function GET(request: Request) {
     return Response.json({ error: "invalid clientId" }, { status: 400 });
   }
 
-  const rest = new Ably.Rest({ key });
-  const tokenRequest = await rest.auth.createTokenRequest({
-    clientId,
-    capability: { "afeesh:*": ["publish", "subscribe"] },
-    ttl: 4 * 60 * 60 * 1000,
-  });
-  return Response.json(tokenRequest, { headers: { "Cache-Control": "no-store" } });
+  try {
+    const rest = new Ably.Rest({ key });
+    const tokenRequest = await rest.auth.createTokenRequest({
+      clientId,
+      capability: { "afeesh:*": ["publish", "subscribe"] },
+      ttl: 4 * 60 * 60 * 1000,
+    });
+    return Response.json(tokenRequest, { headers: { "Cache-Control": "no-store" } });
+  } catch {
+    // Usually a malformed ABLY_API_KEY. Don't echo details: they could include the key.
+    return Response.json({ error: "ABLY_API_KEY looks invalid" }, { status: 500 });
+  }
 }
