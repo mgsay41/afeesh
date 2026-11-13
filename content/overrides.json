@@ -1,0 +1,9 @@
+{
+  "_help": "Hand edits applied by `npm run content`. drop: IMDb IDs to remove. aliases: extra accepted Arabic spellings per IMDb ID. photos: force a photo URL for an actor (key = Arabic name).",
+  "drop": {
+    "_notes": "Palestinian film (The Idol) and a little-known indie cast (All My Life) — flagged in the spreadsheet",
+    "titles": ["The Idol", "All My Life"]
+  },
+  "aliases": {},
+  "photos": {}
+}

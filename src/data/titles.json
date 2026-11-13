@@ -1,0 +1,4416 @@
+[
+  {
+    "id": "tt3461252",
+    "titleAr": "الفيل الأزرق",
+    "titleEn": "The Blue Elephant",
+    "aliases": [],
+    "type": "movie",
+    "year": 2014,
+    "genres": [
+      "crime",
+      "drama",
+      "horror"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "شيرين رضا",
+        "nameEn": "Shereen Reda",
+        "photo": "/actors/shereen-reda.webp"
+      },
+      {
+        "nameAr": "لبلبة",
+        "nameEn": "Lebleba",
+        "photo": "/actors/lebleba.webp"
+      },
+      {
+        "nameAr": "محمد ممدوح",
+        "nameEn": "Mohamed Mamdouh",
+        "photo": "/actors/mohamed-mamdouh.webp"
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      },
+      {
+        "nameAr": "خالد الصاوي",
+        "nameEn": "Khaled El-Sawi",
+        "photo": "/actors/khaled-el-sawi.webp"
+      },
+      {
+        "nameAr": "كريم عبد العزيز",
+        "nameEn": "Karim Abdel Aziz",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2210441",
+    "titleAr": "عسل إسود",
+    "titleEn": "Bittersweet",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "جيهانا أنور",
+        "nameEn": "Gehan Anwar",
+        "photo": "/actors/gehan-anwar.webp"
+      },
+      {
+        "nameAr": "يوسف داود",
+        "nameEn": "Youssef Dawood",
+        "photo": "/actors/youssef-dawood.webp"
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "إيمي سمير غانم",
+        "nameEn": "Amy Samir Ghanem",
+        "photo": "/actors/amy-samir-ghanem.webp"
+      },
+      {
+        "nameAr": "إدوارد",
+        "nameEn": "Edward",
+        "photo": "/actors/edward.webp"
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1282371",
+    "titleAr": "آسف على الإزعاج",
+    "titleEn": "Sorry to Disturb",
+    "aliases": [],
+    "type": "movie",
+    "year": 2008,
+    "genres": [
+      "comedy",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "عمرو ممدوح",
+        "nameEn": "Amr Mamdouh",
+        "photo": null
+      },
+      {
+        "nameAr": "سامي مغاوري",
+        "nameEn": "Sami Meghawri",
+        "photo": "/actors/sami-meghawri.webp"
+      },
+      {
+        "nameAr": "دلال عبد العزيز",
+        "nameEn": "Dalal Abdel Aziz",
+        "photo": null
+      },
+      {
+        "nameAr": "محمود حميدة",
+        "nameEn": "Mahmoud Hemida",
+        "photo": null
+      },
+      {
+        "nameAr": "منة شلبي",
+        "nameEn": "Menna Shalabi",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0425321",
+    "titleAr": "عمارة يعقوبيان",
+    "titleEn": "The Yacoubian Building",
+    "aliases": [],
+    "type": "movie",
+    "year": 2006,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "هند صبري",
+        "nameEn": "Hind Sabri",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد بدير",
+        "nameEn": "Ahmad Bedair",
+        "photo": "/actors/ahmad-bedair.webp"
+      },
+      {
+        "nameAr": "إسعاد يونس",
+        "nameEn": "Esaad Younis",
+        "photo": null
+      },
+      {
+        "nameAr": "يسرا",
+        "nameEn": "Youssra",
+        "photo": null
+      },
+      {
+        "nameAr": "نور الشريف",
+        "nameEn": "Nour El-Sherif",
+        "photo": null
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1650844",
+    "titleAr": "ولاد العم",
+    "titleEn": "Escaping Tel Aviv",
+    "aliases": [],
+    "type": "movie",
+    "year": 2009,
+    "genres": [
+      "action",
+      "adventure",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "أسامة عبد الله",
+        "nameEn": "Osama Abdallah",
+        "photo": "/actors/osama-abdallah.webp"
+      },
+      {
+        "nameAr": "انتصار",
+        "nameEn": "Entsar",
+        "photo": "/actors/entsar.webp"
+      },
+      {
+        "nameAr": "كندة علوش",
+        "nameEn": "Kinda Alloush",
+        "photo": "/actors/kinda-alloush.webp"
+      },
+      {
+        "nameAr": "منى زكي",
+        "nameEn": "Mona Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "كريم عبد العزيز",
+        "nameEn": "Karim Abdel Aziz",
+        "photo": null
+      },
+      {
+        "nameAr": "شريف منير",
+        "nameEn": "Sherif Mounir",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5599692",
+    "titleAr": "اشتباك",
+    "titleEn": "Clash",
+    "aliases": [],
+    "type": "movie",
+    "year": 2016,
+    "genres": [
+      "drama",
+      "thriller",
+      "war"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "محمود فارس",
+        "nameEn": "Mahmood Fares",
+        "photo": "/actors/mahmood-fares.webp"
+      },
+      {
+        "nameAr": "أحمد عبد الحميد حفني",
+        "nameEn": "Ahmad Abdulhamid Hifni",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد السويسي",
+        "nameEn": "Mohamed Elsewisy",
+        "photo": "/actors/mohamed-elsewisy.webp"
+      },
+      {
+        "nameAr": "محمد السباعي",
+        "nameEn": "Muhammad El-Sebai",
+        "photo": null
+      },
+      {
+        "nameAr": "هاني عادل",
+        "nameEn": "Hany Adel",
+        "photo": "/actors/hany-adel.webp"
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt2210425",
+    "titleAr": "ألف مبروك",
+    "titleEn": "1000 Congratulations",
+    "aliases": [],
+    "type": "movie",
+    "year": 2009,
+    "genres": [
+      "comedy",
+      "drama",
+      "fantasy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "رحمة حسن",
+        "nameEn": "Rahma Hassan",
+        "photo": "/actors/rahma-hassan.webp"
+      },
+      {
+        "nameAr": "سارة عبد الرحمن",
+        "nameEn": "Sarah Abdulrahman",
+        "photo": "/actors/sarah-abdulrahman.webp"
+      },
+      {
+        "nameAr": "محمد فراج",
+        "nameEn": "Muhammad Farrag",
+        "photo": null
+      },
+      {
+        "nameAr": "محمود الفيشاوي",
+        "nameEn": "Mahmood El-Fishawi",
+        "photo": "/actors/mahmood-el-fishawi.webp"
+      },
+      {
+        "nameAr": "ليلى عز العرب",
+        "nameEn": "Laila Ezz El Arab",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt4840206",
+    "titleAr": "ولاد رزق",
+    "titleEn": "Sons of Rizk",
+    "aliases": [],
+    "type": "movie",
+    "year": 2015,
+    "genres": [
+      "action",
+      "comedy",
+      "crime"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "سيد رجب",
+        "nameEn": "Sayed Ragab",
+        "photo": null
+      },
+      {
+        "nameAr": "كريم قاسم",
+        "nameEn": "Karim Kassem",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد داود",
+        "nameEn": "Ahmed Dawood",
+        "photo": "/actors/ahmed-dawood.webp"
+      },
+      {
+        "nameAr": "أحمد الفيشاوي",
+        "nameEn": "Ahmad El-Fishawi",
+        "photo": null
+      },
+      {
+        "nameAr": "عمرو يوسف",
+        "nameEn": "Amr Youssef",
+        "photo": "/actors/amr-youssef.webp"
+      },
+      {
+        "nameAr": "أحمد عز",
+        "nameEn": "Ahmed Ezz",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt3510372",
+    "titleAr": "لا مؤاخذة",
+    "titleEn": "Excuse My French",
+    "aliases": [],
+    "type": "movie",
+    "year": 2014,
+    "genres": [
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "عصام عبد العزيز",
+        "nameEn": "Esam Abdulaziz",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد عبد العظيم",
+        "nameEn": "Muhammad Abdulazim",
+        "photo": "/actors/muhammad-abdulazim.webp"
+      },
+      {
+        "nameAr": "هاني عادل",
+        "nameEn": "Hany Adel",
+        "photo": "/actors/hany-adel.webp"
+      },
+      {
+        "nameAr": "كندة علوش",
+        "nameEn": "Kinda Alloush",
+        "photo": "/actors/kinda-alloush.webp"
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد داش",
+        "nameEn": "Dash Ahmed",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2244947",
+    "titleAr": "كده رضا",
+    "titleEn": "Can't Complain",
+    "aliases": [],
+    "type": "movie",
+    "year": 2007,
+    "genres": [
+      "comedy",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "سعيد طرابيك",
+        "nameEn": "Saeed Tarabek",
+        "photo": "/actors/saeed-tarabek.webp"
+      },
+      {
+        "nameAr": "يوسف داود",
+        "nameEn": "Youssef Dawood",
+        "photo": "/actors/youssef-dawood.webp"
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "خالد الصاوي",
+        "nameEn": "Khaled El-Sawi",
+        "photo": "/actors/khaled-el-sawi.webp"
+      },
+      {
+        "nameAr": "منة شلبي",
+        "nameEn": "Menna Shalabi",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1826603",
+    "titleAr": "أسماء",
+    "titleEn": "Asmaa",
+    "aliases": [],
+    "type": "movie",
+    "year": 2011,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "سامية أسعد",
+        "nameEn": "Samia Asaad",
+        "photo": "/actors/samia-asaad.webp"
+      },
+      {
+        "nameAr": "فاطمة عادل",
+        "nameEn": "Fatmah Adel",
+        "photo": "/actors/fatmah-adel.webp"
+      },
+      {
+        "nameAr": "دانا عابد",
+        "nameEn": "Dana Abed",
+        "photo": null
+      },
+      {
+        "nameAr": "هاني عادل",
+        "nameEn": "Hany Adel",
+        "photo": "/actors/hany-adel.webp"
+      },
+      {
+        "nameAr": "ماجد الكدواني",
+        "nameEn": "Maged El-Kidwani",
+        "photo": null
+      },
+      {
+        "nameAr": "هند صبري",
+        "nameEn": "Hind Sabri",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1459040",
+    "titleAr": "إبراهيم الأبيض",
+    "titleEn": "Ibrahim Labyad",
+    "aliases": [],
+    "type": "movie",
+    "year": 2009,
+    "genres": [
+      "action",
+      "crime",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "نضال الشافعي",
+        "nameEn": "Nedal El Shafey",
+        "photo": "/actors/nedal-el-shafey.webp"
+      },
+      {
+        "nameAr": "سوسن بدر",
+        "nameEn": "Sawsan Badr",
+        "photo": null
+      },
+      {
+        "nameAr": "محمود عبد العزيز",
+        "nameEn": "Mahmoud Abdel Aziz",
+        "photo": null
+      },
+      {
+        "nameAr": "عمرو واكد",
+        "nameEn": "Amr Waked",
+        "photo": null
+      },
+      {
+        "nameAr": "هند صبري",
+        "nameEn": "Hind Sabri",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt1764141",
+    "titleAr": "678",
+    "titleEn": "Cairo 678",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "أحمد الفيشاوي",
+        "nameEn": "Ahmad El-Fishawi",
+        "photo": null
+      },
+      {
+        "nameAr": "ناهد السباعي",
+        "nameEn": "Nahed El Sebaï",
+        "photo": null
+      },
+      {
+        "nameAr": "باسم سمرة",
+        "nameEn": "Basem Samrah",
+        "photo": null
+      },
+      {
+        "nameAr": "ماجد الكدواني",
+        "nameEn": "Maged El-Kidwani",
+        "photo": null
+      },
+      {
+        "nameAr": "بشرى",
+        "nameEn": "Bushra",
+        "photo": null
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt2290891",
+    "titleAr": "الكبير أوي",
+    "titleEn": "Al Kabeer",
+    "aliases": [],
+    "type": "series",
+    "year": 2010,
+    "genres": [
+      "comedy",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "بيومي فؤاد",
+        "nameEn": "Bayoumi Fouad",
+        "photo": null
+      },
+      {
+        "nameAr": "حسين أبو حجاج",
+        "nameEn": "Husain Abu-Haggag",
+        "photo": "/actors/husain-abu-haggag.webp"
+      },
+      {
+        "nameAr": "هشام إسماعيل",
+        "nameEn": "Hesham Ismail",
+        "photo": null
+      },
+      {
+        "nameAr": "دنيا سمير غانم",
+        "nameEn": "Donia Samir Ghanem",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد سلام",
+        "nameEn": "Mohamed Sallam",
+        "photo": "/actors/mohamed-sallam.webp"
+      },
+      {
+        "nameAr": "أحمد مكي",
+        "nameEn": "Ahmed Mekky",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0424986",
+    "titleAr": "الناظر",
+    "titleEn": "The Headmaster",
+    "aliases": [],
+    "type": "movie",
+    "year": 2000,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "هشام سليم",
+        "nameEn": "Hesham Selim",
+        "photo": null
+      },
+      {
+        "nameAr": "بسمة",
+        "nameEn": "Basma",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد سعد",
+        "nameEn": "Muhammad Saad",
+        "photo": "/actors/muhammad-saad.webp"
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "علاء ولي الدين",
+        "nameEn": "Alaa Waley El Din",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1699195",
+    "titleAr": "طير إنت",
+    "titleEn": "You Fly",
+    "aliases": [],
+    "type": "movie",
+    "year": 2009,
+    "genres": [
+      "comedy",
+      "fantasy",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "محمد سلام",
+        "nameEn": "Mohamed Sallam",
+        "photo": "/actors/mohamed-sallam.webp"
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "هشام إسماعيل",
+        "nameEn": "Hesham Ismail",
+        "photo": null
+      },
+      {
+        "nameAr": "ماجد الكدواني",
+        "nameEn": "Maged El-Kidwani",
+        "photo": null
+      },
+      {
+        "nameAr": "دنيا سمير غانم",
+        "nameEn": "Donia Samir Ghanem",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد مكي",
+        "nameEn": "Ahmed Mekky",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1173901",
+    "titleAr": "الجزيرة",
+    "titleEn": "The Island",
+    "aliases": [],
+    "type": "movie",
+    "year": 2007,
+    "genres": [
+      "action",
+      "biography",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "باسم سمرة",
+        "nameEn": "Basem Samrah",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد إبراهيم",
+        "nameEn": "Mohamed Ibrahim",
+        "photo": "/actors/mohamed-ibrahim.webp"
+      },
+      {
+        "nameAr": "زينة",
+        "nameEn": "Zeina",
+        "photo": null
+      },
+      {
+        "nameAr": "هند صبري",
+        "nameEn": "Hind Sabri",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      },
+      {
+        "nameAr": "محمود ياسين",
+        "nameEn": "Mahmoud Yassine",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2156807",
+    "titleAr": "إكس لارج",
+    "titleEn": "X-Large",
+    "aliases": [],
+    "type": "movie",
+    "year": 2011,
+    "genres": [
+      "comedy",
+      "drama",
+      "family"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "ياسمين رئيس",
+        "nameEn": "Yasmin Raeis",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد سرحان",
+        "nameEn": "Khaled Sarhan",
+        "photo": "/actors/khaled-sarhan.webp"
+      },
+      {
+        "nameAr": "إيمي سمير غانم",
+        "nameEn": "Amy Samir Ghanem",
+        "photo": "/actors/amy-samir-ghanem.webp"
+      },
+      {
+        "nameAr": "إبراهيم نصر",
+        "nameEn": "Ibrahim Nasr",
+        "photo": null
+      },
+      {
+        "nameAr": "دنيا سمير غانم",
+        "nameEn": "Donia Samir Ghanem",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0827788",
+    "titleAr": "زكي شان",
+    "titleEn": "Zaki Chan",
+    "aliases": [],
+    "type": "movie",
+    "year": 2005,
+    "genres": [
+      "comedy",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "أمير كرارة",
+        "nameEn": "Amir Karara",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن كامي",
+        "nameEn": "Hasan Kami",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "نهاد نور",
+        "nameEn": "Nohad Nour",
+        "photo": "/actors/nohad-nour.webp"
+      },
+      {
+        "nameAr": "ياسمين عبد العزيز",
+        "nameEn": "Yasmin Abdelaziz",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0830700",
+    "titleAr": "ظرف طارق",
+    "titleEn": "Tarek's Situation",
+    "aliases": [],
+    "type": "movie",
+    "year": 2006,
+    "genres": [
+      "comedy",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "يوسف داود",
+        "nameEn": "Youssef Dawood",
+        "photo": "/actors/youssef-dawood.webp"
+      },
+      {
+        "nameAr": "ميس حمدان",
+        "nameEn": "Mais Hamdan",
+        "photo": "/actors/mais-hamdan.webp"
+      },
+      {
+        "nameAr": "مجدي كامل",
+        "nameEn": "Magdy Kamel",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد الصاوي",
+        "nameEn": "Khaled El-Sawi",
+        "photo": "/actors/khaled-el-sawi.webp"
+      },
+      {
+        "nameAr": "نور",
+        "nameEn": "Nour",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0417202",
+    "titleAr": "تيتو",
+    "titleEn": "Tito",
+    "aliases": [],
+    "type": "movie",
+    "year": 2004,
+    "genres": [
+      "action",
+      "crime",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "ضياء عبد الخالق",
+        "nameEn": "Diaa Abdel Khalek",
+        "photo": "/actors/diaa-abdel-khalek.webp"
+      },
+      {
+        "nameAr": "أشرف مصيلحي",
+        "nameEn": "Ashraf Meslehi",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد صالح",
+        "nameEn": "Khaled Saleh",
+        "photo": null
+      },
+      {
+        "nameAr": "عمرو واكد",
+        "nameEn": "Amr Waked",
+        "photo": null
+      },
+      {
+        "nameAr": "حنان ترك",
+        "nameEn": "Hanan Turk",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt1423961",
+    "titleAr": "مرجان أحمد مرجان",
+    "titleEn": "Morgan Ahmed Morgan",
+    "aliases": [],
+    "type": "movie",
+    "year": 2007,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "أحمد السعدني",
+        "nameEn": "Ahmed El-Saadany",
+        "photo": "/actors/ahmed-el-saadany.webp"
+      },
+      {
+        "nameAr": "أحمد مكي",
+        "nameEn": "Ahmed Mekky",
+        "photo": null
+      },
+      {
+        "nameAr": "شريف سلامة",
+        "nameEn": "Sharif Salamah",
+        "photo": "/actors/sharif-salamah.webp"
+      },
+      {
+        "nameAr": "بسمة",
+        "nameEn": "Basma",
+        "photo": null
+      },
+      {
+        "nameAr": "ميرفت أمين",
+        "nameEn": "Mervat Amin",
+        "photo": null
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1423939",
+    "titleAr": "حسن ومرقص",
+    "titleEn": "Hasan wa Murqus",
+    "aliases": [],
+    "type": "movie",
+    "year": 2008,
+    "genres": [
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "هناء الشوربجي",
+        "nameEn": "Hanaa El Shorbagy",
+        "photo": "/actors/hanaa-el-shorbagy.webp"
+      },
+      {
+        "nameAr": "شيري عادل",
+        "nameEn": "Sherry Adel",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد إمام",
+        "nameEn": "Mohamed Emam",
+        "photo": null
+      },
+      {
+        "nameAr": "لبلبة",
+        "nameEn": "Lebleba",
+        "photo": "/actors/lebleba.webp"
+      },
+      {
+        "nameAr": "عمر الشريف",
+        "nameEn": "Omar Sharif",
+        "photo": null
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2605480",
+    "titleAr": "واحد من الناس",
+    "titleEn": "Wahed men el-Nas",
+    "aliases": [],
+    "type": "movie",
+    "year": 2006,
+    "genres": [
+      "crime",
+      "drama",
+      "thriller"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "أحمد راتب",
+        "nameEn": "Ahmed Rateb",
+        "photo": null
+      },
+      {
+        "nameAr": "بسمة",
+        "nameEn": "Basma",
+        "photo": null
+      },
+      {
+        "nameAr": "محمود الجندي",
+        "nameEn": "Mahmoud El Gendy",
+        "photo": null
+      },
+      {
+        "nameAr": "عزت أبو عوف",
+        "nameEn": "Ezzat Abu Ouf",
+        "photo": null
+      },
+      {
+        "nameAr": "منة شلبي",
+        "nameEn": "Menna Shalabi",
+        "photo": null
+      },
+      {
+        "nameAr": "كريم عبد العزيز",
+        "nameEn": "Karim Abdel Aziz",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5240732",
+    "titleAr": "هيبتا",
+    "titleEn": "Hepta: El-Mohadarah El-Akhirah",
+    "aliases": [],
+    "type": "movie",
+    "year": 2016,
+    "genres": [
+      "drama",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "جميلة عوض",
+        "nameEn": "Jamila Awad",
+        "photo": "/actors/jamila-awad.webp"
+      },
+      {
+        "nameAr": "دينا الشربيني",
+        "nameEn": "Dina El Sherbiny",
+        "photo": "/actors/dina-el-sherbiny.webp"
+      },
+      {
+        "nameAr": "ماجد الكدواني",
+        "nameEn": "Maged El-Kidwani",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد داود",
+        "nameEn": "Ahmed Dawood",
+        "photo": "/actors/ahmed-dawood.webp"
+      },
+      {
+        "nameAr": "أحمد مالك",
+        "nameEn": "Ahmed Malek",
+        "photo": null
+      },
+      {
+        "nameAr": "عمرو يوسف",
+        "nameEn": "Amr Youssef",
+        "photo": "/actors/amr-youssef.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt1010422",
+    "titleAr": "مطب صناعي",
+    "titleEn": "Life's Speed Bump",
+    "aliases": [],
+    "type": "movie",
+    "year": 2006,
+    "genres": [
+      "comedy",
+      "drama",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "أحمد راتب",
+        "nameEn": "Ahmed Rateb",
+        "photo": null
+      },
+      {
+        "nameAr": "منة عرفة",
+        "nameEn": "Menna Arafa",
+        "photo": "/actors/menna-arafa.webp"
+      },
+      {
+        "nameAr": "أحمد سعيد عبد الغني",
+        "nameEn": "Ahmed Saeed Abdel-Ghany",
+        "photo": "/actors/ahmed-saeed-abdel-ghany.webp"
+      },
+      {
+        "nameAr": "عزت أبو عوف",
+        "nameEn": "Ezzat Abu Ouf",
+        "photo": null
+      },
+      {
+        "nameAr": "نور",
+        "nameEn": "Nour",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1020956",
+    "titleAr": "جعلتني مجرما",
+    "titleEn": "Gaalatny mogreman",
+    "aliases": [],
+    "type": "movie",
+    "year": 2006,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "عبد الله مشرف",
+        "nameEn": "Abdullah Mishref",
+        "photo": "/actors/abdullah-mishref.webp"
+      },
+      {
+        "nameAr": "إدوارد",
+        "nameEn": "Edward",
+        "photo": "/actors/edward.webp"
+      },
+      {
+        "nameAr": "ريهام عبد الغفور",
+        "nameEn": "Riham Abdel Ghafour",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "غادة عادل",
+        "nameEn": "Ghada Adel",
+        "photo": "/actors/ghada-adel.webp"
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1920997",
+    "titleAr": "لا تراجع ولا استسلام",
+    "titleEn": "No Retreat, No Surrender",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "action",
+      "comedy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "جرانت باول",
+        "nameEn": "Grant Powell",
+        "photo": "/actors/grant-powell.webp"
+      },
+      {
+        "nameAr": "محمد سلام",
+        "nameEn": "Mohamed Sallam",
+        "photo": "/actors/mohamed-sallam.webp"
+      },
+      {
+        "nameAr": "محمد شاهين",
+        "nameEn": "Mohamed Shahin",
+        "photo": "/actors/mohamed-shahin.webp"
+      },
+      {
+        "nameAr": "ماجد الكدواني",
+        "nameEn": "Maged El-Kidwani",
+        "photo": null
+      },
+      {
+        "nameAr": "دنيا سمير غانم",
+        "nameEn": "Donia Samir Ghanem",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد مكي",
+        "nameEn": "Ahmed Mekky",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2210509",
+    "titleAr": "بلبل حيران",
+    "titleEn": "Bewildered Bolbol",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "comedy",
+      "drama",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "ياسر الطوبجي",
+        "nameEn": "Yasser Eltobgy",
+        "photo": "/actors/yasser-eltobgy.webp"
+      },
+      {
+        "nameAr": "يوسف فوزي",
+        "nameEn": "Yusuf Fawzi",
+        "photo": "/actors/yusuf-fawzi.webp"
+      },
+      {
+        "nameAr": "إيمي سمير غانم",
+        "nameEn": "Amy Samir Ghanem",
+        "photo": "/actors/amy-samir-ghanem.webp"
+      },
+      {
+        "nameAr": "شيري عادل",
+        "nameEn": "Sherry Adel",
+        "photo": null
+      },
+      {
+        "nameAr": "زينة",
+        "nameEn": "Zeina",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0477470",
+    "titleAr": "السفارة في العمارة",
+    "titleEn": "El-sefara fi El-Omara",
+    "aliases": [],
+    "type": "movie",
+    "year": 2005,
+    "genres": [
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "سعيد طرابيك",
+        "nameEn": "Saeed Tarabek",
+        "photo": "/actors/saeed-tarabek.webp"
+      },
+      {
+        "nameAr": "خالد سرحان",
+        "nameEn": "Khaled Sarhan",
+        "photo": "/actors/khaled-sarhan.webp"
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "أحمد راتب",
+        "nameEn": "Ahmed Rateb",
+        "photo": null
+      },
+      {
+        "nameAr": "داليا البحيري",
+        "nameEn": "Dalia El Behairy",
+        "photo": null
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1961311",
+    "titleAr": "فاصل ونعود",
+    "titleEn": "Fasel wa Na'ood",
+    "aliases": [],
+    "type": "movie",
+    "year": 2011,
+    "genres": [
+      "action",
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "ماجد الكدواني",
+        "nameEn": "Maged El-Kidwani",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد فراج",
+        "nameEn": "Muhammad Farrag",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد راتب",
+        "nameEn": "Ahmed Rateb",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد لطفي",
+        "nameEn": "Mohamed Lotfy",
+        "photo": null
+      },
+      {
+        "nameAr": "دينا فؤاد",
+        "nameEn": "Dina Fuad",
+        "photo": "/actors/dina-fuad.webp"
+      },
+      {
+        "nameAr": "كريم عبد العزيز",
+        "nameEn": "Karim Abdel Aziz",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1796395",
+    "titleAr": "زهايمر",
+    "titleEn": "Alzheimer's",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "سعيد صالح",
+        "nameEn": "Sa'eed Saleh",
+        "photo": null
+      },
+      {
+        "nameAr": "رانيا يوسف",
+        "nameEn": "Rania Youssef",
+        "photo": "/actors/rania-youssef.webp"
+      },
+      {
+        "nameAr": "فتحي عبد الوهاب",
+        "nameEn": "Fathy Abdel Wahab",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد رزق",
+        "nameEn": "Ahmad Rizq",
+        "photo": "/actors/ahmad-rizq.webp"
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt3224052",
+    "titleAr": "القط",
+    "titleEn": "El Ott",
+    "aliases": [],
+    "type": "movie",
+    "year": 2014,
+    "genres": [
+      "mystery",
+      "thriller"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "سارة شاهين",
+        "nameEn": "Sarah Shahin",
+        "photo": null
+      },
+      {
+        "nameAr": "سلمى ياقوت",
+        "nameEn": "Salma Yaqout",
+        "photo": null
+      },
+      {
+        "nameAr": "عمرو فاروق",
+        "nameEn": "Amr Farouk",
+        "photo": null
+      },
+      {
+        "nameAr": "صلاح الحنفي",
+        "nameEn": "Salah Alhanafy",
+        "photo": null
+      },
+      {
+        "nameAr": "فاروق الفيشاوي",
+        "nameEn": "Farouk Al-Fishawy",
+        "photo": null
+      },
+      {
+        "nameAr": "عمرو واكد",
+        "nameEn": "Amr Waked",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt3867086",
+    "titleAr": "صنع في مصر",
+    "titleEn": "Sone'a Fee Misr",
+    "aliases": [],
+    "type": "movie",
+    "year": 2014,
+    "genres": [
+      "comedy",
+      "family"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "نور عثمان",
+        "nameEn": "Nour Osman",
+        "photo": null
+      },
+      {
+        "nameAr": "إدوارد",
+        "nameEn": "Edward",
+        "photo": "/actors/edward.webp"
+      },
+      {
+        "nameAr": "بيومي فؤاد",
+        "nameEn": "Bayoumi Fouad",
+        "photo": null
+      },
+      {
+        "nameAr": "دلال عبد العزيز",
+        "nameEn": "Dalal Abdel Aziz",
+        "photo": null
+      },
+      {
+        "nameAr": "ياسمين رئيس",
+        "nameEn": "Yasmin Raeis",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0422265",
+    "titleAr": "فول الصين العظيم",
+    "titleEn": "Fool el seen el azeem",
+    "aliases": [],
+    "type": "movie",
+    "year": 2004,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "سامي سرحان",
+        "nameEn": "Sami Sarhan",
+        "photo": "/actors/sami-sarhan.webp"
+      },
+      {
+        "nameAr": "حمدي هيكل",
+        "nameEn": "Hamdy Heykal",
+        "photo": "/actors/hamdy-heykal.webp"
+      },
+      {
+        "nameAr": "ضياء الميرغني",
+        "nameEn": "Diaa El Merghany",
+        "photo": "/actors/diaa-el-merghany.webp"
+      },
+      {
+        "nameAr": "سليمان عيد",
+        "nameEn": "Suliman Eid",
+        "photo": "/actors/suliman-eid.webp"
+      },
+      {
+        "nameAr": "حجاج عبد العظيم",
+        "nameEn": "Haggag Abdulazim (duplicate IMDb entry)",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد هنيدي",
+        "nameEn": "Mohamed Henedi",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1981057",
+    "titleAr": "سمير وشهير وبهير",
+    "titleEn": "Sameer & Shaheer & Baheer",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "comedy",
+      "drama",
+      "fantasy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "دلال عبد العزيز",
+        "nameEn": "Dalal Abdel Aziz",
+        "photo": null
+      },
+      {
+        "nameAr": "إيمي سمير غانم",
+        "nameEn": "Amy Samir Ghanem",
+        "photo": "/actors/amy-samir-ghanem.webp"
+      },
+      {
+        "nameAr": "هشام ماجد",
+        "nameEn": "Hesham Maged",
+        "photo": null
+      },
+      {
+        "nameAr": "شيكو",
+        "nameEn": "Chico",
+        "photo": "/actors/chico.webp"
+      },
+      {
+        "nameAr": "أحمد فهمي",
+        "nameEn": "Ahmed Fahmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2224167",
+    "titleAr": "المصلحة",
+    "titleEn": "The Deal",
+    "aliases": [],
+    "type": "movie",
+    "year": 2012,
+    "genres": [
+      "action",
+      "crime",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "صلاح عبد الله",
+        "nameEn": "Salah Abdalla",
+        "photo": "/actors/salah-abdalla.webp"
+      },
+      {
+        "nameAr": "محمد فراج",
+        "nameEn": "Muhammad Farrag",
+        "photo": null
+      },
+      {
+        "nameAr": "زينة",
+        "nameEn": "Zeina",
+        "photo": null
+      },
+      {
+        "nameAr": "حنان ترك",
+        "nameEn": "Hanan Turk",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد عز",
+        "nameEn": "Ahmed Ezz",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt2639664",
+    "titleAr": "على جثتي",
+    "titleEn": "On My Dead Body",
+    "aliases": [],
+    "type": "movie",
+    "year": 2012,
+    "genres": [
+      "comedy",
+      "drama",
+      "fantasy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "سامي مغاوري",
+        "nameEn": "Sami Meghawri",
+        "photo": "/actors/sami-meghawri.webp"
+      },
+      {
+        "nameAr": "إدوارد",
+        "nameEn": "Edward",
+        "photo": "/actors/edward.webp"
+      },
+      {
+        "nameAr": "خالد أبو النجا",
+        "nameEn": "Kal El Naga",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "غادة عادل",
+        "nameEn": "Ghada Adel",
+        "photo": "/actors/ghada-adel.webp"
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1085799",
+    "titleAr": "هي فوضى؟",
+    "titleEn": "Chaos, This Is",
+    "aliases": [],
+    "type": "movie",
+    "year": 2007,
+    "genres": [
+      "crime",
+      "drama",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "عمرو عبد الجليل",
+        "nameEn": "Amr Abdulgalil",
+        "photo": null
+      },
+      {
+        "nameAr": "هالة فاخر",
+        "nameEn": "Hala Fakher",
+        "photo": null
+      },
+      {
+        "nameAr": "هالة صدقي",
+        "nameEn": "Hala Sedki",
+        "photo": null
+      },
+      {
+        "nameAr": "يوسف الشريف",
+        "nameEn": "Youssef El Sherif",
+        "photo": null
+      },
+      {
+        "nameAr": "منة شلبي",
+        "nameEn": "Menna Shalabi",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد صالح",
+        "nameEn": "Khaled Saleh",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0419482",
+    "titleAr": "الباشا تلميذ",
+    "titleEn": "The Student Cop",
+    "aliases": [],
+    "type": "movie",
+    "year": 2004,
+    "genres": [
+      "action",
+      "comedy",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "أحمد عقل",
+        "nameEn": "Ahmed Akl",
+        "photo": "/actors/ahmed-akl.webp"
+      },
+      {
+        "nameAr": "رامز جلال",
+        "nameEn": "Ramez Galal",
+        "photo": "/actors/ramez-galal.webp"
+      },
+      {
+        "nameAr": "مها أحمد",
+        "nameEn": "Maha Ahmed",
+        "photo": "/actors/maha-ahmed.webp"
+      },
+      {
+        "nameAr": "كريم عبد العزيز",
+        "nameEn": "Karim Abdel Aziz",
+        "photo": null
+      },
+      {
+        "nameAr": "غادة عادل",
+        "nameEn": "Ghada Adel",
+        "photo": "/actors/ghada-adel.webp"
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt3957098",
+    "titleAr": "الحرب العالمية الثالثة",
+    "titleEn": "World War III",
+    "aliases": [],
+    "type": "movie",
+    "year": 2014,
+    "genres": [
+      "comedy",
+      "fantasy"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "محمد علي رزق",
+        "nameEn": "Mohamed Ali Rezk",
+        "photo": "/actors/mohamed-ali-rezk.webp"
+      },
+      {
+        "nameAr": "أحمد فتحي",
+        "nameEn": "Ahmed Fathy",
+        "photo": "/actors/ahmed-fathy.webp"
+      },
+      {
+        "nameAr": "بيومي فؤاد",
+        "nameEn": "Bayoumi Fouad",
+        "photo": null
+      },
+      {
+        "nameAr": "شيكو",
+        "nameEn": "Chico",
+        "photo": "/actors/chico.webp"
+      },
+      {
+        "nameAr": "هشام ماجد",
+        "nameEn": "Hesham Maged",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد فهمي",
+        "nameEn": "Ahmed Fahmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0419416",
+    "titleAr": "أبو علي",
+    "titleEn": "Abu Ali",
+    "aliases": [],
+    "type": "movie",
+    "year": 2005,
+    "genres": [
+      "action",
+      "comedy",
+      "romance"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "عبد الله مشرف",
+        "nameEn": "Abdullah Mishref",
+        "photo": "/actors/abdullah-mishref.webp"
+      },
+      {
+        "nameAr": "أحمد فؤاد سليم",
+        "nameEn": "Ahmed Fouad Selim",
+        "photo": "/actors/ahmed-fouad-selim.webp"
+      },
+      {
+        "nameAr": "خالد الصاوي",
+        "nameEn": "Khaled El-Sawi",
+        "photo": "/actors/khaled-el-sawi.webp"
+      },
+      {
+        "nameAr": "طلعت زكريا",
+        "nameEn": "Talaat Zakaria",
+        "photo": null
+      },
+      {
+        "nameAr": "منى زكي",
+        "nameEn": "Mona Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "كريم عبد العزيز",
+        "nameEn": "Karim Abdel Aziz",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0390531",
+    "titleAr": "التجربة الدنماركية",
+    "titleEn": "The Danish Experience",
+    "aliases": [],
+    "type": "movie",
+    "year": 2003,
+    "genres": [
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "easy",
+    "clues": [
+      {
+        "nameAr": "خالد سرحان",
+        "nameEn": "Khaled Sarhan",
+        "photo": "/actors/khaled-sarhan.webp"
+      },
+      {
+        "nameAr": "تامر هجرس",
+        "nameEn": "Tamer Hagras",
+        "photo": null
+      },
+      {
+        "nameAr": "مجدي كامل",
+        "nameEn": "Magdy Kamel",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد راتب",
+        "nameEn": "Ahmed Rateb",
+        "photo": null
+      },
+      {
+        "nameAr": "نيكول سابا",
+        "nameEn": "Nicole Saba",
+        "photo": null
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5805100",
+    "titleAr": "ونوس",
+    "titleEn": "Wannous",
+    "aliases": [],
+    "type": "series",
+    "year": 2016,
+    "genres": [
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "نيكولا معوض",
+        "nameEn": "Nicolas Mouawad",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد شاهين",
+        "nameEn": "Mohamed Shahin",
+        "photo": "/actors/mohamed-shahin.webp"
+      },
+      {
+        "nameAr": "سماح السعيد",
+        "nameEn": "Samah Al Saeed",
+        "photo": null
+      },
+      {
+        "nameAr": "هالة صدقي",
+        "nameEn": "Hala Sedki",
+        "photo": null
+      },
+      {
+        "nameAr": "نبيل الحلفاوي",
+        "nameEn": "Nabil Al-Halafawy",
+        "photo": null
+      },
+      {
+        "nameAr": "يحيى الفخراني",
+        "nameEn": "Yehia El-Fakharany",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0328349",
+    "titleAr": "سهر الليالي",
+    "titleEn": "Sleepless Nights",
+    "aliases": [],
+    "type": "movie",
+    "year": 2003,
+    "genres": [
+      "drama",
+      "romance"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد أبو النجا",
+        "nameEn": "Kal El Naga",
+        "photo": null
+      },
+      {
+        "nameAr": "فتحي عبد الوهاب",
+        "nameEn": "Fathy Abdel Wahab",
+        "photo": null
+      },
+      {
+        "nameAr": "شريف منير",
+        "nameEn": "Sherif Mounir",
+        "photo": null
+      },
+      {
+        "nameAr": "حنان ترك",
+        "nameEn": "Hanan Turk",
+        "photo": null
+      },
+      {
+        "nameAr": "منى زكي",
+        "nameEn": "Mona Zaki",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt4067084",
+    "titleAr": "الجزيرة 2",
+    "titleEn": "The Island 2",
+    "aliases": [],
+    "type": "movie",
+    "year": 2014,
+    "genres": [
+      "action",
+      "drama",
+      "thriller"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "نضال الشافعي",
+        "nameEn": "Nedal El Shafey",
+        "photo": "/actors/nedal-el-shafey.webp"
+      },
+      {
+        "nameAr": "خالد الصاوي",
+        "nameEn": "Khaled El-Sawi",
+        "photo": "/actors/khaled-el-sawi.webp"
+      },
+      {
+        "nameAr": "أحمد مالك",
+        "nameEn": "Ahmed Malek",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد صالح",
+        "nameEn": "Khaled Saleh",
+        "photo": null
+      },
+      {
+        "nameAr": "هند صبري",
+        "nameEn": "Hind Sabri",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt2605474",
+    "titleAr": "في محطة مصر",
+    "titleEn": "Fe Mahatet masr",
+    "aliases": [],
+    "type": "movie",
+    "year": 2006,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      null,
+      null,
+      null,
+      {
+        "nameAr": "منة شلبي",
+        "nameEn": "Menna Shalabi",
+        "photo": null
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "كريم عبد العزيز",
+        "nameEn": "Karim Abdel Aziz",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1383607",
+    "titleAr": "رمضان مبروك أبو العلمين حمودة",
+    "titleEn": "Ramadan Mabrouk Abu Elalamain Hamouda",
+    "aliases": [],
+    "type": "movie",
+    "year": 2008,
+    "genres": [
+      "comedy",
+      "family",
+      "music"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "أمير المصري",
+        "nameEn": "Amir El-Masry",
+        "photo": null
+      },
+      {
+        "nameAr": "إدوارد",
+        "nameEn": "Edward",
+        "photo": "/actors/edward.webp"
+      },
+      {
+        "nameAr": "ليلى طاهر",
+        "nameEn": "Laila Taher",
+        "photo": "/actors/laila-taher.webp"
+      },
+      {
+        "nameAr": "عزت أبو عوف",
+        "nameEn": "Ezzat Abu Ouf",
+        "photo": null
+      },
+      {
+        "nameAr": "سيرين عبد النور",
+        "nameEn": "Cyrine AbdelNour",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد هنيدي",
+        "nameEn": "Mohamed Henedi",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0418471",
+    "titleAr": "عريس من جهة أمنية",
+    "titleEn": "Aris min geha amneya",
+    "aliases": [],
+    "type": "movie",
+    "year": 2004,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "سامح أبو الغار",
+        "nameEn": "Sameh Abul-Ghar",
+        "photo": "/actors/sameh-abul-ghar.webp"
+      },
+      {
+        "nameAr": "أحمد عبد الله",
+        "nameEn": "Ahmed Abdella",
+        "photo": "/actors/ahmed-abdella.webp"
+      },
+      {
+        "nameAr": "حلا شيحة",
+        "nameEn": "Hala Sheha",
+        "photo": "/actors/hala-sheha.webp"
+      },
+      {
+        "nameAr": "شريف منير",
+        "nameEn": "Sherif Mounir",
+        "photo": null
+      },
+      {
+        "nameAr": "لبلبة",
+        "nameEn": "Lebleba",
+        "photo": "/actors/lebleba.webp"
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt4969748",
+    "titleAr": "الصياد",
+    "titleEn": "The Hunter",
+    "aliases": [],
+    "type": "series",
+    "year": 2014,
+    "genres": [
+      "action",
+      "crime",
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "أمير صلاح الدين",
+        "nameEn": "Ameer Salah Eldin",
+        "photo": null
+      },
+      {
+        "nameAr": "إيناس كامل",
+        "nameEn": "Enas Kamel",
+        "photo": null
+      },
+      {
+        "nameAr": "أشرف مصيلحي",
+        "nameEn": "Ashraf Meslehi",
+        "photo": null
+      },
+      {
+        "nameAr": "مي سليم",
+        "nameEn": "Mai Selim",
+        "photo": "/actors/mai-selim.webp"
+      },
+      {
+        "nameAr": "أحمد صفوت",
+        "nameEn": "Ahmad Safwat",
+        "photo": "/actors/ahmad-safwat.webp"
+      },
+      {
+        "nameAr": "يوسف الشريف",
+        "nameEn": "Youssef El Sherif",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1872084",
+    "titleAr": "ابن القنصل",
+    "titleEn": "Ibn el-Qunsul",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "comedy",
+      "crime",
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "محيي الدين عبد الحميد",
+        "nameEn": "Muhyiddin Abdulhamid",
+        "photo": null
+      },
+      {
+        "nameAr": "هناء عبد الفتاح",
+        "nameEn": "Hana Abdulfattah",
+        "photo": null
+      },
+      {
+        "nameAr": "أمير عبد الفتاح",
+        "nameEn": "Amir Abdulfattah",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد صالح",
+        "nameEn": "Khaled Saleh",
+        "photo": null
+      },
+      {
+        "nameAr": "غادة عادل",
+        "nameEn": "Ghada Adel",
+        "photo": "/actors/ghada-adel.webp"
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt5680626",
+    "titleAr": "من 30 سنة",
+    "titleEn": "Men 30 Sanah",
+    "aliases": [],
+    "type": "movie",
+    "year": 2016,
+    "genres": [
+      "crime",
+      "drama",
+      "thriller"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "نور",
+        "nameEn": "Nour",
+        "photo": null
+      },
+      {
+        "nameAr": "ميرفت أمين",
+        "nameEn": "Mervat Amin",
+        "photo": null
+      },
+      {
+        "nameAr": "شريف منير",
+        "nameEn": "Sherif Mounir",
+        "photo": null
+      },
+      {
+        "nameAr": "منى زكي",
+        "nameEn": "Mona Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد إبراهيم",
+        "nameEn": "Mohamed Ibrahim",
+        "photo": "/actors/mohamed-ibrahim.webp"
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt0422708",
+    "titleAr": "ملاكي إسكندرية",
+    "titleEn": "Private Alexandria",
+    "aliases": [],
+    "type": "movie",
+    "year": 2005,
+    "genres": [
+      "crime",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "ريهام عبد الغفور",
+        "nameEn": "Riham Abdel Ghafour",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد رجب",
+        "nameEn": "Muhammad Ragab",
+        "photo": null
+      },
+      {
+        "nameAr": "نور",
+        "nameEn": "Nour",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد صالح",
+        "nameEn": "Khaled Saleh",
+        "photo": null
+      },
+      {
+        "nameAr": "غادة عادل",
+        "nameEn": "Ghada Adel",
+        "photo": "/actors/ghada-adel.webp"
+      },
+      {
+        "nameAr": "أحمد عز",
+        "nameEn": "Ahmed Ezz",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5857914",
+    "titleAr": "جراند أوتيل",
+    "titleEn": "Grand Hotel",
+    "aliases": [],
+    "type": "series",
+    "year": 2015,
+    "genres": [
+      "crime",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "مي الغيطي",
+        "nameEn": "May Elghety",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد حاتم",
+        "nameEn": "Mohamed Hatem",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد ممدوح",
+        "nameEn": "Mohamed Mamdouh",
+        "photo": "/actors/mohamed-mamdouh.webp"
+      },
+      {
+        "nameAr": "أحمد داود",
+        "nameEn": "Ahmed Dawood",
+        "photo": "/actors/ahmed-dawood.webp"
+      },
+      {
+        "nameAr": "أمينة خليل",
+        "nameEn": "Amina Khalil",
+        "photo": "/actors/amina-khalil.webp"
+      },
+      {
+        "nameAr": "عمرو يوسف",
+        "nameEn": "Amr Youssef",
+        "photo": "/actors/amr-youssef.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt3505016",
+    "titleAr": "إتش دبور",
+    "titleEn": "H Dabboor",
+    "aliases": [],
+    "type": "movie",
+    "year": 2008,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "سامح حسين",
+        "nameEn": "Sameh Hussain",
+        "photo": "/actors/sameh-hussain.webp"
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "هالة فاخر",
+        "nameEn": "Hala Fakher",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "إنجي وجدان",
+        "nameEn": "Engy Wegdan",
+        "photo": "/actors/engy-wegdan.webp"
+      },
+      {
+        "nameAr": "أحمد مكي",
+        "nameEn": "Ahmed Mekky",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0419765",
+    "titleAr": "جاءنا البيان التالي",
+    "titleEn": "We Have the Following News",
+    "aliases": [],
+    "type": "movie",
+    "year": 2001,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "ماجد عبد العظيم",
+        "nameEn": "Maged Abdulazim",
+        "photo": null
+      },
+      {
+        "nameAr": "فوزية عبد العليم",
+        "nameEn": "Fawziyyah Abdulalim",
+        "photo": null
+      },
+      {
+        "nameAr": "نهال عنبر",
+        "nameEn": "Nihal Anber",
+        "photo": "/actors/nihal-anber.webp"
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "حنان ترك",
+        "nameEn": "Hanan Turk",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد هنيدي",
+        "nameEn": "Mohamed Henedi",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0382010",
+    "titleAr": "اللمبي",
+    "titleEn": "Ellembi",
+    "aliases": [],
+    "type": "movie",
+    "year": 2002,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      null,
+      {
+        "nameAr": "حجاج عبد العظيم",
+        "nameEn": "Haggag Abdulazim (duplicate IMDb entry)",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "عبلة كامل",
+        "nameEn": "Abla Kamel",
+        "photo": "/actors/abla-kamel.webp"
+      },
+      {
+        "nameAr": "حلا شيحة",
+        "nameEn": "Hala Sheha",
+        "photo": "/actors/hala-sheha.webp"
+      },
+      {
+        "nameAr": "محمد سعد",
+        "nameEn": "Muhammad Saad",
+        "photo": "/actors/muhammad-saad.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt2192477",
+    "titleAr": "فرقة ناجي عطا الله",
+    "titleEn": "Naji Attallah's Squad",
+    "aliases": [],
+    "type": "series",
+    "year": 2012,
+    "genres": [
+      "adventure",
+      "comedy",
+      "crime"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "محمود البزاوي",
+        "nameEn": "Mahmoud El-Bizzawy",
+        "photo": "/actors/mahmoud-el-bizzawy.webp"
+      },
+      {
+        "nameAr": "سناء يوسف",
+        "nameEn": "Sanaa Youssef",
+        "photo": null
+      },
+      {
+        "nameAr": "نضال الشافعي",
+        "nameEn": "Nedal El Shafey",
+        "photo": "/actors/nedal-el-shafey.webp"
+      },
+      {
+        "nameAr": "أحمد السعدني",
+        "nameEn": "Ahmed El-Saadany",
+        "photo": "/actors/ahmed-el-saadany.webp"
+      },
+      {
+        "nameAr": "محمد إمام",
+        "nameEn": "Mohamed Emam",
+        "photo": null
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0470102",
+    "titleAr": "يا أنا يا خالتي",
+    "titleEn": "Either Me or My Auntie",
+    "aliases": [],
+    "type": "movie",
+    "year": 2005,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "محمود عبد الغفار",
+        "nameEn": "Mahmood Abdulghaffar",
+        "photo": "/actors/mahmood-abdulghaffar.webp"
+      },
+      {
+        "nameAr": "علاء مرسي",
+        "nameEn": "Alaa Morsi",
+        "photo": "/actors/alaa-morsi.webp"
+      },
+      {
+        "nameAr": "فادية عبد الغني",
+        "nameEn": "Fadia Abdel Ghany",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "دنيا سمير غانم",
+        "nameEn": "Donia Samir Ghanem",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد هنيدي",
+        "nameEn": "Mohamed Henedi",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0290402",
+    "titleAr": "أفريكانو",
+    "titleEn": "Africano",
+    "aliases": [],
+    "type": "movie",
+    "year": 2001,
+    "genres": [
+      "adventure",
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "طلعت زين",
+        "nameEn": "Tal'at Zein",
+        "photo": null
+      },
+      {
+        "nameAr": "نشوى مصطفى",
+        "nameEn": "Nashwa Mustafa",
+        "photo": "/actors/nashwa-mustafa.webp"
+      },
+      {
+        "nameAr": "أحمد عيد",
+        "nameEn": "Ahmed Eid",
+        "photo": "/actors/ahmed-eid.webp"
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "منى زكي",
+        "nameEn": "Mona Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt1400508",
+    "titleAr": "فيلم ثقافي",
+    "titleEn": "An Educational Film",
+    "aliases": [],
+    "type": "movie",
+    "year": 2000,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "محمد شرف",
+        "nameEn": "Mohamed Sharaf",
+        "photo": null
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "رجاء الجداوي",
+        "nameEn": "Ragaa Al-Gidawy",
+        "photo": "/actors/ragaa-al-gidawy.webp"
+      },
+      {
+        "nameAr": "أحمد عيد",
+        "nameEn": "Ahmed Eid",
+        "photo": "/actors/ahmed-eid.webp"
+      },
+      {
+        "nameAr": "فتحي عبد الوهاب",
+        "nameEn": "Fathy Abdel Wahab",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد رزق",
+        "nameEn": "Ahmad Rizq",
+        "photo": "/actors/ahmad-rizq.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt0327419",
+    "titleAr": "أمير الظلام",
+    "titleEn": "Amir El Zalam",
+    "aliases": [],
+    "type": "movie",
+    "year": 2002,
+    "genres": [
+      "action",
+      "comedy",
+      "romance"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "ضياء عبد الخالق",
+        "nameEn": "Diaa Abdel Khalek",
+        "photo": "/actors/diaa-abdel-khalek.webp"
+      },
+      {
+        "nameAr": "خالد سرحان",
+        "nameEn": "Khaled Sarhan",
+        "photo": "/actors/khaled-sarhan.webp"
+      },
+      {
+        "nameAr": "رضا حامد",
+        "nameEn": "Reda Hamed",
+        "photo": "/actors/reda-hamed.webp"
+      },
+      {
+        "nameAr": "يوسف داود",
+        "nameEn": "Youssef Dawood",
+        "photo": "/actors/youssef-dawood.webp"
+      },
+      {
+        "nameAr": "شيرين سيف النصر",
+        "nameEn": "Shereen Seif El-Nasr",
+        "photo": "/actors/shereen-seif-el-nasr.webp"
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0960084",
+    "titleAr": "الرهينة",
+    "titleEn": "El-Rahinah",
+    "aliases": [],
+    "type": "movie",
+    "year": 2006,
+    "genres": [
+      "action",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "محمد شرف",
+        "nameEn": "Mohamed Sharaf",
+        "photo": null
+      },
+      {
+        "nameAr": "صلاح عبد الله",
+        "nameEn": "Salah Abdalla",
+        "photo": "/actors/salah-abdalla.webp"
+      },
+      {
+        "nameAr": "ماجد الكدواني",
+        "nameEn": "Maged El-Kidwani",
+        "photo": null
+      },
+      {
+        "nameAr": "نور",
+        "nameEn": "Nour",
+        "photo": null
+      },
+      {
+        "nameAr": "ياسمين عبد العزيز",
+        "nameEn": "Yasmin Abdelaziz",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد عز",
+        "nameEn": "Ahmed Ezz",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0386428",
+    "titleAr": "اللي بالي بالك",
+    "titleEn": "You Know Who",
+    "aliases": [],
+    "type": "movie",
+    "year": 2003,
+    "genres": [
+      "comedy",
+      "drama",
+      "family"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "حسن عبد الفتاح",
+        "nameEn": "Hasan Abdulfattah",
+        "photo": "/actors/hasan-abdulfattah.webp"
+      },
+      {
+        "nameAr": "طارق الأمير",
+        "nameEn": "Tareq El-Amir",
+        "photo": "/actors/tareq-el-amir.webp"
+      },
+      {
+        "nameAr": "نيفين مندور",
+        "nameEn": "Nevin Mandour",
+        "photo": "/actors/nevin-mandour.webp"
+      },
+      {
+        "nameAr": "عبلة كامل",
+        "nameEn": "Abla Kamel",
+        "photo": "/actors/abla-kamel.webp"
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "محمد سعد",
+        "nameEn": "Muhammad Saad",
+        "photo": "/actors/muhammad-saad.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt0422319",
+    "titleAr": "غبي منه فيه",
+    "titleEn": "Ghabi Minnuh Fih",
+    "aliases": [],
+    "type": "movie",
+    "year": 2004,
+    "genres": [
+      "adventure",
+      "comedy",
+      "crime"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "عبد الله مشرف",
+        "nameEn": "Abdullah Mishref",
+        "photo": "/actors/abdullah-mishref.webp"
+      },
+      {
+        "nameAr": "سعيد طرابيك",
+        "nameEn": "Saeed Tarabek",
+        "photo": "/actors/saeed-tarabek.webp"
+      },
+      {
+        "nameAr": "طلعت زكريا",
+        "nameEn": "Talaat Zakaria",
+        "photo": null
+      },
+      {
+        "nameAr": "حسن حسني",
+        "nameEn": "Hassan Hosny",
+        "photo": "/actors/hassan-hosny.webp"
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      },
+      {
+        "nameAr": "هاني رمزي",
+        "nameEn": "Hani Ramzi",
+        "photo": "/actors/hani-ramzi.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt0404215",
+    "titleAr": "مافيا",
+    "titleEn": "Mafia",
+    "aliases": [],
+    "type": "movie",
+    "year": 2002,
+    "genres": [
+      "action",
+      "romance",
+      "thriller"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "توفيق عبد الحميد",
+        "nameEn": "Tawfik Abdel Hamid",
+        "photo": "/actors/tawfik-abdel-hamid.webp"
+      },
+      {
+        "nameAr": "أبو الحسن عباس",
+        "nameEn": "Aboelhassan Abbas",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد رزق",
+        "nameEn": "Ahmad Rizq",
+        "photo": "/actors/ahmad-rizq.webp"
+      },
+      {
+        "nameAr": "منى زكي",
+        "nameEn": "Mona Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "مصطفى شعبان",
+        "nameEn": "Mostafa Shaaban",
+        "photo": "/actors/mostafa-shaaban.webp"
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt2226347",
+    "titleAr": "الفرح",
+    "titleEn": "El Farah",
+    "aliases": [],
+    "type": "movie",
+    "year": 2009,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "أحمد برقوقة",
+        "nameEn": "Ahmad Barquqah",
+        "photo": "/actors/ahmad-barquqah.webp"
+      },
+      {
+        "nameAr": "سوسن بدر",
+        "nameEn": "Sawsan Badr",
+        "photo": null
+      },
+      {
+        "nameAr": "إيهاب أيوب",
+        "nameEn": "Ihab Ayoub",
+        "photo": null
+      },
+      {
+        "nameAr": "رامز أمير",
+        "nameEn": "Ramez Amir",
+        "photo": null
+      },
+      {
+        "nameAr": "حمد المطعني",
+        "nameEn": "Hamad Almutaani",
+        "photo": "/actors/hamad-almutaani.webp"
+      },
+      {
+        "nameAr": "صلاح عبد الله",
+        "nameEn": "Salah Abdalla",
+        "photo": "/actors/salah-abdalla.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt1664814",
+    "titleAr": "رسائل البحر",
+    "titleEn": "Messages from the Sea",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "drama",
+      "romance"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "دعاء حجازي",
+        "nameEn": "Doaa Hegazy",
+        "photo": "/actors/doaa-hegazy.webp"
+      },
+      {
+        "nameAr": "أحمد كمال",
+        "nameEn": "Ahmed Kamal",
+        "photo": "/actors/ahmed-kamal.webp"
+      },
+      {
+        "nameAr": "محمد لطفي",
+        "nameEn": "Mohamed Lotfy",
+        "photo": null
+      },
+      {
+        "nameAr": "مي كساب",
+        "nameEn": "Mai Kassab",
+        "photo": null
+      },
+      {
+        "nameAr": "بسمة",
+        "nameEn": "Basma",
+        "photo": null
+      },
+      {
+        "nameAr": "آسر ياسين",
+        "nameEn": "Asser Yassin",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5999382",
+    "titleAr": "لف ودوران",
+    "titleEn": "Flimflam",
+    "aliases": [],
+    "type": "movie",
+    "year": 2016,
+    "genres": [
+      "comedy",
+      "family"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "بياتريس أورديكس",
+        "nameEn": "Beatrice Ordeix",
+        "photo": null
+      },
+      {
+        "nameAr": "جميلة عوض",
+        "nameEn": "Jamila Awad",
+        "photo": "/actors/jamila-awad.webp"
+      },
+      {
+        "nameAr": "بيومي فؤاد",
+        "nameEn": "Bayoumi Fouad",
+        "photo": null
+      },
+      {
+        "nameAr": "صابرين",
+        "nameEn": "Sabrin",
+        "photo": "/actors/sabrin.webp"
+      },
+      {
+        "nameAr": "دنيا سمير غانم",
+        "nameEn": "Donia Samir Ghanem",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حلمي",
+        "nameEn": "Ahmed Helmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0446559",
+    "titleAr": "حرب أطاليا",
+    "titleEn": "Harb Atalia",
+    "aliases": [],
+    "type": "movie",
+    "year": 2005,
+    "genres": [
+      "action",
+      "adventure",
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "مجدي كامل",
+        "nameEn": "Magdy Kamel",
+        "photo": null
+      },
+      {
+        "nameAr": "رزان مغربي",
+        "nameEn": "Razan El Moghrabi",
+        "photo": "/actors/razan-el-moghrabi.webp"
+      },
+      {
+        "nameAr": "خالد صالح",
+        "nameEn": "Khaled Saleh",
+        "photo": null
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      },
+      {
+        "nameAr": "خالد أبو النجا",
+        "nameEn": "Kal El Naga",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد السقا",
+        "nameEn": "Ahmed El Sakka",
+        "photo": "/actors/ahmed-el-sakka.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt2281099",
+    "titleAr": "أمير البحار",
+    "titleEn": "Prince of the Seas",
+    "aliases": [],
+    "type": "movie",
+    "year": 2009,
+    "genres": [
+      "adventure",
+      "comedy",
+      "romance"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "غسان مطر",
+        "nameEn": "Ghassan Matar",
+        "photo": "/actors/ghassan-matar.webp"
+      },
+      {
+        "nameAr": "هناء الشوربجي",
+        "nameEn": "Hanaa El Shorbagy",
+        "photo": "/actors/hanaa-el-shorbagy.webp"
+      },
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "ياسر جلال",
+        "nameEn": "Yasser Galal",
+        "photo": "/actors/yasser-galal.webp"
+      },
+      {
+        "nameAr": "شيري عادل",
+        "nameEn": "Sherry Adel",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد هنيدي",
+        "nameEn": "Mohamed Henedi",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt1684913",
+    "titleAr": "ميكروفون",
+    "titleEn": "Microphone",
+    "aliases": [],
+    "type": "movie",
+    "year": 2010,
+    "genres": [
+      "comedy",
+      "drama",
+      "music"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "عاطف يوسف",
+        "nameEn": "Atef Yousef",
+        "photo": "/actors/atef-yousef.webp"
+      },
+      {
+        "nameAr": "منة شلبي",
+        "nameEn": "Menna Shalabi",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد مجدي",
+        "nameEn": "Ahmed Magdy",
+        "photo": "/actors/ahmed-magdy.webp"
+      },
+      {
+        "nameAr": "هاني عادل",
+        "nameEn": "Hany Adel",
+        "photo": "/actors/hany-adel.webp"
+      },
+      {
+        "nameAr": "يسرا اللوزي",
+        "nameEn": "Yousra El Lozy",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد أبو النجا",
+        "nameEn": "Kal El Naga",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0289080",
+    "titleAr": "أيام السادات",
+    "titleEn": "Days of El-Sadat",
+    "aliases": [],
+    "type": "movie",
+    "year": 2001,
+    "genres": [
+      "biography",
+      "drama",
+      "history"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "فكري أباظة",
+        "nameEn": "Fekry Abaza",
+        "photo": "/actors/fekry-abaza.webp"
+      },
+      {
+        "nameAr": "محمد الخولي",
+        "nameEn": "Mohamed El Kholi",
+        "photo": null
+      },
+      {
+        "nameAr": "مخلص البحيري",
+        "nameEn": "Mokhles El Behiry",
+        "photo": "/actors/mokhles-el-behiry.webp"
+      },
+      {
+        "nameAr": "منى زكي",
+        "nameEn": "Mona Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "ميرفت أمين",
+        "nameEn": "Mervat Amin",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد زكي",
+        "nameEn": "Ahmed Zaki",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2207861",
+    "titleAr": "عايزة أتجوز",
+    "titleEn": "Ayza Atgawez",
+    "aliases": [],
+    "type": "series",
+    "year": 2010,
+    "genres": [
+      "comedy",
+      "romance"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "رجاء حسين",
+        "nameEn": "Ragaa Hussein",
+        "photo": "/actors/ragaa-hussein.webp"
+      },
+      {
+        "nameAr": "طارق الإبياري",
+        "nameEn": "Tarek Elebiary",
+        "photo": "/actors/tarek-elebiary.webp"
+      },
+      {
+        "nameAr": "كارولين خليل",
+        "nameEn": "Caroline Khalil",
+        "photo": "/actors/caroline-khalil.webp"
+      },
+      {
+        "nameAr": "أحمد فؤاد سليم",
+        "nameEn": "Ahmed Fouad Selim",
+        "photo": "/actors/ahmed-fouad-selim.webp"
+      },
+      {
+        "nameAr": "سوسن بدر",
+        "nameEn": "Sawsan Badr",
+        "photo": null
+      },
+      {
+        "nameAr": "هند صبري",
+        "nameEn": "Hind Sabri",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt4247702",
+    "titleAr": "ذات",
+    "titleEn": "A Girl Named Zat",
+    "aliases": [],
+    "type": "series",
+    "year": 2013,
+    "genres": [
+      "drama",
+      "history"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "رباب ممتاز",
+        "nameEn": "Rabab Mumtaz",
+        "photo": "/actors/rabab-mumtaz.webp"
+      },
+      {
+        "nameAr": "ناهد السباعي",
+        "nameEn": "Nahed El Sebaï",
+        "photo": null
+      },
+      {
+        "nameAr": "انتصار",
+        "nameEn": "Entsar",
+        "photo": "/actors/entsar.webp"
+      },
+      {
+        "nameAr": "باسم سمرة",
+        "nameEn": "Basem Samrah",
+        "photo": null
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      },
+      {
+        "nameAr": "محمد يوسف",
+        "nameEn": "Mohamed Youssef",
+        "photo": "/actors/mohamed-youssef.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt6221482",
+    "titleAr": "نيللي وشريهان",
+    "titleEn": "Nelly and Sherihan",
+    "aliases": [],
+    "type": "series",
+    "year": 2016,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "محمد ثروت",
+        "nameEn": "Mohammed Tharwat",
+        "photo": "/actors/mohammed-tharwat.webp"
+      },
+      {
+        "nameAr": "محمد سلام",
+        "nameEn": "Mohamed Sallam",
+        "photo": "/actors/mohamed-sallam.webp"
+      },
+      {
+        "nameAr": "سلوى خطاب",
+        "nameEn": "Salwa Khattab",
+        "photo": "/actors/salwa-khattab.webp"
+      },
+      {
+        "nameAr": "مصطفى خاطر",
+        "nameEn": "Mostafa Khater",
+        "photo": "/actors/mostafa-khater.webp"
+      },
+      {
+        "nameAr": "إيمي سمير غانم",
+        "nameEn": "Amy Samir Ghanem",
+        "photo": "/actors/amy-samir-ghanem.webp"
+      },
+      {
+        "nameAr": "دنيا سمير غانم",
+        "nameEn": "Donia Samir Ghanem",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5868082",
+    "titleAr": "الأسطورة",
+    "titleEn": "The Legend",
+    "aliases": [],
+    "type": "series",
+    "year": 2016,
+    "genres": [
+      "action",
+      "crime",
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "دنيا عبد العزيز",
+        "nameEn": "Donia Abdelaziz",
+        "photo": "/actors/donia-abdelaziz.webp"
+      },
+      {
+        "nameAr": "محمود حافظ",
+        "nameEn": "Mahmoud Hafez",
+        "photo": null
+      },
+      {
+        "nameAr": "ريم مصطفى",
+        "nameEn": "Reem Mostafa",
+        "photo": null
+      },
+      {
+        "nameAr": "نسرين أمين",
+        "nameEn": "Nesreen Ameen",
+        "photo": "/actors/nesreen-ameen.webp"
+      },
+      {
+        "nameAr": "محمد غنيم",
+        "nameEn": "Mohammad Ghonaim",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد السويسي",
+        "nameEn": "Mohamed Elsewisy",
+        "photo": "/actors/mohamed-elsewisy.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt0431547",
+    "titleAr": "مشوار امرأة",
+    "titleEn": "Meshwar emraa",
+    "aliases": [],
+    "type": "series",
+    "year": 2004,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "رجاء الجداوي",
+        "nameEn": "Ragaa Al-Gidawy",
+        "photo": "/actors/ragaa-al-gidawy.webp"
+      },
+      {
+        "nameAr": "أحمد ماهر",
+        "nameEn": "Ahmed Maher",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد زكي",
+        "nameEn": "Khaled Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "مادلين طبر",
+        "nameEn": "Madline Tabar",
+        "photo": "/actors/madline-tabar.webp"
+      },
+      {
+        "nameAr": "مصطفى فهمي",
+        "nameEn": "Mustafa Fahmy",
+        "photo": null
+      },
+      {
+        "nameAr": "نادية الجندي",
+        "nameEn": "Nadia El Gendy",
+        "photo": "/actors/nadia-el-gendy.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt3477676",
+    "titleAr": "صاحب السعادة",
+    "titleEn": "Saheb El Saada",
+    "aliases": [],
+    "type": "series",
+    "year": 2014,
+    "genres": [
+      "comedy",
+      "drama",
+      "family"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "لطفي لبيب",
+        "nameEn": "Lotfy Labib",
+        "photo": "/actors/lotfy-labib.webp"
+      },
+      {
+        "nameAr": "إدوارد",
+        "nameEn": "Edward",
+        "photo": "/actors/edward.webp"
+      },
+      {
+        "nameAr": "أمينة خليل",
+        "nameEn": "Amina Khalil",
+        "photo": "/actors/amina-khalil.webp"
+      },
+      {
+        "nameAr": "محمد إمام",
+        "nameEn": "Mohamed Emam",
+        "photo": null
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      },
+      {
+        "nameAr": "لبلبة",
+        "nameEn": "Lebleba",
+        "photo": "/actors/lebleba.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt4923738",
+    "titleAr": "لعبة إبليس",
+    "titleEn": "The Devil's Game",
+    "aliases": [],
+    "type": "series",
+    "year": 2015,
+    "genres": [
+      "crime",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "عمر السعيد",
+        "nameEn": "Omar El Saeed",
+        "photo": null
+      },
+      {
+        "nameAr": "فريال يوسف",
+        "nameEn": "Feryal Youssef",
+        "photo": "/actors/feryal-youssef.webp"
+      },
+      {
+        "nameAr": "هبة مجدي",
+        "nameEn": "Heba Magdy",
+        "photo": null
+      },
+      {
+        "nameAr": "شيري عادل",
+        "nameEn": "Sherry Adel",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد رياض",
+        "nameEn": "Mohamed Reyad",
+        "photo": null
+      },
+      {
+        "nameAr": "يوسف الشريف",
+        "nameEn": "Youssef El Sherif",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5722088",
+    "titleAr": "عائلة الحاج متولي",
+    "titleEn": "El Hag Metwali's Family",
+    "aliases": [],
+    "type": "series",
+    "year": 2001,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "مصطفى شعبان",
+        "nameEn": "Mostafa Shaaban",
+        "photo": "/actors/mostafa-shaaban.webp"
+      },
+      {
+        "nameAr": "سمية الخشاب",
+        "nameEn": "Somaya El Khashab",
+        "photo": "/actors/somaya-el-khashab.webp"
+      },
+      {
+        "nameAr": "غادة عبد الرازق",
+        "nameEn": "Ghada Abdel Razek",
+        "photo": "/actors/ghada-abdel-razek.webp"
+      },
+      {
+        "nameAr": "فادية عبد الغني",
+        "nameEn": "Fadia Abdel Ghany",
+        "photo": null
+      },
+      {
+        "nameAr": "ماجدة زكي",
+        "nameEn": "Magda Zaki",
+        "photo": "/actors/magda-zaki.webp"
+      },
+      {
+        "nameAr": "نور الشريف",
+        "nameEn": "Nour El-Sherif",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5798092",
+    "titleAr": "فوق مستوى الشبهات",
+    "titleEn": "Foq Mostawa El Shobohat",
+    "aliases": [],
+    "type": "series",
+    "year": 2016,
+    "genres": [
+      "crime",
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "زكي فطين عبد الوهاب",
+        "nameEn": "Zaky Fateen Abdel Wahab",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد حاتم",
+        "nameEn": "Ahmed Hatem",
+        "photo": "/actors/ahmed-hatem.webp"
+      },
+      {
+        "nameAr": "نجلاء بدر",
+        "nameEn": "Nagla Badr",
+        "photo": "/actors/nagla-badr.webp"
+      },
+      {
+        "nameAr": "شيرين رضا",
+        "nameEn": "Shereen Reda",
+        "photo": "/actors/shereen-reda.webp"
+      },
+      {
+        "nameAr": "سيد رجب",
+        "nameEn": "Sayed Ragab",
+        "photo": null
+      },
+      {
+        "nameAr": "يسرا",
+        "nameEn": "Youssra",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt3882622",
+    "titleAr": "سجن النسا",
+    "titleEn": "Women's Jail",
+    "aliases": [],
+    "type": "series",
+    "year": 2014,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "دنيا ماهر",
+        "nameEn": "Donia Maher",
+        "photo": null
+      },
+      {
+        "nameAr": "عمرو جمال",
+        "nameEn": "Amr Gamal",
+        "photo": null
+      },
+      {
+        "nameAr": "روبي",
+        "nameEn": "Rubi",
+        "photo": null
+      },
+      {
+        "nameAr": "درة زروق",
+        "nameEn": "Dorra Zarrouk",
+        "photo": "/actors/dorra-zarrouk.webp"
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      },
+      {
+        "nameAr": "زينب غريب",
+        "nameEn": "Zeinab Ghareeb",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt4366860",
+    "titleAr": "اسم مؤقت",
+    "titleEn": "Temporary Name",
+    "aliases": [],
+    "type": "series",
+    "year": 2013,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      null,
+      {
+        "nameAr": "أحمد فريد",
+        "nameEn": "Ahmed Farid",
+        "photo": null
+      },
+      {
+        "nameAr": "دعاء عريقات",
+        "nameEn": "Doaa Ereikat",
+        "photo": null
+      },
+      {
+        "nameAr": "عمرو عابد",
+        "nameEn": "Amr Abed",
+        "photo": null
+      },
+      {
+        "nameAr": "زكي فطين عبد الوهاب",
+        "nameEn": "Zaky Fateen Abdel Wahab",
+        "photo": null
+      },
+      {
+        "nameAr": "يوسف الشريف",
+        "nameEn": "Youssef El Sherif",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt0431503",
+    "titleAr": "عباس الأبيض في اليوم الأسود",
+    "titleEn": "Abbas al abiad fi al yawm al aswad",
+    "aliases": [],
+    "type": "series",
+    "year": 2004,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "أحمد سعيد عبد الغني",
+        "nameEn": "Ahmed Saeed Abdel-Ghany",
+        "photo": "/actors/ahmed-saeed-abdel-ghany.webp"
+      },
+      {
+        "nameAr": "نشوى عثمان عبدالمنعم",
+        "nameEn": "",
+        "photo": null
+      },
+      {
+        "nameAr": "نهال عنبر",
+        "nameEn": "Nihal Anber",
+        "photo": "/actors/nihal-anber.webp"
+      },
+      {
+        "nameAr": "عزت أبو عوف",
+        "nameEn": "Ezzat Abu Ouf",
+        "photo": null
+      },
+      {
+        "nameAr": "ماجدة زكي",
+        "nameEn": "Magda Zaki",
+        "photo": "/actors/magda-zaki.webp"
+      },
+      {
+        "nameAr": "يحيى الفخراني",
+        "nameEn": "Yehia El-Fakharany",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5806112",
+    "titleAr": "مأمون وشركاه",
+    "titleEn": "Mamoun Wa Shurakah",
+    "aliases": [],
+    "type": "series",
+    "year": 2016,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "أحمد خيري",
+        "nameEn": "Ahmed Khairy",
+        "photo": "/actors/ahmed-khairy.webp"
+      },
+      {
+        "nameAr": "لورين جوفروي",
+        "nameEn": "Lauren Geoffroy",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد ثروت",
+        "nameEn": "Mohammed Tharwat",
+        "photo": "/actors/mohammed-tharwat.webp"
+      },
+      {
+        "nameAr": "مصطفى فهمي",
+        "nameEn": "Mustafa Fahmy",
+        "photo": null
+      },
+      {
+        "nameAr": "لبلبة",
+        "nameEn": "Lebleba",
+        "photo": "/actors/lebleba.webp"
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt9652928",
+    "titleAr": "العراف",
+    "titleEn": "The Oracle",
+    "aliases": [],
+    "type": "series",
+    "year": 2013,
+    "genres": [
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "medium",
+    "clues": [
+      {
+        "nameAr": "ريهام أيمن",
+        "nameEn": "Riham Ayman",
+        "photo": null
+      },
+      {
+        "nameAr": "شريف رمزي",
+        "nameEn": "Sherif Ramzy",
+        "photo": null
+      },
+      {
+        "nameAr": "يوسف إسماعيل",
+        "nameEn": "Youssef Esmail",
+        "photo": null
+      },
+      {
+        "nameAr": "حسين فهمي",
+        "nameEn": "Hussein Fahmy",
+        "photo": null
+      },
+      {
+        "nameAr": "عادل إمام",
+        "nameEn": "Adel Emam",
+        "photo": null
+      },
+      {
+        "nameAr": "لبلبة",
+        "nameEn": "Lebleba",
+        "photo": "/actors/lebleba.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt6417272",
+    "titleAr": "القيصر",
+    "titleEn": "Caesar",
+    "aliases": [],
+    "type": "series",
+    "year": 2016,
+    "genres": [
+      "action",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "أحمد حلاوة",
+        "nameEn": "Ahmad Halawah",
+        "photo": "/actors/ahmad-halawah.webp"
+      },
+      {
+        "nameAr": "أشرف زكي",
+        "nameEn": "Ashraf Zaki",
+        "photo": "/actors/ashraf-zaki.webp"
+      },
+      {
+        "nameAr": "أحمد سعيد عبد الغني",
+        "nameEn": "Ahmed Saeed Abdel-Ghany",
+        "photo": "/actors/ahmed-saeed-abdel-ghany.webp"
+      },
+      {
+        "nameAr": "ريهام عبد الغفور",
+        "nameEn": "Riham Abdel Ghafour",
+        "photo": null
+      },
+      {
+        "nameAr": "خالد زكي",
+        "nameEn": "Khaled Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "يوسف الشريف",
+        "nameEn": "Youssef El Sherif",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2362459",
+    "titleAr": "رقم مجهول",
+    "titleEn": "Private Number",
+    "aliases": [],
+    "type": "series",
+    "year": 2012,
+    "genres": [
+      "crime",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "رانيا شاهين",
+        "nameEn": "Rania Shaheen",
+        "photo": null
+      },
+      {
+        "nameAr": "بيومي فؤاد",
+        "nameEn": "Bayoumi Fouad",
+        "photo": null
+      },
+      {
+        "nameAr": "إدوارد",
+        "nameEn": "Edward",
+        "photo": "/actors/edward.webp"
+      },
+      {
+        "nameAr": "شيري عادل",
+        "nameEn": "Sherry Adel",
+        "photo": null
+      },
+      {
+        "nameAr": "محمود الجندي",
+        "nameEn": "Mahmoud El Gendy",
+        "photo": null
+      },
+      {
+        "nameAr": "يوسف الشريف",
+        "nameEn": "Youssef El Sherif",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt4729034",
+    "titleAr": "تحت السيطرة",
+    "titleEn": "Taht Al Saytara",
+    "aliases": [],
+    "type": "series",
+    "year": 2015,
+    "genres": [
+      "drama"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "إنجي أبو زيد",
+        "nameEn": "Inji Abu Zaid",
+        "photo": null
+      },
+      {
+        "nameAr": "هاني عادل",
+        "nameEn": "Hany Adel",
+        "photo": "/actors/hany-adel.webp"
+      },
+      {
+        "nameAr": "ظافر العابدين",
+        "nameEn": "Dhafer L'Abidine",
+        "photo": null
+      },
+      {
+        "nameAr": "جميلة عوض",
+        "nameEn": "Jamila Awad",
+        "photo": "/actors/jamila-awad.webp"
+      },
+      {
+        "nameAr": "محمد فراج",
+        "nameEn": "Muhammad Farrag",
+        "photo": null
+      },
+      {
+        "nameAr": "نيللي كريم",
+        "nameEn": "Nelly Karim",
+        "photo": "/actors/nelly-karim.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt0492860",
+    "titleAr": "ريا وسكينة",
+    "titleEn": "Raya wa Sekina",
+    "aliases": [],
+    "type": "series",
+    "year": 2005,
+    "genres": [
+      "crime",
+      "drama",
+      "thriller"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "صفاء الطوخي",
+        "nameEn": "Safaa El Toukhy",
+        "photo": null
+      },
+      {
+        "nameAr": "فتحي عبد الوهاب",
+        "nameEn": "Fathy Abdel Wahab",
+        "photo": null
+      },
+      {
+        "nameAr": "رياض الخولي",
+        "nameEn": "Ryad El Kholy",
+        "photo": null
+      },
+      {
+        "nameAr": "سامي العدل",
+        "nameEn": "Sami El-Adl",
+        "photo": null
+      },
+      {
+        "nameAr": "سمية الخشاب",
+        "nameEn": "Somaya El Khashab",
+        "photo": "/actors/somaya-el-khashab.webp"
+      },
+      {
+        "nameAr": "عبلة كامل",
+        "nameEn": "Abla Kamel",
+        "photo": "/actors/abla-kamel.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt3846904",
+    "titleAr": "الرجل العناب",
+    "titleEn": "El Ragol El A'inab",
+    "aliases": [],
+    "type": "series",
+    "year": 2013,
+    "genres": [
+      "comedy",
+      "drama",
+      "other"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "يوسف عيد",
+        "nameEn": "Youssef Eid",
+        "photo": null
+      },
+      {
+        "nameAr": "ميريت أسامة",
+        "nameEn": "Mirette Osama",
+        "photo": null
+      },
+      {
+        "nameAr": "صلاح عبد الله",
+        "nameEn": "Salah Abdalla",
+        "photo": "/actors/salah-abdalla.webp"
+      },
+      {
+        "nameAr": "شيكو",
+        "nameEn": "Chico",
+        "photo": "/actors/chico.webp"
+      },
+      {
+        "nameAr": "هشام ماجد",
+        "nameEn": "Hesham Maged",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد فهمي",
+        "nameEn": "Ahmed Fahmy",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt2377647",
+    "titleAr": "سارة",
+    "titleEn": "Sara",
+    "aliases": [],
+    "type": "series",
+    "year": 2005,
+    "genres": [
+      "comedy",
+      "drama"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "انتصار",
+        "nameEn": "Entsar",
+        "photo": "/actors/entsar.webp"
+      },
+      {
+        "nameAr": "حنان مطاوع",
+        "nameEn": "Hanan Motawie",
+        "photo": null
+      },
+      {
+        "nameAr": "طارق لطفي",
+        "nameEn": "Tarek Lotfy",
+        "photo": null
+      },
+      {
+        "nameAr": "سوسن بدر",
+        "nameEn": "Sawsan Badr",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد رزق",
+        "nameEn": "Ahmad Rizq",
+        "photo": "/actors/ahmad-rizq.webp"
+      },
+      {
+        "nameAr": "حنان ترك",
+        "nameEn": "Hanan Turk",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5674090",
+    "titleAr": "لهفة",
+    "titleEn": "Lahfa",
+    "aliases": [],
+    "type": "series",
+    "year": 2015,
+    "genres": [
+      "comedy",
+      "music"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "هناء الشوربجي",
+        "nameEn": "Hanaa El Shorbagy",
+        "photo": "/actors/hanaa-el-shorbagy.webp"
+      },
+      {
+        "nameAr": "سامي مغاوري",
+        "nameEn": "Sami Meghawri",
+        "photo": "/actors/sami-meghawri.webp"
+      },
+      {
+        "nameAr": "علي ربيع",
+        "nameEn": "Ali Rabi",
+        "photo": null
+      },
+      {
+        "nameAr": "محمد سلام",
+        "nameEn": "Mohamed Sallam",
+        "photo": "/actors/mohamed-sallam.webp"
+      },
+      {
+        "nameAr": "سمير غانم",
+        "nameEn": "Samir Ghanem",
+        "photo": "/actors/samir-ghanem.webp"
+      },
+      {
+        "nameAr": "دنيا سمير غانم",
+        "nameEn": "Donia Samir Ghanem",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt10708162",
+    "titleAr": "البلاتوه",
+    "titleEn": "Al Plateau",
+    "aliases": [],
+    "type": "series",
+    "year": 2016,
+    "genres": [
+      "comedy"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "أحمد صبري غباشي",
+        "nameEn": "Ahmad Sabry Ghobashy",
+        "photo": null
+      },
+      {
+        "nameAr": "شادي عبد الرحمن",
+        "nameEn": "Shady Abdelrahman",
+        "photo": null
+      },
+      {
+        "nameAr": "سارة عبد الرحمن",
+        "nameEn": "Sarah Abdulrahman",
+        "photo": "/actors/sarah-abdulrahman.webp"
+      },
+      {
+        "nameAr": "محمد طعيمة",
+        "nameEn": "Mohamed Tueima",
+        "photo": null
+      },
+      {
+        "nameAr": "محمود سامي جمعة",
+        "nameEn": "Mahmoud Sami Gomaa",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد أمين",
+        "nameEn": "Ahmed Amin",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt5616368",
+    "titleAr": "السبع وصايا",
+    "titleEn": "El Saba Wassaya",
+    "aliases": [],
+    "type": "series",
+    "year": 2014,
+    "genres": [
+      "crime",
+      "drama",
+      "mystery"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "أحمد العوضي",
+        "nameEn": "Ahmed El Awadi",
+        "photo": "/actors/ahmed-el-awadi.webp"
+      },
+      {
+        "nameAr": "ناهد السباعي",
+        "nameEn": "Nahed El Sebaï",
+        "photo": null
+      },
+      {
+        "nameAr": "أيتن عامر",
+        "nameEn": "Ayten Amer",
+        "photo": "/actors/ayten-amer.webp"
+      },
+      {
+        "nameAr": "هنا شيحة",
+        "nameEn": "Hana Shiha",
+        "photo": "/actors/hana-shiha.webp"
+      },
+      {
+        "nameAr": "هيثم أحمد زكي",
+        "nameEn": "Haitham Ahmed Zaki",
+        "photo": null
+      },
+      {
+        "nameAr": "رانيا يوسف",
+        "nameEn": "Rania Youssef",
+        "photo": "/actors/rania-youssef.webp"
+      }
+    ]
+  },
+  {
+    "id": "tt5908376",
+    "titleAr": "أفراح القبة",
+    "titleEn": "Afrah AlQoba",
+    "aliases": [],
+    "type": "series",
+    "year": 2016,
+    "genres": [
+      "crime",
+      "drama",
+      "music"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "محمد الشرنوبي",
+        "nameEn": "Mohamed Al Sharnouby",
+        "photo": "/actors/mohamed-al-sharnouby.webp"
+      },
+      {
+        "nameAr": "أسامة أسعد",
+        "nameEn": "Osama Asaad",
+        "photo": null
+      },
+      {
+        "nameAr": "أسامة عبد الله",
+        "nameEn": "Osama Abdallah",
+        "photo": "/actors/osama-abdallah.webp"
+      },
+      {
+        "nameAr": "جمال سليمان",
+        "nameEn": "Jamal Soliman",
+        "photo": null
+      },
+      {
+        "nameAr": "إياد نصار",
+        "nameEn": "Eyad Nassar",
+        "photo": null
+      },
+      {
+        "nameAr": "صبا مبارك",
+        "nameEn": "Saba Mubarak",
+        "photo": null
+      }
+    ]
+  },
+  {
+    "id": "tt3271318",
+    "titleAr": "حديث الصباح والمساء",
+    "titleEn": "Hadith Alsabah wa Almassaa",
+    "aliases": [],
+    "type": "series",
+    "year": 2001,
+    "genres": [
+      "drama",
+      "fantasy"
+    ],
+    "difficulty": "hard",
+    "clues": [
+      {
+        "nameAr": "إبراهيم يسري",
+        "nameEn": "Ibrahim Youssri",
+        "photo": "/actors/ibrahim-youssri.webp"
+      },
+      {
+        "nameAr": "مها أحمد",
+        "nameEn": "Maha Ahmed",
+        "photo": "/actors/maha-ahmed.webp"
+      },
+      {
+        "nameAr": "ليلى علوي",
+        "nameEn": "Laila Eloui",
+        "photo": null
+      },
+      {
+        "nameAr": "أحمد زاهر",
+        "nameEn": "Ahmed Zaher",
+        "photo": "/actors/ahmed-zaher.webp"
+      },
+      {
+        "nameAr": "دلال عبد العزيز",
+        "nameEn": "Dalal Abdel Aziz",
+        "photo": null
+      },
+      {
+        "nameAr": "سلوى خطاب",
+        "nameEn": "Salwa Khattab",
+        "photo": "/actors/salwa-khattab.webp"
+      }
+    ]
+  }
+]
