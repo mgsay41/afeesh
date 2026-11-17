@@ -1,4 +1,4 @@
-import type { CastGraph, FilmActor, Title } from "@/lib/content-types";
+import { graphKey, type CastGraph, type FilmActor, type Title } from "@/lib/content-types";
 import { posterUrl } from "./quiz-questions";
 import type { ChainData } from "./chain";
 
@@ -8,7 +8,7 @@ import type { ChainData } from "./chain";
  */
 export function makeChainData(graph: CastGraph, actors: FilmActor[], titles: Title[]): ChainData {
   const extra = new Map<string, string[]>(); // our own spellings per work id
-  for (const t of titles) extra.set(`t:${t.id}`, [t.titleAr, t.titleEn, ...t.aliases]);
+  for (const t of titles) extra.set(graphKey(t), [t.titleAr, t.titleEn, ...t.aliases]);
   for (const a of actors) for (const w of a.works) if (!extra.has(w.id)) extra.set(w.id, [w.ar, w.en ?? "", ...(w.alt ?? [])]);
 
   const worksOf = new Map<string, string[]>();

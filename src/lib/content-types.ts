@@ -38,6 +38,9 @@ export interface Title {
   clues: (Clue | null)[];
 }
 
+/** Key of a title in the cast graph: Top-100 titles are "t:<imdb id>", titles generated from TMDB already are "m:<id>"/"s:<id>". */
+export const graphKey = (t: Title) => (/^[ms]:/.test(t.id) ? t.id : `t:${t.id}`);
+
 /**
  * A staged puzzle for the "common link" and "catchphrase" games. Built as a Title so the original
  * game's engine runs it unchanged: link → the answer is an actor and the six clues are works;

@@ -112,7 +112,7 @@ function charadesPool(): CharadesTitle[] {
     out.push({ id, ar: k, alt: alt.filter(Boolean), type });
   };
   for (const t of TITLES) add(`t:${t.id}`, t.titleAr, t.type, t.aliases);
-  for (const a of ACTORS) for (const w of a.works.slice(0, 3)) add(w.id, w.ar, w.type, w.alt);
+  for (const a of ACTORS) for (const w of a.works.slice(0, 5)) add(w.id, w.ar, w.type, w.alt);
   return out;
 }
 
@@ -142,7 +142,7 @@ async function startGame(s: GameState): Promise<GameState> {
       return Q.startQuiz(s, questions, now);
     }
     case "charades": {
-      const turns = Math.max(1, s.settings.rounds) * C.performers(s).length;
+      const turns = Math.max(1, s.settings.rounds) * 2;
       const deck = C.pickCharades(charadesPool(), turns + 8, getUsedTitles(CHARADES_KEY));
       addUsedTitles(deck.slice(0, turns).map((t) => t.id), CHARADES_KEY);
       return C.startCharades(s, deck, now);

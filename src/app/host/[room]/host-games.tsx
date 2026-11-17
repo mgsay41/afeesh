@@ -67,8 +67,10 @@ export function HostCharades({ game, state }: { game: HostGame; state: GameState
   const { pub, receivedAt } = useHostView(state);
   const turn = pub.charades!;
   const t = state.charades!.turn;
+  const teams = pub.teams ?? [];
   const isLast = turn.index + 1 >= turn.total;
   const performer = pub.players.find((p) => p.id === turn.performerId);
+  const actingTeam = pub.players.filter((p) => p.team === turn.team);
   return (
     <Layout
       main={
@@ -76,24 +78,37 @@ export function HostCharades({ game, state }: { game: HostGame; state: GameState
           key={turn.index}
           turn={turn}
           players={pub.players}
+          teams={teams}
           meId={state.hostId}
           receivedAt={receivedAt}
           secret={t.performerId === state.hostId ? t.title.ar : null}
           guess={game.guess}
           lastResult={null}
+          onClaim={game.charades.claim}
           onStart={game.charades.begin}
           onSkip={game.charades.skip}
         />
       }
       controls={
         <>
+          {(turn.step === "pick" || turn.step === "ready") && (
+            <div className="space-y-1.5">
+              <p className="text-sm text-muted">
+                {turn.step === "pick" ? "الفريق بيختار مين يمثّل. أو اختار انت:" : "غيّر اللي بيمثّل (لو موبايله مش بيعرض العنوان):"}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {actingTeam.map((p) => (
+                  <button key={p.id} onClick={() => game.charades.assign(p.id)} className="chip-toggle" aria-pressed={p.id === turn.performerId}>
+                    {p.avatar} {p.name}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           {turn.step === "ready" && t.performerId !== state.hostId && (
-            <>
-              <p className="text-sm text-muted">استنى {performer?.name} يدوس «ابدأ». لو موبايله مش بيعرض العنوان، تخطى دوره.</p>
-              <button onClick={game.charades.begin} className="btn btn-ghost w-full">
-                ▶️ ابدأ بدالُه
-              </button>
-            </>
+            <button onClick={game.charades.begin} className="btn btn-ghost w-full">
+              ▶️ ابدأ بدالُه {performer && `(${performer.name})`}
+            </button>
           )}
           {turn.step !== "done" && (
             <button onClick={game.charades.end} className="btn btn-ghost w-full">
@@ -107,7 +122,7 @@ export function HostCharades({ game, state }: { game: HostGame; state: GameState
           )}
         </>
       }
-      board={<Scoreboard players={pub.players} meId={state.hostId} hostId={state.hostId} correctIds={turn.guessedIds} compact />}
+      board={<Scoreboard players={pub.players} meId={state.hostId} hostId={state.hostId} correctIds={turn.guessedIds} compact showTeam />}
     />
   );
 }

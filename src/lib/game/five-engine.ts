@@ -5,6 +5,9 @@ import type { FiveEntry, FiveRound, FiveStep, GameState, GuessResult, PublicFive
 
 /** Game 2 rules. Pure functions, like engine.ts: the host runs them and broadcasts the public view. */
 export const FIVE_SECONDS = 30;
+/** The host picks the length of a round (settings.timeSec); 30 is the default. */
+export const FIVE_TIME_OPTIONS = [15, 20, 30, 45, 60, 90];
+export const fiveSeconds = (s: GameState) => s.settings.timeSec ?? FIVE_SECONDS;
 export const FIVE_TARGET = 5;
 export const FIVE_POINTS = 20;
 export const FIVE_BONUS = 20;
@@ -23,12 +26,13 @@ const norm = normalizeArabic;
 const correctOf = (r: FiveRound, playerId: string) =>
   r.entries.filter((e) => e.playerId === playerId && isCorrect(e)).sort((a, b) => a.at - b.at);
 
-/** 20 per title, +20 for all five, plus up to +10 for how early the 5th landed (its original send time). */
+/** 20 per title, +20 for all five, plus up to +10 for how early the 5th landed (its original send time), whatever the round length. */
 export function fivePoints(r: FiveRound, playerId: string): number {
   const mine = correctOf(r, playerId).slice(0, FIVE_TARGET);
   let pts = mine.length * FIVE_POINTS;
   if (mine.length === FIVE_TARGET) {
-    pts += FIVE_BONUS + Math.min(TIME_BONUS_MAX, Math.floor(Math.max(0, r.deadline - mine[FIVE_TARGET - 1].at) / 3000));
+    const total = Math.max(1, r.deadline - r.startedAt);
+    pts += FIVE_BONUS + Math.min(TIME_BONUS_MAX, Math.floor((TIME_BONUS_MAX * Math.max(0, r.deadline - mine[FIVE_TARGET - 1].at)) / total));
   }
   return pts;
 }
@@ -73,7 +77,12 @@ const setStep = (state: GameState, from: FiveStep[], patch: Partial<FiveRound>):
 
 /** Host taps start: the actor appears and the 30 seconds begin. */
 export const beginFiveRound = (state: GameState, now: number) =>
-  setStep(state, ["ready"], { step: "playing", startedAt: now, deadline: now + FIVE_SECONDS * 1000 });
+  setStep(state, ["ready"], { step: "playing", startedAt: now, deadline: now + fiveSeconds(state) * 1000 });
+/** Host changes the round length (this round if it hasn't started, and the rounds after it). */
+export function setFiveTime(state: GameState, sec: number): GameState {
+  if (!FIVE_TIME_OPTIONS.includes(sec) || state.five?.step === "playing") return state;
+  return bump({ ...state, settings: { ...state.settings, timeSec: sec } });
+}
 /** Time is up (or the host ends it early): the host can now fix answers. */
 export const endFiveRound = (state: GameState) => setStep(state, ["playing"], { step: "review" });
 export const showFiveResults = (state: GameState) => setStep(state, ["review"], { step: "results" });
@@ -217,7 +226,7 @@ export function toPublicFive(state: GameState, actors: ActorMap, now: number): P
     total: state.titleIds.length,
     step: r.step,
     msLeft: r.step === "playing" ? Math.max(0, r.deadline - now) : null,
-    totalMs: FIVE_SECONDS * 1000,
+    totalMs: fiveSeconds(state) * 1000,
     counts,
   };
   if (r.step !== "ready") out.actor = { nameAr: actor.nameAr, nameEn: actor.nameEn, photo: actor.photo };

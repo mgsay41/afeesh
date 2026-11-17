@@ -1,3 +1,5 @@
+import { CHARADES_TIME_OPTIONS } from "./charades";
+import { FIVE_TIME_OPTIONS } from "./five-engine";
 import type { GameKind } from "./types";
 
 /** The family decides which engine and which screens run a game. */
@@ -16,6 +18,8 @@ export interface GameMeta {
   roundsLabel: string;
   /** Settings this game uses besides the number of rounds. */
   uses: { pool?: boolean; difficulty?: boolean; autoReveal?: boolean };
+  /** The host can choose how long a round/turn lasts. */
+  time?: { label: string; options: number[]; default: number };
 }
 
 export const GAMES: GameMeta[] = [
@@ -34,12 +38,13 @@ export const GAMES: GameMeta[] = [
     id: "five",
     family: "five",
     icon: "⏱️",
-    title: "٥ في ٣٠",
-    sub: "اكتب ٥ أعمال للممثل في ٣٠ ثانية",
-    rules: "كل جولة: ممثل عشوائي، وكله بيكتب في نفس الوقت. ٢٠ نقطة لكل عنوان صح، +٢٠ لو كملت ٥، + بونص السرعة.",
+    title: "٥ أعمال",
+    sub: "اكتب ٥ أعمال للممثل قبل ما الوقت يخلص",
+    rules: "كل جولة: ممثل عشوائي، وكله بيكتب في نفس الوقت. انت اللي بتحدد الوقت. ٢٠ نقطة لكل عنوان صح، +٢٠ لو كملت ٥، + بونص السرعة.",
     roundOptions: [5, 10, 15],
     roundsLabel: "عدد الجولات",
     uses: {},
+    time: { label: "وقت كل جولة", options: FIVE_TIME_OPTIONS, default: 30 },
   },
   {
     id: "link",
@@ -89,12 +94,13 @@ export const GAMES: GameMeta[] = [
     id: "charades",
     family: "charades",
     icon: "🎭",
-    title: "بانتومايم",
-    sub: "مثّل الفيلم من غير كلام",
-    rules: "كل لاعب بيمثّل عمل في ٦٠ ثانية من غير ما يتكلم، والباقي يكتبوا تخمينهم. اسم العمل بيظهر على موبايل الممثل بس.",
-    roundOptions: [1, 2, 3],
-    roundsLabel: "عدد الدورات (كل لاعب بيمثّل مرة في الدورة)",
+    title: "أفلام",
+    sub: "فريقين: مثّل الفيلم والفريق التاني يخمّن",
+    rules: "اللاعبين بيختاروا فريق. كل فريق بالدور بياخد اسم فيلم أو مسلسل ويختار واحد منهم يمثّله من غير كلام، والفريق التاني يكتب تخمينه في التطبيق. اسم العمل بيظهر على موبايل اللي بيمثّل بس.",
+    roundOptions: [1, 2, 3, 4, 5],
+    roundsLabel: "عدد الجولات (في كل جولة كل فريق بيمثّل مرة)",
     uses: {},
+    time: { label: "وقت التمثيل", options: CHARADES_TIME_OPTIONS, default: 60 },
   },
   {
     id: "chain",

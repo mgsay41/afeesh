@@ -8,8 +8,10 @@ import { FiveActor, FiveHeader, FiveInput, FiveProgress, FiveResults, FiveTimer,
 import { GuessBox } from "@/components/game/guess-box";
 import { AnswerReveal, AutoTimer, ClueBoard, HintChips, RoundHeader } from "@/components/game/round-view";
 import { Podium, Scoreboard } from "@/components/game/scoreboard";
+import { TeamBoard, TeamScores } from "@/components/game/team-lobby";
 import { fireConfetti, n, newGuessId } from "@/lib/format";
 import { ACTOR_MAP } from "@/lib/game/actors";
+import { FIVE_TIME_OPTIONS } from "@/lib/game/five-engine";
 import { familyOf, gameMeta } from "@/lib/game/games";
 import { publicOf } from "@/lib/game/registry";
 import { getAccepted } from "@/lib/game/room";
@@ -85,6 +87,7 @@ function Lobby({ game, state }: { game: HostGame; state: GameState }) {
   const count = pub.players.length;
   const meta = gameMeta(state.settings.game);
   const rounds = state.settings.rounds;
+  const teamGame = meta.id === "charades" && !!pub.teams;
   return (
     <main className="mx-auto grid w-full max-w-5xl gap-5 px-4 py-6 md:grid-cols-[minmax(0,340px)_1fr]">
       <motion.section initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="panel p-6">
@@ -96,7 +99,20 @@ function Lobby({ game, state }: { game: HostGame; state: GameState }) {
           <span className="font-bold text-muted">{n(count)} لاعب</span>
         </div>
         <div className="flex-1">
-          <Scoreboard players={pub.players} meId={state.hostId} hostId={state.hostId} onKick={game.kick} />
+          {teamGame ? (
+            <TeamBoard
+              players={pub.players}
+              teams={pub.teams!}
+              meId={state.hostId}
+              hostId={state.hostId}
+              onMove={game.charades.setTeam}
+              onRename={game.charades.rename}
+              onShuffle={game.charades.shuffleTeams}
+              onKick={game.kick}
+            />
+          ) : (
+            <Scoreboard players={pub.players} meId={state.hostId} hostId={state.hostId} onKick={game.kick} />
+          )}
           {count === 1 && (
             <motion.p animate={{ opacity: [0.5, 1, 0.5] }} transition={{ repeat: Infinity, duration: 2 }} className="mt-4 text-center text-muted">
               خلي صحابك يمسحوا الـ QR… 📱
@@ -105,18 +121,27 @@ function Lobby({ game, state }: { game: HostGame; state: GameState }) {
         </div>
         <p className="text-sm text-muted">
           {meta.icon} {meta.title}
-          {meta.roundOptions.length > 0 && <> · {n(rounds)} {meta.id === "charades" ? (rounds === 1 ? "دورة" : "دورات") : meta.family === "quiz" ? "أسئلة" : "جولات"}</>}
+          {meta.roundOptions.length > 0 && <> · {n(rounds)} {meta.family === "quiz" ? "أسئلة" : rounds === 1 ? "جولة" : "جولات"}</>}
           {meta.id === "tetrat" && (
             <>
               {" "}
               · {state.settings.pool === "all" ? "أفلام ومسلسلات" : state.settings.pool === "movie" ? "أفلام" : "مسلسلات"}
             </>
           )}
+          {meta.time && <> · {n(state.settings.timeSec ?? meta.time.default)} ثانية</>}
           {meta.uses.autoReveal && <> · {state.settings.autoRevealSec ? `كشف تلقائي كل ${n(state.settings.autoRevealSec)} ث` : "كشف يدوي"}</>}
         </p>
-        {failed && <p className="text-sm font-bold text-danger">مقدرناش نجهز اللعبة دي (البيانات ناقصة). جرّب لعبة تانية.</p>}
-        <button onClick={() => void game.start().then((ok) => setFailed(!ok))} className="btn btn-primary btn-lg w-full">
-          {count > 1 ? `يلا نبدأ (${n(count)} لاعبين) 🎬` : "ابدأ (لوحدك) 🎬"}
+        {failed && (
+          <p className="text-sm font-bold text-danger">
+            {teamGame ? "كل فريق لازم يبقى فيه لاعب واحد على الأقل." : "مقدرناش نجهز اللعبة دي (البيانات ناقصة). جرّب لعبة تانية."}
+          </p>
+        )}
+        <button
+          onClick={() => void game.start().then((ok) => setFailed(!ok))}
+          disabled={teamGame && count < 2}
+          className="btn btn-primary btn-lg w-full"
+        >
+          {teamGame && count < 2 ? "محتاجين لاعبين تانيين" : count > 1 ? `يلا نبدأ (${n(count)} لاعبين) 🎬` : "ابدأ (لوحدك) 🎬"}
         </button>
       </section>
     </main>
@@ -316,9 +341,25 @@ function HostFive({ game, state }: { game: HostGame; state: GameState }) {
         <section className="panel space-y-3 p-4">
           <h2 className="font-extrabold text-muted">🎛️ التحكم</h2>
           {five.step === "ready" && (
-            <button onClick={game.five.begin} className="btn btn-primary btn-lg w-full">
-              ⏱️ ابدأ الجولة
-            </button>
+            <>
+              <p className="text-sm font-bold text-muted">⏱️ وقت الجولة</p>
+              <div className="flex flex-wrap gap-1.5">
+                {FIVE_TIME_OPTIONS.map((sec) => (
+                  <button
+                    key={sec}
+                    type="button"
+                    className="chip-toggle"
+                    aria-pressed={Math.round(five.totalMs / 1000) === sec}
+                    onClick={() => game.five.setTime(sec)}
+                  >
+                    {n(sec)} ث
+                  </button>
+                ))}
+              </div>
+              <button onClick={game.five.begin} className="btn btn-primary btn-lg w-full">
+                ⏱️ ابدأ الجولة
+              </button>
+            </>
           )}
           {five.step === "playing" && (
             <button onClick={game.five.end} className="btn btn-ghost w-full">
@@ -481,6 +522,7 @@ function Final({ game, state }: { game: HostGame; state: GameState }) {
       <motion.h1 initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="display neon-text text-6xl">
         النتيجة النهائية
       </motion.h1>
+      {pub.teams && pub.charades && <TeamScores teams={pub.teams} scores={pub.charades.scores} big />}
       <Podium players={pub.players} meId={state.hostId} />
       {state.settings.game === "five" && <CopyMissing />}
       <div className="grid grid-cols-2 gap-3">

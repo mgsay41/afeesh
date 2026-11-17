@@ -6,7 +6,13 @@ import * as C from "../game/charades";
 import { createGame, joinPlayer } from "../game/engine";
 import * as Q from "../game/quiz-engine";
 import quotes from "@/data/quotes.json";
-import { onePerTitle, stagedOf } from "../game/registry";
+import casts from "@/data/casts.json";
+import filmography from "@/data/filmography.json";
+import linkPuzzles from "@/data/link-puzzles.json";
+import titlesJson from "@/data/titles.json";
+import { inPeriod } from "@/lib/period";
+import { onePerTitle, publicOf, stagedOf, startAny } from "../game/registry";
+import { GAMES } from "../game/games";
 import { makeBeforeAfter, makeOdd } from "../game/quiz-questions";
 import type { CharadesTitle, GameKind, GameState, QuizQuestion } from "../game/types";
 
@@ -139,50 +145,101 @@ describe("quiz questions", () => {
 
 const deck: CharadesTitle[] = Array.from({ length: 12 }, (_, i) => ({ id: `t${i}`, ar: i === 0 ? "الفيل الأزرق" : `عمل رقم ${i}`, type: "movie" as const }));
 
-describe("charades", () => {
-  const start = (keyed = true) => C.startCharades(room("charades", ["ali", "sara"], 1, keyed), deck, T0);
+describe("team charades", () => {
+  const first0 = () => 0.1; // team 0 acts first
+  /** host + ali on team 0, sara + omar on team 1; one round = 2 turns. */
+  const lobby = (rounds = 1, keyed = true) => {
+    let s = room("charades", ["ali", "sara", "omar"], rounds, keyed);
+    for (const [id, team] of [["host", 0], ["ali", 0], ["sara", 1], ["omar", 1]] as const) s = C.setTeam(s, id, team);
+    return s;
+  };
+  const start = (rounds = 1) => C.startCharades(lobby(rounds), deck, T0, first0);
+  /** Team 0 acts: ali performs, then the clock starts. */
+  const acting = () => C.beginTurn(C.claimPerformer(start(), "ali"), T0);
 
-  it("gives every player who can receive a secret one turn per cycle", () => {
-    const s = start();
-    expect(s.charades!.order.sort()).toEqual(["ali", "host", "sara"]);
-    // Without WebCrypto only the host can perform.
-    expect(start(false).charades!.order).toEqual(["host"]);
-    const two = C.startCharades(room("charades", ["ali"], 2), deck, T0);
-    expect(two.charades!.order).toHaveLength(4);
+  it("splits players who didn't choose and needs a player on each team", () => {
+    let s = room("charades", ["ali", "sara", "omar"], 1);
+    const started = C.startCharades(s, deck, T0);
+    expect(C.teamMembers(started, 0).length).toBe(2);
+    expect(C.teamMembers(started, 1).length).toBe(2);
+    expect(started.charades!.total).toBe(2);
+    // Everyone on one team: nothing to play against.
+    for (const id of Object.keys(s.players)) s = C.setTeam(s, id, 0);
+    expect(C.startCharades(s, deck, T0)).toBe(s);
+    // Only the host.
+    const alone = room("charades", [], 1);
+    expect(C.startCharades(alone, deck, T0)).toBe(alone);
   });
 
-  it("scores guessers by speed and gives the performer 50 once", () => {
+  it("only moves players in the lobby and renames teams", () => {
+    const s = lobby();
+    expect(C.setTeam(s, "ali", 5)).toBe(s);
+    expect(C.renameTeam(s, 1, "  الصقور  ").teams![1]).toBe("الصقور");
+    expect(C.renameTeam(s, 1, "   ")).toBe(s);
+    expect(C.setTeam(start(), "ali", 1).players.ali.team).toBe(0);
+  });
+
+  it("lets the acting team pick one performer, rotating so nobody repeats early", () => {
     let s = start();
-    const turn = s.charades!.turn;
-    s = C.beginTurn(s, T0);
-    const guessers = Object.keys(s.players).filter((id) => id !== turn.performerId);
-    const title = turn.title.ar;
-    const first = C.submitCharadesGuess(s, { playerId: guessers[0], guessId: "g1", roundIndex: 0, text: title }, T0 + 0);
-    expect(first.result.verdict).toBe("correct");
-    expect(first.result.points).toBe(100);
-    const second = C.submitCharadesGuess(first.state, { playerId: guessers[1], guessId: "g2", roundIndex: 0, text: title }, T0 + 30_000);
-    expect(second.result.points).toBe(75);
-    expect(score(second.state, turn.performerId)).toBe(50);
-    expect(second.state.charades!.turn.step).toBe("done"); // everyone guessed
+    expect(s.charades!.turn.team).toBe(0);
+    expect(s.charades!.turn.step).toBe("pick");
+    expect(C.claimPerformer(s, "sara")).toBe(s); // wrong team
+    s = C.claimPerformer(s, "ali");
+    expect(s.charades!.turn.performerId).toBe("ali");
+    expect(s.charades!.turn.step).toBe("ready");
+    // Team 1's turn: both can go; sara takes it.
+    s = C.nextTurn(C.endTurn(s));
+    expect(s.charades!.turn.team).toBe(1);
+    expect(C.eligible(s).sort()).toEqual(["omar", "sara"]);
+    s = C.claimPerformer(s, "sara");
+    // Round 2 for team 0: ali already acted, so only the host is eligible.
+    const more = C.startCharades(lobby(2), deck, T0, first0);
+    let m = C.claimPerformer(more, "ali");
+    m = C.nextTurn(C.endTurn(m)); // team 1
+    m = C.nextTurn(C.endTurn(C.claimPerformer(m, "omar"))); // back to team 0
+    expect(C.eligible(m)).toEqual(["host"]);
+    expect(C.claimPerformer(m, "ali")).toBe(m);
+    // The host can override.
+    expect(C.claimPerformer(m, "ali", true).charades!.turn.performerId).toBe("ali");
   });
 
-  it("rejects the performer, late guesses, repeats and wrong answers", () => {
-    let s = C.beginTurn(start(), T0);
+  it("scores the guessing team by speed and gives the performer 50", () => {
+    const s = acting();
+    const title = s.charades!.turn.title.ar;
+    const g = C.submitCharadesGuess(s, { playerId: "sara", guessId: "g1", roundIndex: 0, text: title }, T0);
+    expect(g.result).toMatchObject({ verdict: "correct", points: 100 });
+    expect(score(g.state, "sara")).toBe(100);
+    expect(score(g.state, "ali")).toBe(50);
+    expect(g.state.charades!.scores).toEqual([50, 100]);
+    expect(g.state.charades!.turn.step).toBe("done"); // the team has it
+    const late = C.submitCharadesGuess(s, { playerId: "omar", guessId: "g2", roundIndex: 0, text: title }, T0 + 30_000);
+    expect(late.result.points).toBe(75);
+  });
+
+  it("keeps the acting team out of the guessing and rejects late or bad guesses", () => {
+    const s = acting();
     const t = s.charades!.turn;
-    const other = Object.keys(s.players).find((id) => id !== t.performerId)!;
     const g = (playerId: string, text: string, now = T0 + 1000, roundIndex = 0) =>
       C.submitCharadesGuess(s, { playerId, guessId: text + now, roundIndex, text }, now);
-    expect(g(t.performerId, t.title.ar).result.verdict).toBe("locked");
-    expect(g(other, t.title.ar, T0 + 60_000 + C.GRACE_MS + 1).result.verdict).toBe("late");
-    expect(g(other, t.title.ar, T0 + 1000, 7).result.verdict).toBe("late");
-    expect(g(other, "حاجة تانية خالص").result.verdict).toBe("wrong");
-    expect(g(other, "A latin guess").result.verdict).toBe("invalid");
-    s = g(other, t.title.ar).state;
-    expect(g(other, t.title.ar).result.verdict).toBe("already");
+    expect(g("ali", t.title.ar).result.verdict).toBe("locked"); // performer
+    expect(g("host", t.title.ar).result.verdict).toBe("locked"); // same team
+    expect(g("sara", t.title.ar, T0 + 60_000 + C.GRACE_MS + 1).result.verdict).toBe("late");
+    expect(g("sara", t.title.ar, T0 + 1000, 7).result.verdict).toBe("late");
+    expect(g("sara", "حاجة تانية خالص").result.verdict).toBe("wrong");
+    expect(g("sara", "A latin guess").result.verdict).toBe("invalid");
+    expect(C.submitCharadesGuess(start(), { playerId: "sara", guessId: "x", roundIndex: 0, text: t.title.ar }, T0).result.verdict).toBe("late"); // not acting yet
+  });
+
+  it("uses the time the host chose", () => {
+    let s = lobby();
+    s = { ...s, settings: { ...s.settings, timeSec: 90 } };
+    s = C.beginTurn(C.claimPerformer(C.startCharades(s, deck, T0, first0), "ali"), T0);
+    expect(s.charades!.turn.deadline).toBe(T0 + 90_000);
+    expect(C.publicOf(s, T0).charades!.totalMs).toBe(90_000);
   });
 
   it("allows a single swap, and only before anyone guessed", () => {
-    const s = start();
+    const s = C.claimPerformer(start(), "ali");
     const first = s.charades!.turn.title.id;
     const swapped = C.skipTitle(s);
     expect(swapped.charades!.turn.title.id).not.toBe(first);
@@ -190,18 +247,18 @@ describe("charades", () => {
   });
 
   it("never exposes the title before the turn is over", () => {
-    const s = C.beginTurn(start(), T0);
+    const s = acting();
     const title = s.charades!.turn.title.ar;
     expect(JSON.stringify(C.publicOf(s, T0 + 10))).not.toContain(title);
     expect(C.publicOf(C.endTurn(s), T0 + 10).charades!.reveal!.title).toBe(title);
   });
 
-  it("moves on to the next performer and finishes after the last turn", () => {
-    let s = start();
-    const total = s.charades!.order.length;
-    for (let i = 0; i < total; i++) {
+  it("alternates teams and finishes after the last turn", () => {
+    let s = start(2);
+    for (let i = 0; i < 4; i++) {
       expect(s.charades!.turn.index).toBe(i);
-      s = C.nextTurn(C.endTurn(C.beginTurn(s, T0)));
+      expect(s.charades!.turn.team).toBe(i % 2);
+      s = C.nextTurn(C.endTurn(s));
     }
     expect(s.phase).toBe("final");
   });
@@ -345,5 +402,44 @@ describe("quotes", () => {
     const picked = onePerTitle(pool);
     expect(new Set(picked.map((t) => t.titleAr)).size).toBe(picked.length);
     expect(picked.length).toBeLessThan(pool.length); // some films have several lines
+  });
+});
+
+// ---------------------------------------------------------------- period
+
+describe("content period", () => {
+  it("only has works, titles, puzzles and quotes from 2000 to 2010", () => {
+    expect(titlesJson.length).toBeGreaterThan(100);
+    expect(titlesJson.every((t) => inPeriod(t.year))).toBe(true);
+    expect(Object.values(casts.works).every((w) => inPeriod((w as { y?: number }).y))).toBe(true);
+    expect((filmography as { works: { year?: number }[] }[]).every((a) => a.works.every((w) => inPeriod(w.year)))).toBe(true);
+    expect((linkPuzzles as { works: { y?: number }[] }[]).every((p) => p.works.every((w) => inPeriod(w.y)))).toBe(true);
+    expect((quotes as { year: number }[]).every((q) => inPeriod(q.year))).toBe(true);
+  });
+
+  it("has enough actors with enough works for the five-titles game", () => {
+    const actors = filmography as { works: unknown[] }[];
+    expect(actors.length).toBeGreaterThan(100);
+    expect(actors.every((a) => a.works.length >= 6)).toBe(true);
+  });
+});
+
+describe("every game starts with the 2000–2010 data", () => {
+  it.each(GAMES.map((g) => g.id))("%s", async (game) => {
+    const s = await startAny(room(game, ["ali", "sara"], 2));
+    expect(s.phase).toBe("round");
+    const pub = publicOf(s, T0);
+    expect(pub.players).toHaveLength(3);
+  });
+
+  it("makes before/after questions at every difficulty within the period", async () => {
+    const { datedWorks } = await import("../game/quiz-questions");
+    const { ACTORS } = await import("../game/actors");
+    const { TITLES } = await import("../game/titles");
+    const pool = datedWorks(TITLES, ACTORS, casts as unknown as CastGraph);
+    expect(pool.length).toBeGreaterThan(100);
+    for (const d of ["any", "easy", "medium", "hard"] as const) {
+      expect(makeBeforeAfter(pool, 5, d)).toHaveLength(5);
+    }
   });
 });

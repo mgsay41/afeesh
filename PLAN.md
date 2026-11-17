@@ -575,3 +575,10 @@ Same rules for all: the host device is the referee, holds the answers and broadc
 - **Quote attribution** errors are easy to make; every line needs a source and your review.
 - **Turn-based games and disconnects:** if the current player drops, their turn times out normally and the game moves on; a player who rejoins keeps their place.
 - **Home screen with 8 games** may feel crowded on phones; keep cards short (icon + name + one line).
+
+## 16. Revision — 2000–2010 only, host-set time, team charades
+
+- **Period rule:** every movie, series, actor and quote is from 2000–2010 (`src/lib/period.ts`). `npm run period` (`scripts/build-period.ts`) discovers all Egyptian TMDB movies/series of the period with their casts, rewrites `casts.json`, `filmography.json` (actors billed in the top 5 of ≥5 period works) and `titles.json` (curated period titles + generated ones). `npm run link-puzzles` then rebuilds the common-link puzzles. A test fails if anything outside the period slips in. «قبل ولا بعد؟» gaps are now 1–2 / 3–4 / 5–10 years.
+- **٥ أعمال (was ٥ في ٣٠):** `settings.timeSec` (15–90 s) is chosen on the home screen and the host can change it before each round; the speed bonus scales with the round length.
+- **أفلام (was بانتومايم):** two teams (names editable by the host); players pick a team in the lobby (or are balanced in at the start). Turns alternate: the acting team gets a title and one member takes the turn (rotation: nobody repeats before everyone has acted; the host can assign); the other team types guesses. First correct guess ends the turn: guesser +50..100 for their team, performer +50 for theirs. Time per turn 45–120 s.
+- **Quotes:** 88 lines from 50 films, each taken from an article that names film, speaker and year (see git history for the old file). Lines the host should still review: those with a single source.

@@ -50,7 +50,12 @@ export function HomeClient() {
   const pick = (game: GameKind) =>
     setSettings((s) => {
       const options = gameMeta(game).roundOptions;
-      return { ...s, game, rounds: options.includes(s.rounds) ? s.rounds : (options.includes(10) ? 10 : (options[0] ?? 0)) };
+      return {
+        ...s,
+        game,
+        rounds: options.includes(s.rounds) ? s.rounds : (options.includes(10) ? 10 : (options[0] ?? 0)),
+        timeSec: gameMeta(game).time?.default,
+      };
     });
 
   function host() {
@@ -151,6 +156,16 @@ export function HomeClient() {
                         { v: "medium", label: "متوسط" },
                         { v: "hard", label: meta.id === "beforeafter" ? "صغير" : "صعب" },
                       ]}
+                    />
+                  </>
+                )}
+                {meta.time && (
+                  <>
+                    <p className="font-bold">{meta.time.label}</p>
+                    <Toggle
+                      value={settings.timeSec ?? meta.time.default}
+                      onChange={(v) => set("timeSec", v)}
+                      options={meta.time.options.map((v) => ({ v, label: `${n(v)} ث` }))}
                     />
                   </>
                 )}

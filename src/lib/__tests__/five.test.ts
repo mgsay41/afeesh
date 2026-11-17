@@ -6,6 +6,7 @@ import {
   beginFiveRound,
   endFiveRound,
   fivePoints,
+  setFiveTime,
   nextFiveRound,
   showFiveResults,
   startFiveGame,
@@ -196,5 +197,39 @@ describe("five: flow and public state", () => {
     expect(s.five).toMatchObject({ index: 1, step: "ready" });
     s = nextFiveRound(showFiveResults(endFiveRound(beginFiveRound(s, 0))));
     expect(s.phase).toBe("final");
+  });
+});
+
+describe("five: host-chosen time", () => {
+  const ready = () => {
+    let s = createGame("ABCDE", { id: "host", name: "مضيف", avatar: "🎬" }, { game: "five", rounds: 1, pool: "all", difficulty: "any", autoRevealSec: 0, timeSec: 60 }, 0);
+    s = joinPlayer(s, { id: "p1", name: "سارة", avatar: "🦊" }, 0);
+    return startFiveGame(s, ["adel-emam"]);
+  };
+
+  it("runs the round for the chosen number of seconds", () => {
+    const s = beginFiveRound(ready(), 1000);
+    expect(s.five!.deadline).toBe(1000 + 60_000);
+    expect(toPublicFive(s, actors, 1000)!.totalMs).toBe(60_000);
+  });
+
+  it("changes the time before the round starts, but not during it or to odd values", () => {
+    const s = ready();
+    expect(beginFiveRound(setFiveTime(s, 15), 0).five!.deadline).toBe(15_000);
+    expect(setFiveTime(s, 7)).toBe(s);
+    const playing = beginFiveRound(s, 0);
+    expect(setFiveTime(playing, 15)).toBe(playing);
+  });
+
+  it("gives the same speed bonus whatever the length", () => {
+    const at = (secs: number, doneAfter: number) => {
+      let s = beginFiveRound(setFiveTime(ready(), secs), 0);
+      ["عمارة يعقوبيان", "الإرهاب والكباب", "اللعب مع الكبار", "حسن ومرقص", "زهايمر"].forEach((t, i) => {
+        s = enter(s, "p1", t, i === 4 ? doneAfter : 100).state;
+      });
+      return s.players.p1.score;
+    };
+    expect(at(30, 0)).toBe(at(90, 0)); // instant → full bonus in both
+    expect(at(30, 15_000)).toBe(at(90, 45_000)); // half the time left → same bonus
   });
 });

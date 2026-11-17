@@ -2,6 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { n } from "@/lib/format";
+import { TEAM_ICONS } from "@/lib/game/teams";
 import type { PublicPlayer } from "@/lib/game/types";
 
 interface Props {
@@ -11,10 +12,12 @@ interface Props {
   firstId?: string | null;
   correctIds?: string[];
   compact?: boolean;
+  /** Team game: a colored dot before each name. */
+  showTeam?: boolean;
   onKick?: (id: string) => void;
 }
 
-export function Scoreboard({ players, meId, hostId, firstId, correctIds = [], compact, onKick }: Props) {
+export function Scoreboard({ players, meId, hostId, firstId, correctIds = [], compact, showTeam, onKick }: Props) {
   return (
     <ol className="space-y-1.5">
       <AnimatePresence initial={false}>
@@ -35,6 +38,7 @@ export function Scoreboard({ players, meId, hostId, firstId, correctIds = [], co
               <span className="w-6 text-center font-black text-muted">{i === 0 && p.score > 0 ? "👑" : n(i + 1)}</span>
               <span className="text-2xl leading-none">{p.avatar}</span>
               <span className="min-w-0 flex-1 truncate font-bold">
+                {showTeam && p.team !== undefined && <span className="me-1">{TEAM_ICONS[p.team]}</span>}
                 {p.name}
                 {p.id === hostId && <span className="ms-1.5 text-xs text-muted">(المضيف)</span>}
               </span>

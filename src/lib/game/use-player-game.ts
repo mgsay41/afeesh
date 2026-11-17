@@ -135,11 +135,18 @@ export function usePlayerGame(room: string, me: Me | null) {
   );
 
   const act = useCallback(
-    (roundIndex: number, action: "start" | "skip") => {
+    (roundIndex: number, action: "start" | "skip" | "claim") => {
       if (id) toHost({ type: "act", playerId: id, roundIndex, action });
     },
     [id, toHost],
   );
 
-  return { state, receivedAt, status, mode, setupError, kicked, lastResult, results, secret, guess, pick, act, hostSeen: state !== null };
+  const chooseTeam = useCallback(
+    (team: number) => {
+      if (id) toHost({ type: "team", playerId: id, team });
+    },
+    [id, toHost],
+  );
+
+  return { state, receivedAt, status, mode, setupError, kicked, lastResult, results, secret, guess, pick, act, chooseTeam, hostSeen: state !== null };
 }

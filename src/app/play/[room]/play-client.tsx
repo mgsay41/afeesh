@@ -8,6 +8,7 @@ import { FiveActor, FiveHeader, FiveInput, FiveProgress, FiveResults, FiveTimer,
 import { GuessBox } from "@/components/game/guess-box";
 import { AnswerReveal, AutoTimer, ClueBoard, HintChips, RoundHeader } from "@/components/game/round-view";
 import { Podium, Scoreboard } from "@/components/game/scoreboard";
+import { TeamPicker, TeamScores } from "@/components/game/team-lobby";
 import { fireConfetti, n, newGuessId } from "@/lib/format";
 import { familyOf } from "@/lib/game/games";
 import { loadHostGame } from "@/lib/game/room";
@@ -115,7 +116,7 @@ function Game({ room, profile, update }: { room: string; profile: Profile; updat
           )}
         </Center>
       ) : state.phase === "lobby" ? (
-        <Lobby state={state} meId={me.id} />
+        <Lobby state={state} meId={me.id} onPick={game.chooseTeam} />
       ) : state.phase === "round" ? (
         <PlayerGameView game={game} state={state} meId={me.id} update={update} />
       ) : (
@@ -163,7 +164,7 @@ function Center({ emoji, title, children }: { emoji: string; title: string; chil
   );
 }
 
-function Lobby({ state, meId }: { state: PublicState; meId: string }) {
+function Lobby({ state, meId, onPick }: { state: PublicState; meId: string; onPick: (team: number) => void }) {
   return (
     <main className="mx-auto flex w-full max-w-md flex-col gap-5 px-4 py-6">
       <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="text-center">
@@ -171,10 +172,16 @@ function Lobby({ state, meId }: { state: PublicState; meId: string }) {
         <h1 className="display mt-2 text-4xl">انت جوه!</h1>
         <p className="text-muted">استنى المضيف يبدأ اللعبة…</p>
       </motion.div>
-      <section className="panel p-4">
-        <h2 className="mb-2 font-extrabold text-muted">👥 اللاعبين ({n(state.players.length)})</h2>
-        <Scoreboard players={state.players} meId={meId} hostId={state.hostId} compact />
-      </section>
+      {state.settings.game === "charades" && state.teams ? (
+        <section className="panel p-4">
+          <TeamPicker players={state.players} teams={state.teams} meId={meId} hostId={state.hostId} onPick={onPick} />
+        </section>
+      ) : (
+        <section className="panel p-4">
+          <h2 className="mb-2 font-extrabold text-muted">👥 اللاعبين ({n(state.players.length)})</h2>
+          <Scoreboard players={state.players} meId={meId} hostId={state.hostId} compact />
+        </section>
+      )}
     </main>
   );
 }
@@ -368,6 +375,7 @@ function Final({ state, meId, update }: { state: PublicState; meId: string; upda
       <motion.h1 initial={{ scale: 0.5, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} className="display neon-text text-5xl">
         {won ? "انت الكسبان! 🏆" : `ترتيبك ${n(rank)}`}
       </motion.h1>
+      {state.teams && state.charades && <TeamScores teams={state.teams} scores={state.charades.scores} big />}
       <Podium players={state.players} meId={meId} />
       <p className="text-muted">لو المضيف داس &quot;العب تاني&quot; هتدخل الجولة الجديدة لوحدك.</p>
       <Link href="/" className="btn btn-ghost">

@@ -14,6 +14,8 @@ export interface Settings {
   difficulty: "any" | "easy" | "medium" | "hard";
   /** Seconds before the next stage reveals automatically. 0 = host reveals manually. */
   autoRevealSec: number;
+  /** Five-titles game: seconds per round, chosen by the host. Missing = 30. */
+  timeSec?: number;
 }
 
 export interface Player {
@@ -24,6 +26,8 @@ export interface Player {
   joinedAt: number;
   /** Public ECDH key (JWK string) so the host can send this player a private message (charades). */
   key?: string;
+  /** Team game (أفلام): 0 or 1. Unset until the player picks (or is balanced in at the start). */
+  team?: number;
 }
 
 export interface FeedItem {
@@ -57,6 +61,8 @@ export interface GameState {
   settings: Settings;
   phase: "lobby" | "round" | "final";
   players: Record<string, Player>;
+  /** Team game: the two team names. */
+  teams?: string[];
   /** Tetrat: title ids. Five: actor ids. */
   titleIds: string[];
   round: RoundState | null;
@@ -165,9 +171,12 @@ export interface CharadesTitle {
 
 export interface CharadesTurn {
   index: number;
-  performerId: string;
+  /** The team acting this turn; the other team guesses. */
+  team: number;
+  /** Null until someone on the acting team takes the turn. */
+  performerId: string | null;
   title: CharadesTitle;
-  step: "ready" | "acting" | "done";
+  step: "pick" | "ready" | "acting" | "done";
   startedAt: number;
   deadline: number;
   /** playerId → points for guessing it. */
@@ -179,18 +188,25 @@ export interface CharadesTurn {
 }
 
 export interface CharadesState {
-  /** Performer for each turn, in order. */
-  order: string[];
   /** Shuffled titles; the turn uses deck[cursor]. */
   deck: CharadesTitle[];
   cursor: number;
+  /** Number of turns in the game (two per round: one per team). */
+  total: number;
+  /** The team that acts first; turns alternate. */
+  first: number;
+  /** playerId → how many times they performed, so everyone gets a turn before anyone repeats. */
+  acted: Record<string, number>;
+  /** Team totals. */
+  scores: number[];
   turn: CharadesTurn;
 }
 
 export interface PublicCharades {
   index: number;
   total: number;
-  performerId: string;
+  team: number;
+  performerId: string | null;
   step: CharadesTurn["step"];
   msLeft: number | null;
   totalMs: number;
@@ -200,6 +216,9 @@ export interface PublicCharades {
   guessedIds: string[];
   misses: Record<string, number>;
   canSkip: boolean;
+  /** Acting-team members who may take the turn now. */
+  eligible: string[];
+  scores: number[];
   /** Only when the turn is over. */
   reveal?: { title: string; points: Record<string, number>; performerPoints: number };
 }
@@ -268,6 +287,7 @@ export interface PublicPlayer {
   avatar: string;
   score: number;
   roundPoints: number | null;
+  team?: number;
 }
 
 export interface PublicRound {
@@ -302,6 +322,7 @@ export interface PublicState {
   quiz?: PublicQuiz | null;
   charades?: PublicCharades | null;
   chain?: PublicChain | null;
+  teams?: string[];
   settings: Settings;
   version: number;
 }
@@ -312,7 +333,8 @@ export type ToHost =
   | { type: "join"; player: { id: string; name: string; avatar: string; key?: string } }
   | { type: "guess"; playerId: string; guessId: string; roundIndex: number; text: string }
   | { type: "pick"; playerId: string; roundIndex: number; choice: number }
-  | { type: "act"; playerId: string; roundIndex: number; action: "start" | "skip" }
+  | { type: "act"; playerId: string; roundIndex: number; action: "start" | "skip" | "claim" }
+  | { type: "team"; playerId: string; team: number }
   | { type: "hello"; playerId: string };
 
 export type GuessResult = {

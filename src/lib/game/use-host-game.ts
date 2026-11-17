@@ -80,7 +80,7 @@ export function useHostGame(room: string) {
   const sendSecret = useCallback(async () => {
     const s = stateRef.current;
     const t = s?.charades?.turn;
-    if (!s || !t || t.step === "done" || t.performerId === s.hostId) return;
+    if (!s || !t || t.step === "done" || !t.performerId || t.performerId === s.hostId) return;
     const key = s.players[t.performerId]?.key;
     if (!key) return;
     try {
@@ -128,7 +128,10 @@ export function useHostGame(room: string) {
           if (msg.type === "join") {
             // A player may only join as themselves.
             if (msg.player.id !== sender) return;
-            commit(E.joinPlayer(s, msg.player, now));
+            let joined = E.joinPlayer(s, msg.player, now);
+            // Joining a team game that already started: the smaller team gets you.
+            if (familyOf(s.settings.game) === "charades" && joined.phase !== "lobby") joined = C.balance(joined);
+            commit(joined);
             broadcast();
             if (s.charades?.turn.performerId === sender) void sendSecret();
           } else if (msg.type === "hello") {
@@ -140,8 +143,11 @@ export function useHostGame(room: string) {
             send({ type: "result", result: out.result });
           } else if (msg.type === "pick" && msg.playerId === sender && familyOf(s.settings.game) === "quiz") {
             commit(Q.submitPick(s, msg, now));
-          } else if (msg.type === "act" && msg.playerId === sender && s.charades?.turn.performerId === sender && msg.roundIndex === s.charades.turn.index) {
-            commit(msg.action === "start" ? C.beginTurn(s, now) : C.skipTitle(s));
+          } else if (msg.type === "act" && msg.playerId === sender && s.charades && msg.roundIndex === s.charades.turn.index) {
+            if (msg.action === "claim") commit(C.claimPerformer(s, sender));
+            else if (s.charades.turn.performerId === sender) commit(msg.action === "start" ? C.beginTurn(s, now) : C.skipTitle(s));
+          } else if (msg.type === "team" && msg.playerId === sender && familyOf(s.settings.game) === "charades") {
+            commit(C.setTeam(s, sender, msg.team));
           }
         }),
       );
@@ -168,7 +174,7 @@ export function useHostGame(room: string) {
 
   // Charades: a new turn or a swapped title → send the performer their secret.
   const turn = state?.charades?.turn;
-  const secretKey = turn ? `${turn.index}:${turn.title.id}:${turn.performerId}` : null;
+  const secretKey = turn ? `${turn.index}:${turn.title.id}:${turn.performerId ?? ""}` : null;
   useEffect(() => {
     if (secretKey) void sendSecret();
   }, [secretKey, sendSecret]);
@@ -246,6 +252,7 @@ export function useHostGame(room: string) {
       }),
     five: {
       begin: () => act((s) => F.beginFiveRound(s, Date.now())),
+      setTime: (sec: number) => act((s) => F.setFiveTime(s, sec)),
       end: () => act(F.endFiveRound),
       results: () => act(F.showFiveResults),
       next: () => act(F.nextFiveRound),
@@ -279,6 +286,13 @@ export function useHostGame(room: string) {
       next: () => act((s) => Q.nextQuiz(s, Date.now())),
     },
     charades: {
+      /** Lobby: put a player (the host included) on a team, rename a team, or split everyone randomly. */
+      setTeam: (playerId: string, team: number) => act((s) => C.setTeam(s, playerId, team)),
+      rename: (team: number, name: string) => act((s) => C.renameTeam(s, team, name)),
+      shuffleTeams: () => act((s) => C.shuffleTeams(s)),
+      /** In the game: take the turn for yourself (the host plays too), or give it to someone on the acting team. */
+      claim: () => act((s) => C.claimPerformer(s, s.hostId)),
+      assign: (playerId: string) => act((s) => C.claimPerformer(s, playerId, true)),
       begin: () => act((s) => C.beginTurn(s, Date.now())),
       skip: () => act(C.skipTitle),
       end: () => act(C.endTurn),

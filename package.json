@@ -11,6 +11,7 @@
     "filmography": "tsx scripts/build-filmography.ts",
     "casts": "tsx scripts/build-casts.ts",
     "link-puzzles": "tsx scripts/build-link-puzzles.ts",
+    "period": "tsx scripts/build-period.ts",
     "test": "vitest run"
   },
   "dependencies": {

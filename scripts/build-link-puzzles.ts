@@ -47,7 +47,7 @@ for (const a of actors) {
     .map((w, fame) => ({ w, fame, c: graph.works[w.id] }))
     .filter((x) => x.c && x.c.c.includes(pid) && x.c.p && x.w.ar)
     .slice(0, POOL);
-  if (pool.length < 7) {
+  if (pool.length < 6) {
     skipped++;
     continue;
   }

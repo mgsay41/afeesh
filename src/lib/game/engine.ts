@@ -1,5 +1,6 @@
 import { isArabicText, judgeGuess } from "@/lib/arabic";
 import type { Puzzle, Title } from "@/lib/content-types";
+import { DEFAULT_TEAMS } from "./teams";
 import type {
   FeedItem,
   GameState,
@@ -73,6 +74,7 @@ export function createGame(room: string, host: Omit<Player, "score" | "joinedAt"
     settings,
     phase: "lobby",
     players: { [host.id]: { ...host, score: 0, joinedAt: now } },
+    teams: settings.game === "charades" ? DEFAULT_TEAMS : undefined,
     titleIds: [],
     round: null,
     version: 1,
@@ -245,8 +247,8 @@ export function acceptGuess(state: GameState, feedId: string): { state: GameStat
 export function basePublic(state: GameState, roundPoints: (playerId: string) => number | null = () => null): PublicState {
   const players = Object.values(state.players)
     .sort((a, b) => b.score - a.score || a.joinedAt - b.joinedAt)
-    .map((p) => ({ id: p.id, name: p.name, avatar: p.avatar, score: p.score, roundPoints: roundPoints(p.id) }));
-  return { room: state.room, hostId: state.hostId, phase: state.phase, players, round: null, settings: state.settings, version: state.version };
+    .map((p) => ({ id: p.id, name: p.name, avatar: p.avatar, score: p.score, roundPoints: roundPoints(p.id), team: p.team }));
+  return { room: state.room, hostId: state.hostId, phase: state.phase, players, round: null, teams: state.teams, settings: state.settings, version: state.version };
 }
 
 export function toPublic(state: GameState, titles: TitleMap, now: number): PublicState {

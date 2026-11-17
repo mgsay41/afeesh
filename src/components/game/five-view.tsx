@@ -66,7 +66,7 @@ export function FiveActor({ five, small }: { five: PublicFive; small?: boolean }
           🎞️
         </motion.span>
         <p className="display text-3xl">جاهزين؟</p>
-        <p className="px-4 text-muted">هيظهر ممثل، وعندك ٣٠ ثانية تكتب ٥ أفلام أو مسلسلات ليه</p>
+        <p className="px-4 text-muted">هيظهر ممثل، وعندك {n(Math.round(five.totalMs / 1000))} ثانية تكتب ٥ أفلام أو مسلسلات ليه</p>
       </div>
     );
   }

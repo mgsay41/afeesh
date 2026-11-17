@@ -24,7 +24,7 @@ function RankBar({ state, meId, open }: { state: PublicState; meId: string; open
           {n(score)} نقطة {show ? "▲" : "▼"}
         </span>
       </button>
-      {(show || open) && <Scoreboard players={state.players} meId={meId} hostId={state.hostId} compact />}
+      {(show || open) && <Scoreboard players={state.players} meId={meId} hostId={state.hostId} compact showTeam={!!state.teams} />}
     </>
   );
 }
@@ -50,11 +50,13 @@ export function PlayerCharades({ game, state, meId }: { game: Game; state: Publi
         key={turn.index}
         turn={turn}
         players={state.players}
+        teams={state.teams ?? []}
         meId={meId}
         receivedAt={game.receivedAt}
         secret={secret}
         guess={(id, text) => game.guess(id, turn.index, text)}
         lastResult={game.lastResult}
+        onClaim={() => game.act(turn.index, "claim")}
         onStart={() => game.act(turn.index, "start")}
         onSkip={() => game.act(turn.index, "skip")}
       />
