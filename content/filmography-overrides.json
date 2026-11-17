@@ -1,0 +1,4 @@
+{
+  "_help": "Hand edits applied by `npm run filmography`. people[<Arabic actor name>]: { qid: pin the Wikidata person, add: [{ar, en?, alt?, type, year?}] works Wikidata is missing, remove: [work ids] }. The game's 'copy missing titles' button produces the `people` block.",
+  "people": {}
+}

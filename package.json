@@ -8,6 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "content": "tsx scripts/build-content.ts",
+    "filmography": "tsx scripts/build-filmography.ts",
+    "casts": "tsx scripts/build-casts.ts",
+    "link-puzzles": "tsx scripts/build-link-puzzles.ts",
     "test": "vitest run"
   },
   "dependencies": {

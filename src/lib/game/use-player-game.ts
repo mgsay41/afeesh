@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
+import { decryptWith, makeKeyPair } from "@/lib/crypto";
 import { connect, RealtimeSetupError, type ConnectionStatus, type Mode, type Transport } from "@/lib/realtime";
 import type { GuessResult, PublicState, ToHost, ToPlayers } from "./types";
 
@@ -18,7 +19,12 @@ export function usePlayerGame(room: string, me: Me | null) {
   const [mode, setMode] = useState<Mode | null>(null);
   const [kicked, setKicked] = useState(false);
   const [lastResult, setLastResult] = useState<GuessResult | null>(null);
+  /** Every result so far (game 2 needs all of them to keep the player's own list of titles). */
+  const [results, setResults] = useState<GuessResult[]>([]);
+  /** Charades: the title for this player's turn as performer (decrypted on this phone only). */
+  const [secret, setSecret] = useState<{ turn: number; text: string } | null>(null);
   const [setupError, setSetupError] = useState<string | null>(null);
+  const keyRef = useRef<{ publicJwk: string; privateKey: CryptoKey } | null>(null);
   const transportRef = useRef<Transport | null>(null);
   const versionRef = useRef(0);
   const lastJoinRef = useRef(0);
@@ -31,6 +37,9 @@ export function usePlayerGame(room: string, me: Me | null) {
     void transportRef.current?.publish("toHost", msg).catch(() => {});
   }, []);
 
+  /** Who we are plus our public key, so the host can send us private messages. */
+  const joinInfo = useCallback(() => ({ ...meRef.current!, key: keyRef.current?.publicJwk }), []);
+
   const id = me?.id;
   useEffect(() => {
     if (!id) return;
@@ -38,7 +47,12 @@ export function usePlayerGame(room: string, me: Me | null) {
     let cleanup: (() => void)[] = [];
     let helloTimer: ReturnType<typeof setInterval> | undefined;
     let hostId: string | null = null;
-    connect(room, id).then((t) => {
+    (keyRef.current ? Promise.resolve(keyRef.current) : makeKeyPair())
+      .then((k) => {
+        keyRef.current = k;
+        return connect(room, id);
+      })
+      .then((t) => {
       if (cancelled) return t.close();
       transportRef.current = t;
       setMode(t.mode);
@@ -46,7 +60,7 @@ export function usePlayerGame(room: string, me: Me | null) {
         t.onStatus((s) => {
           setStatus(s);
           // Re-announce after reconnecting so the host re-sends the latest state.
-          if (s === "online" && meRef.current) toHost({ type: "join", player: meRef.current });
+          if (s === "online" && meRef.current) toHost({ type: "join", player: joinInfo() });
         }),
       );
       cleanup.push(
@@ -66,23 +80,31 @@ export function usePlayerGame(room: string, me: Me | null) {
               const now = Date.now();
               if (!msg.state.players.some((p) => p.id === id) && meRef.current && now - lastJoinRef.current > 3000) {
                 lastJoinRef.current = now;
-                toHost({ type: "join", player: meRef.current });
+                toHost({ type: "join", player: joinInfo() });
               }
             }
           } else if (msg.type === "result" && msg.result.to === id) {
             setLastResult(msg.result);
+            setResults((r) => [...r, msg.result].slice(-100));
+          } else if (msg.type === "secret" && msg.secret.to === id && keyRef.current) {
+            const { turn } = msg.secret;
+            decryptWith(keyRef.current.privateKey, msg.secret).then(
+              (text) => setSecret({ turn, text }),
+              () => {},
+            );
           } else if (msg.type === "kicked" && msg.playerId === id) {
             setKicked(true);
             t.close();
           }
         }),
       );
-      if (meRef.current) toHost({ type: "join", player: meRef.current });
+      if (meRef.current) toHost({ type: "join", player: joinInfo() });
       // Keep asking until the host answers (host may have opened the page later).
       helloTimer = setInterval(() => {
-        if (versionRef.current === 0) toHost({ type: "join", player: meRef.current! });
+        if (versionRef.current === 0) toHost({ type: "join", player: joinInfo() });
       }, 2500);
-    }, (e: unknown) => {
+    })
+      .catch((e: unknown) => {
       if (cancelled) return;
       setStatus("offline");
       setSetupError(e instanceof RealtimeSetupError ? e.message : String(e));
@@ -95,7 +117,7 @@ export function usePlayerGame(room: string, me: Me | null) {
       transportRef.current?.close();
       transportRef.current = null;
     };
-  }, [room, id, toHost]);
+  }, [room, id, toHost, joinInfo]);
 
   const guess = useCallback(
     (guessId: string, roundIndex: number, text: string) => {
@@ -105,5 +127,19 @@ export function usePlayerGame(room: string, me: Me | null) {
     [id, toHost],
   );
 
-  return { state, receivedAt, status, mode, setupError, kicked, lastResult, guess, hostSeen: state !== null };
+  const pick = useCallback(
+    (roundIndex: number, choice: number) => {
+      if (id) toHost({ type: "pick", playerId: id, roundIndex, choice });
+    },
+    [id, toHost],
+  );
+
+  const act = useCallback(
+    (roundIndex: number, action: "start" | "skip") => {
+      if (id) toHost({ type: "act", playerId: id, roundIndex, action });
+    },
+    [id, toHost],
+  );
+
+  return { state, receivedAt, status, mode, setupError, kicked, lastResult, results, secret, guess, pick, act, hostSeen: state !== null };
 }

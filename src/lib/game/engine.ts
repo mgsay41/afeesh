@@ -1,5 +1,5 @@
 import { isArabicText, judgeGuess } from "@/lib/arabic";
-import type { Title } from "@/lib/content-types";
+import type { Puzzle, Title } from "@/lib/content-types";
 import type {
   FeedItem,
   GameState,
@@ -31,7 +31,7 @@ export function pointsFor(round: RoundState, isFirst: boolean, stage: Stage = ro
   return base + (isFirst ? FIRST_BONUS : 0);
 }
 
-function shuffle<T>(arr: T[], rand = Math.random): T[] {
+export function shuffle<T>(arr: T[], rand = Math.random): T[] {
   const a = [...arr];
   for (let i = a.length - 1; i > 0; i--) {
     const j = Math.floor(rand() * (i + 1));
@@ -81,12 +81,13 @@ export function createGame(room: string, host: Omit<Player, "score" | "joinedAt"
 
 const bump = (s: GameState): GameState => ({ ...s, version: s.version + 1 });
 
-export function joinPlayer(state: GameState, p: { id: string; name: string; avatar: string }, now: number): GameState {
+export function joinPlayer(state: GameState, p: { id: string; name: string; avatar: string; key?: string }, now: number): GameState {
   const existing = state.players[p.id];
   const name = p.name.trim().slice(0, 20) || "لاعب";
+  const key = p.key && p.key.length < 400 ? p.key : undefined;
   if (existing) {
-    if (existing.name === name && existing.avatar === p.avatar) return state;
-    return bump({ ...state, players: { ...state.players, [p.id]: { ...existing, name, avatar: p.avatar } } });
+    if (existing.name === name && existing.avatar === p.avatar && existing.key === key) return state;
+    return bump({ ...state, players: { ...state.players, [p.id]: { ...existing, name, avatar: p.avatar, key } } });
   }
   if (Object.keys(state.players).length >= MAX_PLAYERS) return state;
   // Same display name as someone else → add a number so the scoreboard stays readable.
@@ -95,7 +96,7 @@ export function joinPlayer(state: GameState, p: { id: string; name: string; avat
   for (let n = 2; taken.has(unique); n++) unique = `${name} ${n}`;
   return bump({
     ...state,
-    players: { ...state.players, [p.id]: { id: p.id, name: unique, avatar: p.avatar, score: 0, joinedAt: now } },
+    players: { ...state.players, [p.id]: { id: p.id, name: unique, avatar: p.avatar, score: 0, joinedAt: now, key } },
   });
 }
 
@@ -240,23 +241,35 @@ export function acceptGuess(state: GameState, feedId: string): { state: GameStat
   };
 }
 
+/** The part of the public state every game shares. `roundPoints` says what a player earned this round (or null). */
+export function basePublic(state: GameState, roundPoints: (playerId: string) => number | null = () => null): PublicState {
+  const players = Object.values(state.players)
+    .sort((a, b) => b.score - a.score || a.joinedAt - b.joinedAt)
+    .map((p) => ({ id: p.id, name: p.name, avatar: p.avatar, score: p.score, roundPoints: roundPoints(p.id) }));
+  return { room: state.room, hostId: state.hostId, phase: state.phase, players, round: null, settings: state.settings, version: state.version };
+}
+
 export function toPublic(state: GameState, titles: TitleMap, now: number): PublicState {
   const r = state.round;
   const title = r ? titles[r.titleId] : null;
   let round: PublicState["round"] = null;
   if (r && title) {
+    const mode = (title as Puzzle).mode;
     const visible = r.revealed ? 6 : STAGE_VISIBLE[r.stage];
-    const clues: PublicClue[] = title.clues.map((c, i) => (i < visible ? c : "hidden"));
+    const clues: PublicClue[] = mode === "quote" ? [] : title.clues.map((c, i) => (i < visible ? c : "hidden"));
     const auto = state.settings.autoRevealSec;
+    // Quote game: the year/genre/type come with stage 2 for free; link game has no hints.
+    const free = mode === "quote" && (r.stage >= 2 || r.revealed);
+    const hintOn = (k: HintKind) => mode !== "link" && (r.hints[k] || r.revealed || free);
     round = {
       index: r.index,
       total: state.titleIds.length,
       stage: r.stage,
       clues,
       hints: {
-        genres: r.hints.genre || r.revealed ? title.genres : undefined,
-        year: r.hints.year || r.revealed ? title.year : undefined,
-        type: r.hints.type || r.revealed ? title.type : undefined,
+        genres: hintOn("genre") ? title.genres : undefined,
+        year: hintOn("year") ? title.year : undefined,
+        type: hintOn("type") ? title.type : undefined,
       },
       correctIds: Object.keys(r.correct),
       firstId: r.firstId,
@@ -264,16 +277,14 @@ export function toPublic(state: GameState, titles: TitleMap, now: number): Publi
       revealed: r.revealed,
       answer: r.revealed ? { titleAr: title.titleAr, year: title.year, type: title.type, genres: title.genres } : undefined,
       autoMsLeft: auto && !r.revealed ? Math.max(0, r.stageAt + auto * 1000 - now) : null,
+      mode,
+      quote: mode === "quote" ? (title as Puzzle).quote : undefined,
+      by: mode === "quote" && (r.revealed || r.stage >= 3) ? (title.clues[0] ?? null) : undefined,
+      initials:
+        mode === "link" && (r.revealed || r.stage >= 3)
+          ? title.titleAr.split(" ").map((w) => w[0]).join(" . ")
+          : undefined,
     };
   }
-  const players = Object.values(state.players)
-    .sort((a, b) => b.score - a.score || a.joinedAt - b.joinedAt)
-    .map((p) => ({
-      id: p.id,
-      name: p.name,
-      avatar: p.avatar,
-      score: p.score,
-      roundPoints: r && p.id in r.correct ? r.correct[p.id] : null,
-    }));
-  return { room: state.room, hostId: state.hostId, phase: state.phase, players, round, settings: state.settings, version: state.version };
+  return { ...basePublic(state, (id) => (r && id in r.correct ? r.correct[id] : null)), round };
 }

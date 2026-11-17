@@ -8,6 +8,7 @@ import type { PublicRound } from "@/lib/game/types";
 import { ActorCard } from "./actor-card";
 
 const STAGE_LABEL = { 1: "الأدوار المساعدة", 2: "دور أكبر", 3: "الأبطال" } as const;
+const LINK_STAGE_LABEL = { 1: "٣ أعمال", 2: "عمل رابع", 3: "أشهر أعمال الممثل" } as const;
 
 export function RoundHeader({ round }: { round: PublicRound }) {
   return (
@@ -37,17 +38,54 @@ export function RoundHeader({ round }: { round: PublicRound }) {
   );
 }
 
+/** The catchphrase game: a line, and (stage 3) who said it. */
+function QuoteCard({ round }: { round: PublicRound }) {
+  const by = round.by;
+  return (
+    <div className="mx-auto w-full max-w-xl space-y-3">
+      <p className="text-center text-sm font-bold text-muted">
+        {round.revealed ? "الجملة" : `المرحلة ${n(round.stage)}: ${round.stage === 1 ? "الجملة بس" : round.stage === 2 ? "+ السنة والنوع" : "+ اللي قالها"}`}
+      </p>
+      <motion.blockquote
+        key={round.index}
+        initial={{ scale: 0.9, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        className="panel relative px-6 py-8 text-center"
+      >
+        <span className="absolute start-3 top-1 text-6xl text-magenta/60" aria-hidden>
+          ❝
+        </span>
+        <p className="display text-3xl leading-snug sm:text-4xl">{round.quote}</p>
+      </motion.blockquote>
+      {by && (
+        <motion.div initial={{ y: 14, opacity: 0 }} animate={{ y: 0, opacity: 1 }} className="mx-auto w-32">
+          <ActorCard clue={by} index={0} />
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
 export function ClueBoard({ round }: { round: PublicRound }) {
+  if (round.mode === "quote") return <QuoteCard round={round} />;
+  const link = round.mode === "link";
   return (
     <div className="mx-auto w-full max-w-xl">
       <p className="mb-2 text-center text-sm font-bold text-muted">
-        {round.revealed ? "طاقم العمل" : `المرحلة ${n(round.stage)}: ${STAGE_LABEL[round.stage]}`}
+        {round.revealed
+          ? link
+            ? "الأعمال"
+            : "طاقم العمل"
+          : `المرحلة ${n(round.stage)}: ${(link ? LINK_STAGE_LABEL : STAGE_LABEL)[round.stage]}`}
       </p>
       <div className="grid grid-cols-3 gap-2.5 sm:gap-3.5">
         {round.clues.map((c, i) => (
-          <ActorCard key={`${round.index}-${i}`} clue={c} index={i} />
+          <ActorCard key={`${round.index}-${i}`} clue={c} index={i} works={link} />
         ))}
       </div>
+      {link && round.initials && (
+        <p className="mt-3 text-center font-extrabold text-gold">💡 الحروف الأولى: {round.initials}</p>
+      )}
     </div>
   );
 }
@@ -111,7 +149,7 @@ export function AnswerReveal({ round }: { round: PublicRound }) {
       transition={{ duration: 0.7, ease: [0.2, 0.8, 0.2, 1] }}
       className="relative overflow-hidden rounded-3xl border-2 border-gold/70 bg-gradient-to-br from-[#3a1a5e] via-[#5a1846] to-[#7a2f12] p-5 text-center shadow-[0_0_60px_-10px_var(--gold)]"
     >
-      <p className="text-sm font-bold text-gold">{a.type === "movie" ? "الفيلم" : "المسلسل"}</p>
+      <p className="text-sm font-bold text-gold">{round.mode === "link" ? "الممثل" : a.type === "movie" ? "الفيلم" : "المسلسل"}</p>
       <motion.h2
         initial={{ scale: 0.6, opacity: 0 }}
         animate={{ scale: 1, opacity: 1 }}
@@ -120,9 +158,11 @@ export function AnswerReveal({ round }: { round: PublicRound }) {
       >
         {a.titleAr}
       </motion.h2>
-      <p className="font-bold text-ink/80">
-        {String(a.year)} · {a.genres.map((g) => GENRE_AR[g]).join(" · ")}
-      </p>
+      {round.mode !== "link" && (
+        <p className="font-bold text-ink/80">
+          {String(a.year)} · {a.genres.map((g) => GENRE_AR[g]).join(" · ")}
+        </p>
+      )}
     </motion.div>
   );
 }

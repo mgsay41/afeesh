@@ -331,3 +331,247 @@ The game logic is one **pure reducer** (`game-engine.ts`), so it's easy to test 
 3. Should the **host also play**, or only control? (Affects auto-reveal mode priority.)
 4. Language: Arabic UI only, or an Arabic/English toggle?
 5. Allow guesses in **English/Franco** too, or Arabic only?
+
+---
+
+## 14. Game 2 — «٥ في ٣٠» (Five in Thirty)
+
+The app becomes a set of games. The host picks a game first, then its settings. Game 1 (Tetrat) stays exactly as it is.
+
+**Rules (decided):**
+- Everyone plays **at the same time**. Each round shows one random actor (photo + name). Every player has **30 seconds** to type **5 movies or TV shows** that actor was in.
+- Each title is checked **on submit**: ✅ counts toward the 5, ❌ / 🔥 (close) lets them try another. A player is done at 5 correct or when time runs out.
+- **Scoring:** 20 per correct title · +20 for all 5 · time bonus up to +10 for finishing early (+1 per 3 s left).
+- **Host override («صح» button):** if TMDB is missing a title, the host can mark a rejected entry as correct — see "Host override" below.
+- Same referee model as game 1: the host device holds the actor's filmography, judges every entry and broadcasts only public state. Players never receive the title list before the round ends.
+
+### Key design decisions
+| Topic | Decision |
+|---|---|
+| Where filmographies come from | **Wikidata at build time** (`npm run filmography`, no API key; TMDB needs one and wasn't set up). Arabic titles for ~all works. Our 98 titles are too few: only 28 actors appear in 5+ of them. Built: 117 actors, ~2,900 works, 271 KB. Thin for younger actors and TV, which is what the host override is for. |
+| Data file | `src/data/filmography.json`, host-only import (like `titles.ts`). Per actor: `id, nameAr, nameEn, photo, works[{id, titleAr, titleEn, original, aliases, type, year, popularity}]`. |
+| Actor pool | Actors with a photo and **≥ 10 works** (was 15; Wikidata is thinner than TMDB), so naming 5 is fair. Start from the game-1 actors. Game 2 has no movie/TV filter: any work counts. |
+| Data gaps | `content/filmography-overrides.json` to add missing works, Arabic titles and aliases, and to pin the right TMDB person when names collide. Host "accept" is the live safety net. |
+| Matching | Reuse `judgeGuess` from `src/lib/arabic.ts` against every name of every work. One entry counts once; two entries for the same work count once. |
+| Game type | `game: "tetrat" \| "five"` on `GameState`, `PublicState` and settings. Saved games without it default to `"tetrat"`. Lobby, scoreboard, podium, profile, room code and transport are shared. |
+| Realtime | Reuse the existing `guess` message and `result` reply; the host routes by `state.game`. No new channels. |
+| Timer | Host is the clock. Public state carries `msLeft` (same pattern as `autoMsLeft`). Entries arriving up to 1 s after the deadline still count (network delay). |
+| Anti-spam | Max 15 entries per player per round. Wrong entries cost nothing else. |
+
+### Host override — when TMDB is missing a title
+Our data will never be complete, so the host is the final judge.
+
+- **When:** any time during the round, and on a **review step** after the timer ends. The scoreboard only shows after the host taps «عرض النتائج», so there is time to fix answers.
+- **How:** the host sees each player's rejected (❌ / 🔥) entries with a «صح ✔» button. Tapping it:
+  - turns the entry ✅ on the player's phone and adds 20 points (plus the 5/5 bonus if it makes 5; the time bonus uses the moment the entry was first sent, not when the host tapped);
+  - also accepts the **same title from other players** in that round (normalized match), so the host doesn't tap it twice.
+- **Undo:** «تراجع» on an accepted entry removes it and its points, in case of a mis-tap. Works until the next round starts.
+- **Remembered:** accepted titles are saved on the host device (localStorage, per actor). The next time that actor comes up, that title is accepted automatically.
+- **Fix the data for everyone:** the final screen has a «نسخ العناوين الناقصة» button that copies the accepted titles as JSON, ready to paste into `content/filmography-overrides.json`.
+- Only the host can do this. A player can't mark their own answer, same trust rule as game 1.
+
+### Phase 5 — Game picker + multi-game plumbing (½–1 day)
+- Add `GameKind` and per-game settings to `src/lib/game/types.ts`; default old saves to `"tetrat"`.
+- Home (`src/app/home-client.tsx`): game cards first («تترات» / «٥ في ٣٠»), then that game's settings (game 2: rounds 5/10/15, pool movies/TV/both).
+- `host-client.tsx` and `play-client.tsx`: switch the round view on `state.game`; lobby, scoreboard and final stay shared.
+- Game 2 card shows "قريبًا" until Phase 8 lands.
+- **Done when:** game 1 plays exactly as before; existing tests pass.
+
+### Phase 6 — Filmography content (1–2 days, the riskiest part)
+- New script `scripts/build-filmography.ts` (`npm run filmography`, needs `TMDB_API_KEY`):
+  - Find each actor's TMDB person id (cache in `content/tmdb-people.json`, reuse the Arabic-work check from `build-content.ts`).
+  - Pull combined credits in `ar` and `en`; keep acting credits only; drop talk shows, news, award shows and "Himself/Herself" roles.
+  - Arabic title = TMDB Arabic translation, else `original_title` when it is Arabic.
+  - Apply overrides; print a report of actors with low Arabic-title coverage or under 15 works.
+- Hand-fix the top ~50 most famous actors' gaps via the overrides file.
+- **Done when:** ≥ 80 actors in the pool, most works have an Arabic title, JSON stays small enough to load on the host only (< ~400 KB).
+
+### Phase 7 — Game 2 engine, pure and tested (1 day)
+- `src/lib/game/five-engine.ts`: `startRound` (random unused actor, deadline = now + 30 s), `submitEntry`, `endRound`, `acceptEntry`, `toPublicFive`.
+- Rules as testable statements:
+  - An entry after deadline + 1 s → `late`.
+  - A player with 5 correct → further entries `already`.
+  - Two entries matching the same work → second is `duplicate`, no points.
+  - Score = 20 × correct + 20 if 5 + `min(10, floor(secondsLeft / 3))` when the 5th lands.
+  - Accepting a rejected entry adds 20 (and the 5/5 bonus if it makes 5); the time bonus uses the entry's original timestamp.
+  - Accepting an entry also accepts other players' entries for the same normalized title in that round.
+  - Undo of an accepted entry removes exactly the points it added; not allowed once the next round starts.
+  - A title in the host's remembered list for this actor is judged `correct` automatically.
+  - Accept/undo requests from anyone but the host are ignored.
+  - Public state before round end contains no works list; after end it shows each player's titles and 5 well-known titles nobody said.
+- Vitest cases with real Egyptian titles and spellings.
+- **Done when:** all engine tests pass.
+
+### Phase 8 — Screens + live play (1–2 days)
+- **Host / TV:** big `ActorCard`, countdown ring, every player's 0/5 progress live, buttons: start round · end early · next actor.
+- **Host controller — override:** rejected entries list with «صح ✔» / «تراجع», a review step after the timer, «عرض النتائج» to move on, remembered accepts in localStorage (`src/lib/game/room.ts`, next to `getUsedTitles`), and «نسخ العناوين الناقصة» on the final screen. The TV view never shows entry titles during the round.
+- **Player:** actor photo, countdown, input that clears on submit, 5 slots that fill ✅, shake on ❌, 🔥 for close.
+- **Round end:** everyone's titles + "you could've said…" list, then the shared scoreboard; final podium and profile stats reused.
+- Host plays too (judged locally, like game 1).
+- **Done when:** host + 3 phones play a full 5-round game over Ably.
+
+### Phase 9 — Polish (½–1 day)
+- Tick sound in the last 5 s, buzzer at 0, confetti on 5/5; reduced-motion fallbacks.
+- `/about`: how to play both games.
+- Playwright: host + player play one round of game 2.
+- Deploy and test on real phones over mobile data.
+
+**Total: roughly 5–7 working days.**
+
+### Risks
+- **Data completeness** is the whole game: if TMDB misses an Egyptian series, a correct answer gets rejected. Mitigations: host «صح» override (remembered per actor), copy-to-overrides button, start with well-covered actors.
+- **Name collisions on TMDB** (two people called أحمد سعيد): pin ids in overrides.
+- **Simultaneous play on one TV:** players could copy answers they see on the host screen. The TV shows only counts (✅ 3/5) during the round, never the titles.
+
+---
+
+## 15. Games 3–8
+
+> **Status (built):** all six games play end to end, host + a second player, in the browser. Lint, types, 57 tests and the production build pass.
+>
+> | Phase | Result |
+> |---|---|
+> | 10 Registry | `games.ts` (metadata, shared with phones) + `registry.ts` (host-only data and dispatch) instead of one registry object. 8 cards on the picker. |
+> | 11 TMDB data | `npm run casts` → `src/data/casts.json` (1,405 of 1,618 works = 87% have a cast; 3,461 people; 95% of top-billed names are Arabic, 73% overall; posters and years). Works Wikidata has no TMDB id for are found by a title search that must also match the year (±1). |
+> | 12–13 Quiz | `quiz-engine.ts` + generators. «قبل ولا بعد؟» draws from 713 works with posters; «مين مش منهم؟» has 97 questions (outsider checked against TMDB cast **and** the actor's own filmography). |
+> | 14 الرابط المشترك | `npm run link-puzzles` → 218 puzzles from 109 actors; the first three works share exactly one billed actor. Runs on game 1's engine unchanged (puzzles are built as `Title`s). |
+> | 15 الإفيه | Runs on game 1's engine. **65 lines** (50 from films/series of 2000–2010), not the planned 120; each film + speaker was stated by an article. A game uses one line per film. Needs your review, and more lines: add them to `src/data/quotes.json`. |
+> | 16 بانتومايم | Encrypted title (ECDH + AES-GCM, `src/lib/crypto.ts`); verified that the performer's phone shows it. Deck is the Top 100 + each actor's top 3 works. |
+> | 17 سلسلة | Hearts, 15 s turns, repeats refused, host can accept a refused answer live. A wrong try doesn't cost a heart until the 5th (so host-accept still works mid-turn). |
+> | 18 Polish | **Not done:** «رتّبهم» variant, sounds, Playwright smoke tests, real phones over Ably (game 2 as well). About page now has the rules of all 8 games. |
+
+Six more games. They fall into **three families**, so we build one engine per family, not one per game:
+
+| Family | Games | How players answer | Built on |
+|---|---|---|---|
+| **A. Quiz (tap)** | 3 «قبل ولا بعد؟» · 4 «مين مش منهم؟» | Tap one of 2–4 choices | New `quiz-engine.ts` (shared) |
+| **B. Staged clues (type)** | 5 «الرابط المشترك» · 6 «الإفيه» | Type the answer; clues reveal in 3 stages | Game 1's stage engine, generalized |
+| **C. Turns** | 7 «بانتومايم» · 8 «سلسلة» | One player at a time | New `turns.ts` helpers + one engine each |
+
+Same rules for all: the host device is the referee, holds the answers and broadcasts only public state. Lobby, room code, QR, scoreboard, podium, profile stats and the host «صح ✔» override are shared.
+
+### Rules (defaults: change any before its phase starts)
+
+**3 · قبل ولا بعد؟ (Before or after?)**
+- Two titles side by side (poster + name). Everyone taps the one that came out **first**. 10 questions, 10 s each.
+- Points: 100 for correct + up to 50 for speed. Wrong = 0.
+- Difficulty by year gap: easy ≥ 15 years, medium 5–14, hard 1–4. Never the same year.
+- Variant for the polish phase: «رتّبهم», ordering 4 titles (points per title in the right slot).
+
+**4 · مين مش منهم؟ (Odd one out)**
+- Four actor photos + names. Three were in the same title; tap the one who wasn't. 10 questions, 15 s each.
+- Points: same as game 3. The reveal shows the title the other three share.
+- The outsider must be checked against the **full cast** (not only our 6 clue actors), otherwise a correct-but-uncredited actor becomes a wrong answer.
+
+**5 · الرابط المشترك (The common link)**
+- Stage 1: two titles; stage 2: a third title; stage 3: a fourth title + the actor's initials. Type the **actor** they all share.
+- Points 100 / 70 / 40, first correct +20, 3 misses per round. Exactly game 1's flow, with the answer being an actor.
+- Generated from the filmography: pick an actor, take 4 of their works ordered least → most famous, and keep the puzzle only if **no other actor** in our data was in all of the stage-1 titles.
+
+**6 · الإفيه (The catchphrase)**
+- Stage 1: a famous line (text). Stage 2: year + genre. Stage 3: the actor who said it. Type the **title**.
+- Points 100 / 70 / 40, first +20, 3 misses. Reuses game 1's engine and matching unchanged; only the clues differ.
+- Content: ~150 lines, each linked to a title (see Phase 15).
+
+**7 · بانتومايم (Charades)**
+- Players take turns as the **performer**. Only the performer's phone shows the secret title (type + word count are shown to everyone, as in real charades). They act it out silently for **60 s**.
+- Everyone else types guesses on their phones (auto-checked, like game 1).
+- Points: first correct guesser 50–100 by speed; performer +50 if anyone gets it. One «تخطّي» (skip) per turn.
+- Each player performs once per cycle; the host picks 1–3 cycles.
+- Titles: our 98 + the most famous works from the filmography (~300). No-speaking is on the honor system.
+
+**8 · سلسلة (Chain)**
+- Starts from a random famous title. Players take turns, **15 s** each, alternating: name an **actor** from the current title → the next player names **another title** with that actor → an actor from that title → …
+- No repeats in a chain. A wrong answer or timeout loses a ❤️ (3 each). Out at 0; last player standing wins.
+- Points: 10 per link, +50 to the winner.
+- The host «صح ✔» override works here too (live, during the 15 s), since cast data will have gaps.
+
+### Shared design decisions
+
+| Topic | Decision |
+|---|---|
+| Game registry | Replace the `if (game === "five")` branches with `src/lib/game/registry.ts`: per game `{ start, onMessage, publicOf, timer }`. Games 1 and 2 move onto it first, with no behavior change. |
+| State | `GameState` keeps one optional slot per family (`quiz?`, `round` for staged, `turn?`), not one per game. `Settings.game` grows to all 8 kinds. |
+| New messages | `ToHost: { type: "pick", qIndex, choice }` for taps. `ToPlayers: { type: "secret", to, box }` for the charades title. |
+| Charades secret | All messages go over one shared channel, so a plain "secret" could be read by anyone in dev tools. Each player makes an ECDH key pair (WebCrypto, built into browsers) and sends the public key in `join`; the host encrypts the performer's title with it (AES-GCM). About 40 lines, no new dependency. |
+| Timers | Host is the clock everywhere (`msLeft` in public state, +1 s network grace), same as game 2. Reuse `FiveTimer` / `useCountdown` from `five-view.tsx`. |
+| Home picker | 8 cards: 2 columns on phones, 4 on desktop. Each card opens only its own settings (rounds / time per turn / cycles). |
+| Repeats | Reuse `getUsedTitles` / `addUsedTitles` with one localStorage key per game, so a host doesn't see the same questions twice in a row. |
+| Data on players' phones | Still none. Players import only types; every question, title and cast stays on the host. |
+
+### Data: what each game needs
+
+| Game | Data we have now | What's missing | Source |
+|---|---|---|---|
+| 3 قبل ولا بعد | 98 titles with year; 2,564 of 2,937 works have a year | Posters (nice, not required) | **TMDB** |
+| 4 مين مش منهم | 98 titles × 6 clue actors, 274 actors with photos | Full casts to verify the outsider | **TMDB** credits (Wikidata as fallback) |
+| 5 الرابط المشترك | 117 actors, 357 works shared by 3+ of them | Full casts for the uniqueness check; posters | **TMDB** |
+| 6 الإفيه | Titles and actors | ~150 famous lines, each linked to a title | **Browser research** + your review |
+| 7 بانتومايم | ~300 well-known titles | Nothing | — |
+| 8 سلسلة | 736 works with 2+ of our actors | Full casts with **Arabic names**, beyond our 117 actors | **TMDB** credits + Wikidata Arabic labels |
+
+**TMDB, how we'll use it:**
+- Key in `.env.local` as `TMDB_API_KEY`, used **only by build scripts** (never shipped to phones).
+- Match without guessing: our titles have IMDb ids (TMDB `/find`), and Wikidata works carry TMDB ids (properties P4947 movie / P4983 TV), so we never fuzzy-search by name.
+- Pull per work: top ~15 cast, poster path, release date, Arabic title. Arabic actor names: from Wikidata labels via the TMDB person id (P4985), falling back to TMDB translations.
+- Output: `src/data/casts.json` (host-only). Posters load from `image.tmdb.org` (configure the image host in `next.config` as the Next 16 docs require).
+- TMDB's terms need an attribution line + logo on `/about`.
+
+### Phase 10 — Game registry + shared pieces (1 day) · no TMDB needed
+- `registry.ts`; move games 1 and 2 onto it. `Settings.game` gets all 8 kinds; cards for unbuilt games show «قريبًا».
+- Shared UI: `ChoiceGrid` (2/4 big tap buttons, locked after tap, ✅/❌ on reveal), `TurnBanner` (whose turn, hearts, countdown).
+- `pick` message + host routing; `getUsedTitles` per game key.
+- **Done when:** games 1 and 2 play exactly as before; all 33 tests pass; the picker shows 8 cards.
+
+### Phase 11 — TMDB data (1 day) · needs your API key
+- `scripts/build-casts.ts` (`npm run casts`): cast, posters, years and Arabic titles for our 98 titles + 1,600 works, cached in `content/tmdb-cache.json` so reruns are fast and offline.
+- Fill missing years in `filmography.json`; report works TMDB couldn't find.
+- **Done when:** ≥ 90% of works have a cast list, ≥ 80% of cast members have an Arabic name, and `casts.json` stays under ~600 KB.
+
+### Phase 12 — Quiz engine + game 3 «قبل ولا بعد؟» (1 day)
+- `quiz-engine.ts`: question → choices → everyone taps → lock at 0 s → reveal → next. Scoring: 100 + speed bonus.
+- `before-after.ts`: generate pairs by difficulty from years; posters when available.
+- Tests: tap after deadline + grace = late, one tap per question, speed bonus math, no answer in public state before the reveal.
+- **Done when:** host + 2 tabs play 10 questions.
+
+### Phase 13 — Game 4 «مين مش منهم؟» (½ day)
+- `odd-one-out.ts`: pick a title with 3+ photo actors, an outsider with a photo who is **not** in that title's full cast, shuffle.
+- Reuses the quiz engine and `ChoiceGrid` with `ActorCard` photos.
+- **Done when:** 50 generated questions spot-checked by hand have no outsider who was actually in the film.
+
+### Phase 14 — Game 5 «الرابط المشترك» (1 day)
+- Generalize game 1's engine so the answer can be an actor (`answer: { kind: "title" | "actor", names[] }`) and a stage clue can be a list of titles.
+- `link.ts`: puzzle generator with the uniqueness check; pre-generate ~200 puzzles at build time into `src/data/link-puzzles.json` (host-only).
+- **Done when:** game 1 tests still pass and new tests cover actor answers + uniqueness.
+
+### Phase 15 — Game 6 «الإفيه» (1–1½ days, mostly content)
+- I research famous Egyptian movie/series catchphrases in the browser and write `content/quotes.json` (`{ line, titleId, actor }`). Only short one-liners, and each one is checked against at least one source for the right title and actor.
+- **You review the list** before it ships (wrong attributions would spoil the game).
+- `quote.ts`: wraps the staged engine (stage 1 line · 2 year + genre · 3 actor).
+- **Done when:** ≥ 120 reviewed lines; 10-round game plays.
+
+### Phase 16 — Game 7 «بانتومايم» (1½ days)
+- `turns.ts`: turn order, current player, per-turn deadline, skip, cycles.
+- `charades.ts`: secret title per turn, guesses judged with game 1's matcher, scoring.
+- ECDH key in `join` (`src/lib/crypto.ts`), `secret` message, decryption on the performer's phone.
+- Performer screen: big title, type, «تخطّي». Everyone else: who's performing, word count, timer, guess box. TV: same, never the title.
+- **Done when:** the title is unreadable in other tabs' message logs; a full cycle with 3 players plays.
+
+### Phase 17 — Game 8 «سلسلة» (1½ days)
+- `chain.ts` on `turns.ts`: alternating actor/title links, validation against `casts.json` (actor in cast of current title; title in actor's works), no repeats, hearts, elimination, host override live.
+- Players see the whole chain growing; only the current player's input is active.
+- **Done when:** tests cover valid/invalid links, repeats, timeout, override and last-player-wins; 3 tabs play to a winner.
+
+### Phase 18 — Polish (1 day)
+- «رتّبهم» variant for game 3; sounds (tick, buzzer, correct) shared by all games; `/about` rules for games 3–8 + TMDB attribution.
+- Playwright: one smoke test per family (quiz, staged, turns).
+- Real phones over Ably (also covers game 2, still untested there).
+
+**Total: roughly 9–11 working days.** Phases 10, 12, 16 don't need TMDB and can start right away; 11 unblocks 13, 14 and 17.
+
+### Risks
+- **Cast data with Arabic names** is the weak point for «سلسلة»: TMDB often has English-only names for Egyptian actors. Mitigation: Wikidata Arabic labels, aliases in overrides, host override live.
+- **Charades on one shared channel** needs the encryption step above; skipping it leaks the title to anyone curious enough to open dev tools.
+- **Quote attribution** errors are easy to make; every line needs a source and your review.
+- **Turn-based games and disconnects:** if the current player drops, their turn times out normally and the game moves on; a player who rejoins keeps their place.
+- **Home screen with 8 games** may feel crowded on phones; keep cards short (icon + name + one line).

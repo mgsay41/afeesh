@@ -14,6 +14,7 @@ const MESSAGES: Record<GuessResult["verdict"], { text: string; tone: string }> =
   late: { text: "الجولة خلصت", tone: "text-muted" },
   already: { text: "انت عرفتها خلاص 😎", tone: "text-success" },
   invalid: { text: "اكتب الاسم بالعربي", tone: "text-orange" },
+  duplicate: { text: "ده اتقال قبل كده", tone: "text-orange" },
 };
 
 interface Props {
@@ -22,10 +23,11 @@ interface Props {
   misses: number;
   solved: boolean;
   disabled?: boolean;
+  placeholder?: string;
   onGuess: (text: string) => void;
 }
 
-export function GuessBox({ result, misses, solved, disabled, onGuess }: Props) {
+export function GuessBox({ result, misses, solved, disabled, placeholder, onGuess }: Props) {
   const [text, setText] = useState("");
   const [localError, setLocalError] = useState<string | null>(null);
   const [shakeKey, setShakeKey] = useState(0);
@@ -90,7 +92,7 @@ export function GuessBox({ result, misses, solved, disabled, onGuess }: Props) {
             setLocalError(null);
           }}
           disabled={inactive}
-          placeholder={solved ? "برافو! استنى الباقيين" : "اسم الفيلم أو المسلسل…"}
+          placeholder={solved ? "برافو! استنى الباقيين" : (placeholder ?? "اسم الفيلم أو المسلسل…")}
           className="field flex-1"
           maxLength={60}
           enterKeyHint="send"

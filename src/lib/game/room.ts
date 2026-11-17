@@ -12,6 +12,8 @@ export const isRoomCode = (s: string) => /^[A-Z2-9]{5}$/.test(s);
 
 const hostKey = (room: string) => `afeesh:host:${room}`;
 const USED_KEY = "afeesh:used-titles";
+export const USED_ACTORS_KEY = "afeesh:used-actors";
+const ACCEPTED_KEY = "afeesh:five-accepted";
 
 export function saveHostGame(state: GameState) {
   try {
@@ -30,18 +32,38 @@ export function loadHostGame(room: string): GameState | null {
   }
 }
 
-export function getUsedTitles(): string[] {
+export function getUsedTitles(key = USED_KEY): string[] {
   try {
-    return JSON.parse(localStorage.getItem(USED_KEY) ?? "[]");
+    return JSON.parse(localStorage.getItem(key) ?? "[]");
   } catch {
     return [];
   }
 }
 
-export function addUsedTitles(ids: string[]) {
+export function addUsedTitles(ids: string[], key = USED_KEY) {
   try {
-    const next = [...getUsedTitles().filter((id) => !ids.includes(id)), ...ids].slice(-80);
-    localStorage.setItem(USED_KEY, JSON.stringify(next));
+    const next = [...getUsedTitles(key).filter((id) => !ids.includes(id)), ...ids].slice(-80);
+    localStorage.setItem(key, JSON.stringify(next));
+  } catch {
+    /* ignore */
+  }
+}
+
+/** Titles the host marked correct in game 2, per actor id: a gap in our data only has to be fixed once. */
+export function getAccepted(): Record<string, string[]> {
+  try {
+    return JSON.parse(localStorage.getItem(ACCEPTED_KEY) ?? "{}");
+  } catch {
+    return {};
+  }
+}
+
+export function setAccepted(actorId: string, text: string, on: boolean) {
+  try {
+    const all = getAccepted();
+    const rest = (all[actorId] ?? []).filter((t) => t !== text);
+    all[actorId] = on ? [...rest, text] : rest;
+    localStorage.setItem(ACCEPTED_KEY, JSON.stringify(all));
   } catch {
     /* ignore */
   }

@@ -7,8 +7,9 @@ import { useState } from "react";
 import { Logo, ProfileForm } from "@/components/common";
 import { n } from "@/lib/format";
 import { createGame } from "@/lib/game/engine";
+import { gameMeta, GAMES } from "@/lib/game/games";
 import { isRoomCode, newRoomCode, saveHostGame } from "@/lib/game/room";
-import type { Settings } from "@/lib/game/types";
+import type { GameKind, Settings } from "@/lib/game/types";
 import { useProfile } from "@/lib/profile";
 
 function Toggle<T extends string | number>({
@@ -42,8 +43,15 @@ export function HomeClient() {
   const [profile, update] = useProfile();
   const [editing, setEditing] = useState(false);
   const [code, setCode] = useState("");
-  const [settings, setSettings] = useState<Settings>({ rounds: 10, pool: "all", difficulty: "any", autoRevealSec: 30 });
+  const [settings, setSettings] = useState<Settings>({ game: "tetrat", rounds: 10, pool: "all", difficulty: "any", autoRevealSec: 30 });
+  const meta = gameMeta(settings.game);
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) => setSettings((s) => ({ ...s, [k]: v }));
+  /** Switching games keeps the round count when it's an option there, else uses that game's default. */
+  const pick = (game: GameKind) =>
+    setSettings((s) => {
+      const options = gameMeta(game).roundOptions;
+      return { ...s, game, rounds: options.includes(s.rounds) ? s.rounds : (options.includes(10) ? 10 : (options[0] ?? 0)) };
+    });
 
   function host() {
     if (!profile) return;
@@ -91,41 +99,76 @@ export function HomeClient() {
                 <h2 className="display text-3xl">🎥 ابدأ لعبة جديدة</h2>
                 <p className="text-muted">انت المضيف وبتلعب كمان. ابعت الكود لصحابك.</p>
               </div>
+              <div className="grid grid-cols-2 gap-2.5" role="radiogroup" aria-label="اختار اللعبة">
+                {GAMES.map((g) => (
+                  <button
+                    key={g.id}
+                    type="button"
+                    role="radio"
+                    aria-checked={settings.game === g.id}
+                    onClick={() => pick(g.id)}
+                    className={`rounded-2xl p-3 text-start transition ${
+                      settings.game === g.id ? "bg-magenta/20 ring-2 ring-magenta" : "bg-surface-2/70 ring-1 ring-line hover:ring-magenta/60"
+                    }`}
+                  >
+                    <span className="text-2xl">{g.icon}</span>
+                    <span className="display block text-lg leading-tight">{g.title}</span>
+                    <span className="block text-xs leading-snug text-muted">{g.sub}</span>
+                  </button>
+                ))}
+              </div>
               <div className="space-y-3">
-                <p className="font-bold">عدد الجولات</p>
-                <Toggle value={settings.rounds} onChange={(v) => set("rounds", v)} options={[5, 10, 15].map((v) => ({ v, label: n(v) }))} />
-                <p className="font-bold">نوع العناوين</p>
-                <Toggle
-                  value={settings.pool}
-                  onChange={(v) => set("pool", v)}
-                  options={[
-                    { v: "all", label: "🎬 الكل" },
-                    { v: "movie", label: "🎞️ أفلام" },
-                    { v: "series", label: "📺 مسلسلات" },
-                  ]}
-                />
-                <p className="font-bold">الصعوبة</p>
-                <Toggle
-                  value={settings.difficulty}
-                  onChange={(v) => set("difficulty", v)}
-                  options={[
-                    { v: "any", label: "خليط" },
-                    { v: "easy", label: "سهل" },
-                    { v: "medium", label: "متوسط" },
-                    { v: "hard", label: "صعب" },
-                  ]}
-                />
-                <p className="font-bold">كشف تلقائي للممثلين</p>
-                <Toggle
-                  value={settings.autoRevealSec}
-                  onChange={(v) => set("autoRevealSec", v)}
-                  options={[
-                    { v: 0, label: "يدوي" },
-                    { v: 20, label: `كل ${n(20)} ث` },
-                    { v: 30, label: `كل ${n(30)} ث` },
-                    { v: 45, label: `كل ${n(45)} ث` },
-                  ]}
-                />
+                <p className="text-sm text-muted">{meta.rules}</p>
+                {meta.roundOptions.length > 0 && (
+                  <>
+                    <p className="font-bold">{meta.roundsLabel}</p>
+                    <Toggle value={settings.rounds} onChange={(v) => set("rounds", v)} options={meta.roundOptions.map((v) => ({ v, label: n(v) }))} />
+                  </>
+                )}
+                {meta.uses.pool && (
+                  <>
+                    <p className="font-bold">نوع العناوين</p>
+                    <Toggle
+                      value={settings.pool}
+                      onChange={(v) => set("pool", v)}
+                      options={[
+                        { v: "all", label: "🎬 الكل" },
+                        { v: "movie", label: "🎞️ أفلام" },
+                        { v: "series", label: "📺 مسلسلات" },
+                      ]}
+                    />
+                  </>
+                )}
+                {meta.uses.difficulty && (
+                  <>
+                    <p className="font-bold">{meta.id === "beforeafter" ? "الفرق بين السنتين" : "الصعوبة"}</p>
+                    <Toggle
+                      value={settings.difficulty}
+                      onChange={(v) => set("difficulty", v)}
+                      options={[
+                        { v: "any", label: "خليط" },
+                        { v: "easy", label: meta.id === "beforeafter" ? "كبير" : "سهل" },
+                        { v: "medium", label: "متوسط" },
+                        { v: "hard", label: meta.id === "beforeafter" ? "صغير" : "صعب" },
+                      ]}
+                    />
+                  </>
+                )}
+                {meta.uses.autoReveal && (
+                  <>
+                    <p className="font-bold">كشف تلقائي للمراحل</p>
+                    <Toggle
+                      value={settings.autoRevealSec}
+                      onChange={(v) => set("autoRevealSec", v)}
+                      options={[
+                        { v: 0, label: "يدوي" },
+                        { v: 20, label: `كل ${n(20)} ث` },
+                        { v: 30, label: `كل ${n(30)} ث` },
+                        { v: 45, label: `كل ${n(45)} ث` },
+                      ]}
+                    />
+                  </>
+                )}
               </div>
               <button onClick={host} className="btn btn-primary btn-lg w-full">
                 ابدأ اللعبة 🚀

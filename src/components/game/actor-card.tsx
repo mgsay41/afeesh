@@ -8,9 +8,10 @@ import type { PublicClue } from "@/lib/game/types";
 
 const ROLE_LABEL = ["", "", "", "دور أكبر", "بطولة", "بطولة"];
 
-export function ActorCard({ clue, index }: { clue: PublicClue; index: number }) {
+/** `works`: the card shows a title (poster) instead of an actor, so no "lead" styling or role labels. */
+export function ActorCard({ clue, index, works }: { clue: PublicClue; index: number; works?: boolean }) {
   const shown = clue !== "hidden";
-  const isLead = index >= 4;
+  const isLead = !works && index >= 4;
   const [broken, setBroken] = useState(false);
 
   return (
@@ -55,9 +56,9 @@ export function ActorCard({ clue, index }: { clue: PublicClue; index: number }) 
                 </div>
               )}
               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/60 to-transparent px-1.5 pb-1.5 pt-6 text-center">
-                <p className="text-[0.8rem] font-extrabold leading-tight sm:text-base">{clue.nameAr}</p>
+                <p className={`font-extrabold leading-tight ${works ? "text-xs sm:text-sm" : "text-[0.8rem] sm:text-base"}`}>{clue.nameAr}</p>
               </div>
-              {ROLE_LABEL[index] && (
+              {!works && ROLE_LABEL[index] && (
                 <span
                   className={`absolute top-1.5 start-1.5 rounded-full px-2 py-0.5 text-[0.65rem] font-black ${
                     isLead ? "bg-gold text-black" : "bg-teal text-black"

@@ -4,14 +4,17 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { ConnectionBadge, ProfileForm, TopBar } from "@/components/common";
+import { FiveActor, FiveHeader, FiveInput, FiveProgress, FiveResults, FiveTimer, useCountdown, type OwnEntry } from "@/components/game/five-view";
 import { GuessBox } from "@/components/game/guess-box";
 import { AnswerReveal, AutoTimer, ClueBoard, HintChips, RoundHeader } from "@/components/game/round-view";
 import { Podium, Scoreboard } from "@/components/game/scoreboard";
 import { fireConfetti, n, newGuessId } from "@/lib/format";
+import { familyOf } from "@/lib/game/games";
 import { loadHostGame } from "@/lib/game/room";
 import type { PublicState } from "@/lib/game/types";
 import { usePlayerGame } from "@/lib/game/use-player-game";
 import { recordCorrect, recordGame, useProfile, type Profile } from "@/lib/profile";
+import { PlayerChain, PlayerCharades, PlayerQuiz } from "./play-games";
 
 export function PlayClient({ room }: { room: string }) {
   const [profile, update] = useProfile();
@@ -114,12 +117,38 @@ function Game({ room, profile, update }: { room: string; profile: Profile; updat
       ) : state.phase === "lobby" ? (
         <Lobby state={state} meId={me.id} />
       ) : state.phase === "round" ? (
-        <PlayerRound key={state.round?.index} game={game} state={state} meId={me.id} update={update} />
+        <PlayerGameView game={game} state={state} meId={me.id} update={update} />
       ) : (
         <Final state={state} meId={me.id} update={update} />
       )}
     </>
   );
+}
+
+/** Picks the screen for the running game. */
+function PlayerGameView({
+  game,
+  state,
+  meId,
+  update,
+}: {
+  game: ReturnType<typeof usePlayerGame>;
+  state: PublicState;
+  meId: string;
+  update: ReturnType<typeof useProfile>[1];
+}) {
+  switch (familyOf(state.settings.game)) {
+    case "five":
+      return <PlayerFive key={state.five?.index} game={game} state={state} meId={meId} update={update} />;
+    case "quiz":
+      return <PlayerQuiz game={game} state={state} meId={meId} />;
+    case "charades":
+      return <PlayerCharades game={game} state={state} meId={meId} />;
+    case "chain":
+      return <PlayerChain game={game} state={state} meId={meId} />;
+    default:
+      return <PlayerRound key={state.round?.index} game={game} state={state} meId={meId} update={update} />;
+  }
 }
 
 function Center({ emoji, title, children }: { emoji: string; title: string; children?: React.ReactNode }) {
@@ -194,6 +223,7 @@ function PlayerRound({
           result={result}
           misses={round.misses[meId] ?? 0}
           solved={solved}
+          placeholder={round.mode === "link" ? "اسم الممثل…" : undefined}
           onGuess={(text) => {
             const id = newGuessId();
             setMyGuesses((g) => [...g, id]);
@@ -219,6 +249,102 @@ function PlayerRound({
           </motion.div>
         )}
       </AnimatePresence>
+    </main>
+  );
+}
+
+const FIVE_NOTICE: Record<string, string> = {
+  duplicate: "ده اتقال قبل كده",
+  late: "الوقت خلص",
+  locked: "خلصت محاولاتك",
+  already: "خلصت الـ ٥ 😎",
+  invalid: "اكتب حاجة",
+};
+
+function PlayerFive({
+  game,
+  state,
+  meId,
+  update,
+}: {
+  game: ReturnType<typeof usePlayerGame>;
+  state: PublicState;
+  meId: string;
+  update: ReturnType<typeof useProfile>[1];
+}) {
+  const five = state.five!;
+  // Keyed by round index in the parent, so this resets every round.
+  const [sent, setSent] = useState<{ id: string; text: string }[]>([]);
+  const [showBoard, setShowBoard] = useState(false);
+  const left = useCountdown(five.msLeft, game.receivedAt);
+  const count = five.counts[meId] ?? 0;
+
+  // Latest verdict per entry; entries refused for other reasons (duplicate, late…) leave the list.
+  const entries: OwnEntry[] = sent
+    .map((s): OwnEntry | null => {
+      const res = [...game.results].reverse().find((r) => r.guessId === s.id);
+      if (!res) return { ...s, status: "pending" };
+      if (res.verdict === "correct" || res.verdict === "close" || res.verdict === "wrong") return { ...s, status: res.verdict };
+      return null;
+    })
+    .filter((e): e is OwnEntry => e !== null)
+    .reverse();
+  const last = game.lastResult && sent.some((s) => s.id === game.lastResult!.guessId) ? game.lastResult : null;
+  const notice = last ? (FIVE_NOTICE[last.verdict] ?? null) : null;
+
+  const celebrated = useRef(false);
+  useEffect(() => {
+    if (count >= 5 && !celebrated.current) {
+      celebrated.current = true;
+      void fireConfetti();
+      recordCorrect(update);
+      navigator.vibrate?.(80);
+    }
+  }, [count, update]);
+
+  const myRank = state.players.findIndex((p) => p.id === meId) + 1;
+  const myScore = state.players.find((p) => p.id === meId)?.score ?? 0;
+
+  return (
+    <main className="mx-auto flex w-full max-w-xl flex-col gap-4 px-4 py-4 pb-10">
+      <FiveHeader five={five} />
+      {five.step === "playing" && <FiveTimer left={left} totalMs={five.totalMs} />}
+      <FiveActor five={five} small={five.step !== "ready"} />
+
+      {five.step === "playing" && (
+        <>
+          <FiveInput
+            entries={entries}
+            count={count}
+            active={(left ?? 0) > 0}
+            notice={notice}
+            onEnter={(text) => {
+              const id = newGuessId();
+              setSent((s) => [...s, { id, text }]);
+              game.guess(id, five.index, text);
+            }}
+          />
+          <section className="panel p-3">
+            <FiveProgress players={state.players} counts={five.counts} meId={meId} />
+          </section>
+        </>
+      )}
+      {five.step === "review" && (
+        <p className="panel p-4 text-center text-lg font-extrabold">
+          ⏰ الوقت خلص! المضيف بيراجع الإجابات…
+          <span className="mt-1 block text-gold">جبت {n(count)} من ٥</span>
+        </p>
+      )}
+      {five.step === "results" && <FiveResults five={five} players={state.players} meId={meId} />}
+      {five.step === "ready" && <p className="text-center font-bold text-muted">المضيف هيبدأ الجولة… استعد! 💪</p>}
+
+      <button onClick={() => setShowBoard((b) => !b)} className="panel flex items-center justify-between px-4 py-3 font-bold">
+        <span>🏆 ترتيبك: {n(myRank)} من {n(state.players.length)}</span>
+        <span className="tabular-nums text-gold">
+          {n(myScore)} نقطة {showBoard ? "▲" : "▼"}
+        </span>
+      </button>
+      {(showBoard || five.step === "results") && <Scoreboard players={state.players} meId={meId} hostId={state.hostId} compact />}
     </main>
   );
 }
